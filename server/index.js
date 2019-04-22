@@ -7,9 +7,8 @@ const {
   Pool
 } = require('pg')
 const pool = new Pool({
-  host: 'localhost',
-  database: 'icrossland_db',
-  port: 5432
+  connectionString: process.env.DATABASE_URL || 'postgres://localhost:5432/icrossland_db',
+  ssl: process.env.NODE_ENV === 'production'
 })
 
 
