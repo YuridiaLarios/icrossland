@@ -1,0 +1,26 @@
+{
+  "name": "techtonica-final-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YuridiaLarios/my-final-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YuridiaLarios/my-final-app/issues"
+  },
+  "homepage": "https://github.com/YuridiaLarios/my-final-app#readme",
+  "dependencies": {
+    "accepts": "^1.3.5",
+    "express": "^4.16.4",
+    "negotiator": "^0.6.1",
+    "pg": "^7.10.0"
+  }
+}
