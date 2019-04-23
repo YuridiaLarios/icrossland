@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+const path = require('path');
+
 
 app.use(express.json()); // get ability to use body for post, put, delete;
 
@@ -12,16 +14,6 @@ const pool = new Pool({
   ssl: process.env.NODE_ENV === 'production'
 })
 
-if (process.env.NODE_ENV === 'production') {
-  // Exprees will serve up production assets
-  app.use(express.static('client/build'));
-
-  // Express serve up index.html file if it doesn't recognize route
-  const path = require('path');
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-  });
-}
 
 pool.connect();
 
@@ -36,3 +28,14 @@ app.get('/users', async (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, console.log(`The monster octupus application is running on port ${PORT}`));
+
+
+// Add this below all your other routes
+if (process.env.NODE_ENV === "production") {
+  // Serve any static files
+  app.use(express.static(path.join(__dirname, "../client/build")));
+  // Handle React routing, return all requests to React app
+  app.get("*", function (req, res) {
+    res.sendFile(path.join(__dirname, "../client/build", "index.html"));
+  });
+}
