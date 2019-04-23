@@ -14,6 +14,10 @@ const pool = new Pool({
 
 pool.connect();
 
+app.get('/', (req, res) => {
+  res.send('hello testing root');
+});
+
 app.get('/users', async (req, res) => {
   const client = await pool.connect();
   var users = await client.query("SELECT * FROM users");
