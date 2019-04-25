@@ -1,13 +1,27 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+require('dotenv').config();
 const authRoutes = require('./routes/auth-routes');
 const passportSetup = require('./config/passport-setup');
+const mongoose = require('mongoose');
+
 
 
 app.use(express.json()); // get ability to use body for post, put, delete;
 app.enable('trust proxy');
 app.use('/auth', authRoutes);
+
+//connect to mongodb
+mongoose.connect(process.env.DB_MONGODBURI,{
+  useNewUrlParser: true
+}, function(error) {
+  if(error){
+      console.log(error);
+  } else {
+      console.log('connected to amazing mongodb yay !!!');
+  }
+});
 
 
 const {
