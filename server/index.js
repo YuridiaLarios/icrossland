@@ -6,6 +6,7 @@ const passportSetup = require('./config/passport-setup');
 
 
 app.use(express.json()); // get ability to use body for post, put, delete;
+app.enable('trust proxy');
 app.use('/auth', authRoutes);
 
 
