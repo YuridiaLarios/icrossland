@@ -1,9 +1,11 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const authRoutes = require('./routes/auth-routes');
 
 
 app.use(express.json()); // get ability to use body for post, put, delete;
+app.use('/auth', authRoutes);
 
 
 const {
@@ -24,6 +26,9 @@ app.get('/users', async (req, res) => {
   res.json(users.rows);
   client.release();
 });
+
+
+
 
 
 const PORT = process.env.PORT || 3000;
