@@ -25,13 +25,16 @@ export const NavigationBar = () => (
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
           <Nav.Item>
-            <Nav.Link><Link to="/">Home</Link></Nav.Link>
+            <Nav.Link><Link to="/">Homepage</Link></Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link><Link to="/about">About</Link></Nav.Link>
+            <Nav.Link><Link to="/login">Login</Link></Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link><Link to="/contact">Contact</Link></Nav.Link>
+            <Nav.Link><Link to="/logout">Logout</Link></Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link><Link to="/profile">Profile</Link></Nav.Link>
           </Nav.Item>
         </Nav>
       </Navbar.Collapse>
