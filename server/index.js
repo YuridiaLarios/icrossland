@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const authRoutes = require('./routes/auth-routes');
+const passportSetup = require('./config/passport-setup');
 
 
 app.use(express.json()); // get ability to use body for post, put, delete;
