@@ -10,7 +10,7 @@ const passport = require('passport');
 
 
 // auth logout (WILL BE RENDERING WITH REACT INSTEAD)
-router.get('/logout', (req, res) => {
+router.get('/logoutme', (req, res) => {
   // handle with passport
   //res.send('logging out');
   req.logout();
