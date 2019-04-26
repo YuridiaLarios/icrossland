@@ -10,19 +10,12 @@ const passport = require('passport');
 
 
 // auth logout (WILL BE RENDERING WITH REACT INSTEAD)
-// router.get('/logout', (req, res) => {
-//   // handle with passport
-//   //res.send('logging out');
-//   req.logout();
-//   res.redirect('/');
-// });
-
-
-// auth with google for testing only
-// router.get('/google', (req, res) => {
-//   res.send('loggin in with google');
-//   // scope: ['profile']
-// });
+router.get('/logout', (req, res) => {
+  // handle with passport
+  //res.send('logging out');
+  req.logout();
+  res.redirect('/');
+});
 
 
 
