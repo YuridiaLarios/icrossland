@@ -2,11 +2,14 @@ const router = require('express').Router();
 const passport = require('passport');
 
 // auth login (WILL BE RENDERING WITH REACT INSTEAD)
-// router.get('/login', (req, res) => {
-//   res.render('login', {
-//       user: req.user
-//   });
-// });
+router.get('/login', (req, res) => {
+  // if user already logged in but tries to go to login page redirect him to /
+  if (req.user) {
+    res.redirect('/');
+  } else {
+    res.render('login', { user: req.user });
+  }
+});
 
 
 // auth logout (WILL BE RENDERING WITH REACT INSTEAD)
