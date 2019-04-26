@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const passport = require('passport');
 
+let userData;
+
 // auth login (WILL BE RENDERING WITH REACT INSTEAD)
 // router.get('/login', (req, res) => {
 //   res.render('login', {
@@ -13,6 +15,7 @@ const passport = require('passport');
 router.get('/logoutme', (req, res) => {
   // handle with passport
   //res.send('logging out');
+  userData = null;
   req.logout();
   res.redirect('/');
 });
@@ -34,12 +37,19 @@ router.get('/google', passport.authenticate('google', {
 router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
   console.log('you reached the callback URI');
   console.log(req.user);
-  var userData = req.user;
+  userData = req.user;
   res.json(userData);
   //res.send(req.user);
   // res.redirect('/profile/' + req.user.username);
 });
 
+
+
+
+router.get('/userinfo', async (req, res) => {
+  let userInfo = userData;
+  res.json(userInfo);
+});
 
 
 // app.get('/users', async (req, res) => {
