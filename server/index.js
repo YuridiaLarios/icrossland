@@ -3,13 +3,27 @@ const app = express();
 const path = require('path');
 require('dotenv').config();
 const authRoutes = require('./routes/auth-routes');
+const passport = require('passport');
 const passportSetup = require('./config/passport-setup');
 const mongoose = require('mongoose');
+const cookieSession = require('cookie-session');
 
 
 
 app.use(express.json()); // get ability to use body for post, put, delete;
 app.enable('trust proxy');
+
+// set up session cookies
+app.use(cookieSession({
+  maxAge: 24 * 60 * 60 * 10000,
+  keys: [process.env.DB_COOKIEKEY]
+}));
+
+// initialize passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+// set up routes
 app.use('/auth', authRoutes);
 
 //connect to mongodb
