@@ -2,14 +2,11 @@ const router = require('express').Router();
 const passport = require('passport');
 
 // auth login (WILL BE RENDERING WITH REACT INSTEAD)
-router.get('/login', (req, res) => {
-  // if user already logged in but tries to go to login page redirect him to /
-  if (req.user) {
-    res.redirect('/');
-  } else {
-    res.render('login', { user: req.user });
-  }
-});
+// router.get('/login', (req, res) => {
+//   res.render('login', {
+//       user: req.user
+//   });
+// });
 
 
 // auth logout (WILL BE RENDERING WITH REACT INSTEAD)
@@ -37,6 +34,18 @@ router.get('/google', passport.authenticate('google', {
 router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
   console.log('you reached the callback URI');
   console.log(req.user);
-  res.redirect('/profile/' + req.user.username);
+  var userData = req.user;
+  res.json(userData);
+  //res.send(req.user);
+  // res.redirect('/profile/' + req.user.username);
 });
+
+
+
+// app.get('/users', async (req, res) => {
+//   const client = await pool.connect();
+//   var users = await client.query("SELECT * FROM users");
+//   res.json(users.rows);
+//   client.release();
+// });
 module.exports = router;
