@@ -54,7 +54,7 @@ class App extends Component{
           <Layout>
             <Switch>
               <Route exact path="/" component={Homepage} />
-              <Route path="/login" component={Login} />
+              <Route path='/login' component={() => { window.location = '/auth/google'; return null;} }/>
               <Route path='/logout' component={() => { window.location = '/auth/logoutme'; return null;} }/>
               <Route path="/profile" component={Profile} />
               {/* <Route component={NoMatch} /> */}
