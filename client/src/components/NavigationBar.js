@@ -17,7 +17,7 @@ const Styles = styled.div`
   }
 `;
 
-export const NavigationBar = () => (
+export const NavigationBar = (props) => (
   <Styles>
     <Navbar expand="lg">
       <Navbar.Brand href="/">icrossland</Navbar.Brand>
@@ -27,15 +27,21 @@ export const NavigationBar = () => (
           <Nav.Item>
             <Nav.Link><Link to="/">Homepage</Link></Nav.Link>
           </Nav.Item>
+          {props.auth.isAuthenticated() &&
           <Nav.Item>
-            <Nav.Link><Link to="/login">Login</Link></Nav.Link>
+            <Nav.Link><Link to="/secret">Profile</Link></Nav.Link>
           </Nav.Item>
+          }
+           {!props.auth.isAuthenticated() &&
           <Nav.Item>
-            <Nav.Link><Link to="/logout">Logout</Link></Nav.Link>
+            <Nav.Link><Link to="/" onClick={props.auth.login}>Login </Link></Nav.Link>
           </Nav.Item>
+          }
+          {props.auth.isAuthenticated() &&
           <Nav.Item>
-            <Nav.Link><Link to="/profile">Profile</Link></Nav.Link>
+            <Nav.Link><Link to="/" onClick={props.auth.logout}>Logout</Link></Nav.Link>
           </Nav.Item>
+          }
         </Nav>
       </Navbar.Collapse>
     </Navbar>

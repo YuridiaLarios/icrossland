@@ -1,70 +1,44 @@
-import React, { Component } from 'react';
-// import './App.css';
+import React, {Component} from 'react';
+import './App.css';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {NavigationBar} from './components/NavigationBar';
-import {Jumbotron} from './components/Jumbotron';
 import {Layout} from './components/Layout';
-import { Homepage } from './Homepage';
-import { Login } from './Login';
-// import  Logout  from './Logout';
-import { Profile } from './Profile';
-// import { NoMatch } from './NoMatch';
-
-/*************************************************
- MAIN PARENT COMPONENT
-**************************************************/
-class App extends Component{
-  constructor(props) {
-    super(props);
-    this.state = {
-      userInformation: {},
-      error: false         
-    }
-  }
+// import Main from "./components/Main";
+import Homepage  from './Homepage';
+import Secret from "./components/Secret";
+import NotFound from "./components/NotFound"
+import Callback from './components/Callback';
 
 
+class App extends Component {
+  render(){
+    let mainComponent = ""
+      switch(this.props.location){
+          case "callback":
+            mainComponent = <Callback></Callback>
+            break;
+      }
 
-  //MAIN USERINFO UI
-  // moving it here makes it accessible to all children components
-  componentDidMount() {
-    const url = `/auth/userinfo`;
-
-    fetch(url)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        this.setState({
-          userInformation: data
-        })
-      })
-      .catch((error) => {
-        this.setState({
-          error: true
-        })
-      });
-  }
-
-  render() {
     return (
-      <React.Fragment>
-        <Router>
-          <NavigationBar />
-          <Jumbotron />
+    <div className="App">
+      <header >
+      <Router>
+        <NavigationBar {...this.props}/>
           <Layout>
             <Switch>
-              <Route exact path="/" component={Homepage} />
-              <Route path='/login' component={() => { window.location = '/auth/google'; return null;} }/>
-              <Route path='/logout' component={() => { window.location = '/auth/logoutme'; return null;} }/>
-              <Route path="/profile" component={Profile} />
-              {/* <Route component={NoMatch} /> */}
+            <Route exact path="/" render={props => <Homepage {...this.props} />} />
+            <Route path='/secret' render={props => (this.props.auth.isAuthenticated() ? <Secret {...this.props}></Secret> : <Homepage {...this.props}/>)} />
+            <Route path='/logout' render={props => <Homepage {...this.props} />} />
+            <Route component={NotFound} />
             </Switch>
           </Layout>
-        </Router>
-      </React.Fragment>
-    )
-  }
+      </Router>
+      </header>
 
+      {mainComponent}
+    </div>
+    );
+  }
 }
 
 export default App;
