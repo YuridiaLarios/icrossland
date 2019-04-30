@@ -17,6 +17,7 @@ router.get('/logoutme', (req, res) => {
   //res.send('logging out');
   userData = null;
   req.logout();
+  console.log('User signed out.');
   res.redirect('/');
 });
 
