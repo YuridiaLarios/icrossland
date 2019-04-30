@@ -6,7 +6,7 @@ import {Jumbotron} from './components/Jumbotron';
 import {Layout} from './components/Layout';
 import { Homepage } from './Homepage';
 import { Login } from './Login';
-import  Logout  from './Logout';
+// import  Logout  from './Logout';
 import { Profile } from './Profile';
 // import { NoMatch } from './NoMatch';
 
@@ -55,8 +55,7 @@ class App extends Component{
             <Switch>
               <Route exact path="/" component={Homepage} />
               <Route path="/login" component={Login} />
-              <Route path="/logout" component={Logout} />
-              <Route path='/privacy-policy' component={() => { window.location = '/auth/logoutme'; return null;} }/>
+              <Route path='/logout' component={() => { window.location = '/auth/logoutme'; return null;} }/>
               <Route path="/profile" component={Profile} />
               {/* <Route component={NoMatch} /> */}
             </Switch>
