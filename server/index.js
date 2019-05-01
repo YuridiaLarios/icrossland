@@ -7,9 +7,10 @@ const passport = require('passport');
 const passportSetup = require('./config/passport-setup');
 const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
+const User = require('./models/user-model');
+const cors = require('cors');
 
-
-
+app.use(cors());
 app.use(express.json()); // get ability to use body for post, put, delete;
 app.enable('trust proxy');
 
@@ -38,6 +39,21 @@ mongoose.connect(process.env.DB_MONGODBURI,{
 });
 
 
+// POST route to register a user
+app.post('/api/register', function(req, res) {
+  const { email, authID, username, } = req.body;
+  const user = new User({ email, authID, username });
+  user.save(function(err) {
+    if (err) {
+      res.status(500)
+        .send("Error registering new user please try again.");
+    } else {
+      res.status(200).send("Welcome to the club!");
+    }
+  });
+});
+
+
 const {
   Pool
 } = require('pg')
@@ -58,6 +74,13 @@ app.get('/users', async (req, res) => {
 });
 
 
+app.get('/api/public', function(req, res) {
+  res.json({ message: "Hello from a public endpoint! You don't need to be authenticated to see this." });
+});
+
+app.get('/api/private', function(req, res) {
+  res.json({ message: "Hello from a private endpoint! You need to be authenticated and have a scope of read:messages to see this." });
+});
 
 
 

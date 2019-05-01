@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import { Navbar, Button } from 'react-bootstrap';
 import {NavigationBar} from './components/NavigationBar';
 import {Layout} from './components/Layout';
 // import Main from "./components/Main";
