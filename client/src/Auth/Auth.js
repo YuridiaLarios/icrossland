@@ -123,8 +123,8 @@ export default class Auth {
 
   getProfile() {
     if(localStorage.getItem("id_token")) {
-      // this.userProfile = jwtDecode(localStorage.getItem("id_token"));
-      return jwtDecode(localStorage.getItem("id_token"));
+      this.userProfile = jwtDecode(localStorage.getItem("id_token"));
+      return this.userProfile;
     } else {
       return {};
     }

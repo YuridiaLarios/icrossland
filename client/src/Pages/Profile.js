@@ -1,120 +1,53 @@
-import React, {Component} from "react";
-import {Button} from "react-bootstrap";
-import axios from "axios";
-import "./Profile.css";
+import React, { Component } from 'react';
+import {Button, Card, Container} from "react-bootstrap";
 import Auth from "../Auth/Auth";
+import "./Profile.css";
 
-const auth = new Auth();
 
 
 class Profile extends Component {
-     // CONSTRUCTOR
-     constructor(props) {
-      super(props);
-      this.state = {
-        users: [],
-        message: ''
-      }
+   // CONSTRUCTOR
+   constructor(props) {
+    super(props);
+    this.state = {
+      profile: {}
     }
-
-
-  securedPing() {
-    // const { getAccessToken } = this.props.auth;
-    // const headers = { 'Authorization': `Bearer ${getAccessToken()}`}
-    // axios.get(`http://localhost:3000/api/private`, { headers })
-    // axios.get("http://localhost:3000/api/private")
-    axios.get("/api/private")
-      .then(response => this.setState({ pingSecuredMessage: response.data.message }))
-      .catch(error => this.setState({ pingSecuredMessage: error.message }));
   }
 
-  ping() {
-    // axios.get("http://localhost:3000/api/public")
-    axios.get("/api/public")
-      .then(response => this.setState({ pingMessage: response.data.message }))
-      .catch(error => this.setState({ pingMessage: error.message }));  
-  }
 
-  postUser() {
-    console.log(auth.getProfile());
-    let profile = auth.getProfile();
-    const headers = { 'Authorization': `Bearer ${auth.getAccessToken()}`}
-  
-      axios({
-        method: "post",
-        // url: "http://localhost:3000/api/user",
-        url: "/api/user",
-        headers,
-        data: profile
-      }).then(function(res){
-        console.log(`the response is: ${res}`);
+
+  componentWillMount() {
+    const { userProfile, getProfile } = this.props.auth;
+    if (!userProfile) {
+      getProfile((err, profile) => {
+        this.setState({ profile });
       });
+    } else {
+      this.setState({ profile: userProfile });
+    }
   }
-
-  getUsers() {
-    // const url = "http://localhost:3000/api/allusers";
-    const url = "/api/allusers";
-
-    fetch(url)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        this.setState({
-          users: data
-        })
-      })
-      .catch((error) => {
-        this.setState({
-          error: true
-        })
-      });
-  }
-
   render() {
+    const { profile } = this.state;
     return (
-      <div>
-        <h1>This is a super secret area. Jump back to <a href="/">Home</a></h1>
-        <br />
-        <button onClick={this.props.auth.logout}>Logout</button>
+      <div className="container">
+        <Container>
+          <Card>
+            <Card.Header><h2>{profile.name}</h2></Card.Header>
+            <Card.Img className="profile-thumbnail" variant="top" src={profile.picture} />
+            <Card.Body>
+              <Card.Title>Nickname: {profile.nickname}</Card.Title>
+              <Card.Text>
+                {profile.email}
+              </Card.Text>
+              <Button variant="primary">Go somewhere</Button>
+              <pre>{JSON.stringify(profile, null, 2)}</pre>
 
-          <div className="container">
-
-            <h3>Make a Call to the Server</h3>
-            <Button  onClick={this.ping.bind(this)}>Ping</Button>              
-            <h2> {this.state.pingMessage}</h2>
-
-            <Button onClick={this.securedPing.bind(this)}>Call Private</Button>       
-            
-            <h2> {this.state.pingSecuredMessage}</h2>
-
-            <Button  onClick={this.postUser.bind(this)}>Post User</Button>              
-            <h2></h2>
-
-            <Button  onClick={this.getUsers.bind(this)}>Get all users</Button>   
-          
-          </div>
-
-          <div>
-              <h4>All users:</h4> 
-              <ul>
-                {
-                  this.state.users.map(function(item){
-                  return (
-                    <div>
-                      <li key={item._id}>{item.username} | {item.email} | {item._id} |
-                      <img className="thumbnail" src={item.thumbnailFile}  alt="user Headshot"></img>
-                      </li> 
-                    </div>
-                  );
-                })  
-                }
-              </ul>
-          </div>  
+            </Card.Body>
+          </Card>
+        </Container>
       </div>
-    )
+    );
   }
 }
-
 
 export default Profile;

@@ -1,4 +1,12 @@
-.thumbnail {
-  width: 25px;
+.container {
+  text-align: center;
+  margin: 0 auto;
+  padding: 30px;
+}
+
+.profile-thumbnail {
+  width: 255px;
   border-radius: 50%;
+  text-align: center;
+  margin: 50px auto;
 }

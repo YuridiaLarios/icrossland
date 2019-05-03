@@ -8,7 +8,6 @@ const Styles = styled.div`
     background-color: #222;
   }
 
-
   a, .navbar-brand, .navbar-nav .nav-link {
     
     margin: 0 15px;
@@ -33,7 +32,12 @@ export const NavigationBar = (props) => (
           </Nav.Item>
           {props.auth.isAuthenticated() &&
           <Nav.Item>
-            <Link to="/secret">Profile</Link>
+            <Link to="/secret">Secret</Link>
+          </Nav.Item>
+          }
+          {props.auth.isAuthenticated() &&
+          <Nav.Item>
+            <Link to="/profile">Profile</Link>
           </Nav.Item>
           }
            {!props.auth.isAuthenticated() &&
