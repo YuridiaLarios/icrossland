@@ -91,23 +91,6 @@ app.post('/api/user', function(req,res) {
 });
 
 
-
-
-// // POST route to register a user
-// app.post('/api/register', function(req, res) {
-//   const { email, authID, username, } = req.body;
-//   const user = new User({ email, authID, username });
-//   user.save(function(err) {
-//     if (err) {
-//       res.status(500)
-//         .send("Error registering new user please try again.");
-//     } else {
-//       res.status(200).send("Welcome to the club!");
-//     }
-//   });
-// });
-
-
 const {
   Pool
 } = require('pg')

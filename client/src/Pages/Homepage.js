@@ -11,18 +11,19 @@ class Homepage extends Component {
             <h1>
               Welcome to React, {this.props.name}
             </h1>
-      <h2>Homepage</h2>
-      Do you want to see the secret area?
+      Do you want to see the profile area?
+      {this.props.auth.isAuthenticated() &&
           <a href="/secret">Click here</a>
+      }
         
-        {!this.props.auth.isAuthenticated() &&
+      {!this.props.auth.isAuthenticated() &&
         <div>
           <hr />
           Please login first
           <hr />
           <button onClick={this.props.auth.login}>login</button>
         </div>
-        }
+      }
       </div>
     
     )

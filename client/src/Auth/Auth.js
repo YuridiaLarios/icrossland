@@ -3,8 +3,8 @@ import jwtDecode from "jwt-decode";
 import axios from 'axios';
 
 /* eslint no-restricted-globals:0*/
-const LOGIN_SUCCESS_PAGE = "/";
-const LOGIN_FAILURE_PAGE = "/secret";
+const LOGIN_SUCCESS_PAGE = "/secret";
+const LOGIN_FAILURE_PAGE = "/";
 
 
 
