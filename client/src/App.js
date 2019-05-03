@@ -3,9 +3,9 @@ import './App.css';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {NavigationBar} from './components/NavigationBar';
 import {Layout} from './components/Layout';
-import Homepage  from './Homepage';
-import Secret from "./components/Secret";
-import NotFound from "./components/NotFound"
+import Homepage  from './Pages/Homepage';
+import Profile from "./Pages/Profile";
+import NotFound from "./Pages/NotFound"
 import Callback from './components/Callback';
 
 
@@ -26,7 +26,7 @@ class App extends Component {
           <Layout>
             <Switch>
             <Route exact path="/" render={props => <Homepage {...this.props} />} />
-            <Route path='/secret' render={props => (this.props.auth.isAuthenticated() ? <Secret {...this.props}></Secret> : <Homepage {...this.props}/>)} />
+            <Route path='/secret' render={props => (this.props.auth.isAuthenticated() ? <Profile {...this.props}></Profile> : <Homepage {...this.props}/>)} />
             <Route path='/logout' render={props => <Homepage {...this.props} />} />
             <Route component={NotFound} />
             </Switch>

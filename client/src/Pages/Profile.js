@@ -1,0 +1,99 @@
+import React, {Component} from "react";
+import {Button} from "react-bootstrap";
+import axios from "axios";
+import "./Profile.css";
+
+
+
+class Profile extends Component {
+     // CONSTRUCTOR
+     constructor(props) {
+      super(props);
+      this.state = {
+        users: [],
+        message: ''
+      }
+    }
+
+
+  securedPing() {
+    // const { getAccessToken } = this.props.auth;
+    // const headers = { 'Authorization': `Bearer ${getAccessToken()}`}
+    // axios.get(`http://localhost:3000/api/private`, { headers })
+    axios.get("/api/private")
+    // axios.get("/api/private")
+      .then(response => this.setState({ pingSecuredMessage: response.data.message }))
+      .catch(error => this.setState({ pingSecuredMessage: error.message }));
+  }
+
+  ping() {
+    axios.get("/api/public")
+      .then(response => this.setState({ pingMessage: response.data.message }))
+      .catch(error => this.setState({ pingMessage: error.message }));  
+  }
+
+  getUsers() {
+    // const url = "http://localhost:3000/api/allusers";
+    const url = "/api/allusers";
+
+    fetch(url)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        this.setState({
+          users: data
+        })
+      })
+      .catch((error) => {
+        this.setState({
+          error: true
+        })
+      });
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>This is a super secret area. Jump back to <a href="/">Home</a></h1>
+        <br />
+        <button onClick={this.props.auth.logout}>Logout</button>
+
+          <div className="container">
+
+            <h3>Make a Call to the Server</h3>
+            <Button  onClick={this.ping.bind(this)}>Ping</Button>              
+            <h2> {this.state.pingMessage}</h2>
+
+            <Button onClick={this.securedPing.bind(this)}>
+                    Call Private
+            </Button>       
+            <h2> {this.state.pingSecuredMessage}</h2>
+
+            <Button  onClick={this.getUsers.bind(this)}>Get all users</Button>              
+
+            </div>
+
+            <div>
+              <h4>All users:</h4> 
+              <ul>
+                {
+                  this.state.users.map(function(item, i){
+                  return (
+                    <div>
+                      <li key={i}>{item.username} | {item.email} |
+                      <img className="thumbnail" src={item.thumbnailFile}  alt="Profile picture"></img>
+                      </li> 
+                    </div>
+                  );
+                })  
+                }
+              </ul>
+            </div>  
+      </div>
+    )
+  }
+}
+
+
+export default Profile;

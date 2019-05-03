@@ -21,6 +21,29 @@ app.use(express.json()); // get ability to use body for post, put, delete;
 app.enable('trust proxy');
 
 
+mongoose.connect(process.env.DB_MONGODBURI, {
+  useNewUrlParser: true
+}, function (error) {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log("connected to mongo database yay!")
+  }
+});
+
+app.get('/api/allusers', function(req, res) {
+  User.find({}, function(error, users){
+    if(error){
+      console.log("problem finding data");
+      res.send("something went really wrong!!!");
+      next();
+    } 
+    console.log(users);
+    res.json(users);
+  });
+})
+
+
 
 
 // // POST route to register a user
