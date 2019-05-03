@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import Auth from "./Auth";
+import Auth from "./Auth/Auth";
 
 const auth = new Auth();
 

@@ -31,6 +31,26 @@ mongoose.connect(process.env.DB_MONGODBURI, {
   }
 });
 
+
+/*************************************
+ ROUTES FOR TESTING PURPOSES
+**************************************/
+app.get('/api/public', function (req, res) {
+  res.json({
+    message: "Hello from a public endpoint! You don't need to be authenticated to see this."
+  });
+});
+
+app.get('/api/private', function (req, res) {
+  res.json({
+    message: "Hello from a private endpoint! You need to be authenticated and have a scope of read:messages to see this."
+  });
+});
+
+
+/*************************************
+ACTUAL ROUTES
+**************************************/
 app.get('/api/allusers', function(req, res) {
   User.find({}, function(error, users){
     if(error){
@@ -38,10 +58,37 @@ app.get('/api/allusers', function(req, res) {
       res.send("something went really wrong!!!");
       next();
     } 
-    console.log(users);
+    // console.log(users);
     res.json(users);
   });
 })
+
+app.post('/api/user', function(req,res) {
+  User.findOne({authId: req.body.sub}).then((currentUser) => {
+    if (currentUser) {
+      // already have user
+      console.log('User is ', currentUser);
+    } else {
+      // if not, create user in our db
+      User.create({
+        authId: req.body.sub,
+        username: req.body.name,
+        email: req.body.email,
+        thumbnailFile: req.body.picture
+      }, function(error, data){
+        if(error){
+          console.log("There was a problem adding a document to the collection.");
+          console.log(error);
+          res.sendStatus(500)
+        } else {
+          console.log("Data added to collection: ");
+          console.log(data);
+          res.sendStatus(200)
+        }
+      })
+    }
+  })
+});
 
 
 
@@ -95,20 +142,6 @@ const checkJwt = jwt({
   issuer: `https://${process.env.AUTH0_DOMAIN}/`,
   algorithms: ['RS256']
 });
-
-
-app.get('/api/public', function (req, res) {
-  res.json({
-    message: "Hello from a public endpoint! You don't need to be authenticated to see this."
-  });
-});
-
-app.get('/api/private', function (req, res) {
-  res.json({
-    message: "Hello from a private endpoint! You need to be authenticated and have a scope of read:messages to see this."
-  });
-});
-
 
 
 app.listen(PORT, console.log(`The monster octupus application is running on port ${PORT}`));
