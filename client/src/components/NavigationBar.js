@@ -8,11 +8,15 @@ const Styles = styled.div`
     background-color: #222;
   }
 
+
   a, .navbar-brand, .navbar-nav .nav-link {
-    color: #bbb;
+    
+    margin: 0 15px;
+    color: white;
 
     &:hover {
-      color: white;
+      color: #61dafb;
+      text-decoration: none;
     }
   }
 `;
@@ -25,21 +29,21 @@ export const NavigationBar = (props) => (
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
           <Nav.Item>
-            <Nav.Link><Link to="/">Homepage</Link></Nav.Link>
+            <Link to="/">Homepage</Link>
           </Nav.Item>
           {props.auth.isAuthenticated() &&
           <Nav.Item>
-            <Nav.Link><Link to="/secret">Profile</Link></Nav.Link>
+            <Link to="/secret">Profile</Link>
           </Nav.Item>
           }
            {!props.auth.isAuthenticated() &&
           <Nav.Item>
-            <Nav.Link><Link to="/" onClick={props.auth.login}>Login </Link></Nav.Link>
+            <Link to="/" onClick={props.auth.login}>Login </Link>
           </Nav.Item>
           }
           {props.auth.isAuthenticated() &&
           <Nav.Item>
-            <Nav.Link><Link to="/" onClick={props.auth.logout}>Logout</Link></Nav.Link>
+            <Link to="/" onClick={props.auth.logout}>Logout</Link>
           </Nav.Item>
           }
         </Nav>

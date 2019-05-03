@@ -16,15 +16,15 @@ class Secret extends Component {
     // const { getAccessToken } = this.props.auth;
     // const headers = { 'Authorization': `Bearer ${getAccessToken()}`}
     // axios.get(`http://localhost:3000/api/private`, { headers })
-    // axios.get("http://localhost:3000/api/private")
-    axios.get("/api/private")
+    axios.get("http://localhost:3000/api/private")
+    // axios.get("/api/private")
       .then(response => this.setState({ pingSecuredMessage: response.data.message }))
       .catch(error => this.setState({ pingSecuredMessage: error.message }));
   }
 
   ping() {
-    // axios.get("http://localhost:3000/api/public")
-      axios.get("/api/public")
+    axios.get("http://localhost:3000/api/public")
+      // axios.get("/api/public")
       .then(response => this.setState({ pingMessage: response.data.message }))
       .catch(error => this.setState({ pingMessage: error.message }));  
   }
