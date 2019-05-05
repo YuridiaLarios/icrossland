@@ -1,26 +1,30 @@
 const express = require('express');
+const dotenv = require('dotenv');
+const mongoose = require('mongoose');
+// setup environment
+dotenv.config();
 const app = express();
 const path = require('path');
-require('dotenv').config();
-const mongoose = require('mongoose');
 const User = require('./models/user-model');
 const cors = require('cors');
 const morgan = require('morgan');
 const jwt = require('express-jwt');
 const jwksRsa = require('jwks-rsa');
 
-
-
-
 app.use(cors());
+
 const PORT = process.env.PORT || 3000;
 
 app.use(morgan(`API Request (port ${PORT}): :method :url :status :response-time ms - :res[content-length]`));
 
-app.use(express.json()); // get ability to use body for post, put, delete;
+
+// get ability to use bodyParser for post, put, delete;
+app.use(express.json()); 
 app.enable('trust proxy');
 
 
+// mongo db connect
+mongoose.set('useCreateIndex', true)
 mongoose.connect(process.env.DB_MONGODBURI, {
   useNewUrlParser: true
 }, function (error) {
@@ -127,6 +131,7 @@ const checkJwt = jwt({
 });
 
 
+// Run app
 app.listen(PORT, console.log(`The monster octupus application is running on port ${PORT}`));
 
 

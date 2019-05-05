@@ -10,6 +10,7 @@ class Profile extends Component {
    constructor(props) {
     super(props);
     this.state = {
+      userProfile: {},
       profile: {}
     }
   }
@@ -35,8 +36,8 @@ class Profile extends Component {
         <Container>
           <Card>
             <Card.Header><h2>{profile.name}</h2></Card.Header>
-            <Card.Img className="profile-thumbnail" variant="top" src={profile.picture} />
             <Card.Body>
+            <Card.Img className="profile-thumbnail" variant="top" src={profile.picture} />
               <Card.Title>Nickname: {profile.nickname}</Card.Title>
               <Card.Text>
                 {profile.email}

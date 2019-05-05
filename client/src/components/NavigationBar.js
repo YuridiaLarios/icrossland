@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Nav, Navbar } from 'react-bootstrap';
 import styled from 'styled-components';
 
+
 const Styles = styled.div`
   .navbar {
     background-color: #222;
@@ -21,6 +22,7 @@ const Styles = styled.div`
 `;
 
 export const NavigationBar = (props) => (
+
   <Styles>
     <Navbar expand="lg">
       <Navbar.Brand href="/">icrossland</Navbar.Brand>

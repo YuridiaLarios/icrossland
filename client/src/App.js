@@ -6,11 +6,13 @@ import {Layout} from "./components/Layout";
 import Homepage  from "./Pages/Homepage";
 import Secret from "./Pages/Secret";
 import Profile from "./Pages/Profile";
+import UserProfile from "./Pages/userProfile";
 import NotFound from "./Pages/NotFound";
 import Callback from "./components/Callback";
 
 
 class App extends Component {
+  
   render(){
     let mainComponent = ""
       switch(this.props.location){
@@ -29,7 +31,8 @@ class App extends Component {
             <Route exact path="/" render={props => <Homepage {...this.props} />} />
             <Route path='/secret' render={props => (this.props.auth.isAuthenticated() ? <Secret {...this.props}></Secret> : <Homepage {...this.props}/>)} />
             <Route path='/profile' render={props => (this.props.auth.isAuthenticated() ? <Profile {...this.props}></Profile> : <Homepage {...this.props}/>)} />
-            <Route path='/logout' render={props => <Homepage {...this.props} />} />
+            <Route path='/userProfile' render={props => (this.props.auth.isAuthenticated() ? <UserProfile {...this.props}></UserProfile> : <Homepage {...this.props}/>)} />
+            <Route path='/logout' render={props => (this.props.auth.isAuthenticated() ? <Homepage {...this.props}></Homepage> : <Homepage {...this.props}/>)} />
             <Route component={NotFound} />
             </Switch>
           </Layout>

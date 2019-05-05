@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-  authId: String,
-  username: String,
+  authId: {type:String, required: true, unique: true},
+  username: {type: String, default: "anonymous"},  
   email: String,
-  thumbnailFile: String,
+  thumbnailFile: {type: String, default: "https://res.cloudinary.com/dw2liwt16/image/upload/v1557028803/computer-user-clip-art_g70iha.jpg"},  
 });
 
 const User = mongoose.model('User', userSchema);

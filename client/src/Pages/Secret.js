@@ -1,8 +1,9 @@
 import React, {Component} from "react";
-import {Button, Card, Col, Row} from "react-bootstrap";
+import {Button, Card,  Row} from "react-bootstrap";
 import axios from "axios";
 import "./Secret.css";
 import Auth from "../Auth/Auth";
+import SingleUserDiv from "../components/SingleUserDiv"
 
 const auth = new Auth();
 
@@ -89,7 +90,7 @@ class Profile extends Component {
             <h2> {this.state.pingSecuredMessage}</h2>
 
             <Button  onClick={this.postUser.bind(this)}>Post User</Button>              
-            <h2></h2>
+            <p></p>
 
             <Button  onClick={this.getUsers.bind(this)}>Get all users</Button>   
           
@@ -101,21 +102,7 @@ class Profile extends Component {
                 {
                   this.state.users.map(function(item){
                   return (
-                    <div key={item._id} className="col s12 m12 l4">
-                      <Card  style={{ width: '18rem' }}>
-                        <Card.Img variant="top" src={item.thumbnailFile} />
-                        <Card.Body>
-                          <Card.Title>{item.username}</Card.Title>
-                          <Card.Text>
-                            {item.email} <br></br>
-                            {item._id} <br></br>  <br></br>
-                            Some quick example text to build on the card title and make up the bulk of
-                            the card's content.
-                          </Card.Text>
-                          <Button variant="primary">Profile</Button>
-                        </Card.Body>
-                      </Card>
-                    </div>
+                    <SingleUserDiv key={item.id} item={item}></SingleUserDiv>
                   );
                 })  
                 }

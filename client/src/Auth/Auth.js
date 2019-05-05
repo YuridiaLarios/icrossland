@@ -59,9 +59,7 @@ export default class Auth {
     /**********************************************************************
       get profile into database!
     **********************************************************************/
-     console.log("cows sleep standing up");
      let profile = this.getProfile();
-     console.log(profile);
 
      const headers = { 'Authorization': `Bearer ${this.getAccessToken()}`}
    
@@ -111,7 +109,6 @@ export default class Auth {
     localStorage.removeItem("id_token");
     localStorage.removeItem("expires_at");
     localStorage.removeItem('isLoggedIn');
-    location.pathname = LOGIN_FAILURE_PAGE;
 
     // Remove tokens, expiry time and userProfile info
     this.accessToken = null;
@@ -119,6 +116,7 @@ export default class Auth {
     this.expiresAt = 0;
     this.userProfile = null;
 
+    location.pathname = LOGIN_FAILURE_PAGE;
   }
 
   getProfile() {
