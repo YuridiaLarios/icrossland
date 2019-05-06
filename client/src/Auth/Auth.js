@@ -16,8 +16,8 @@ class Auth {
   auth0 = new auth0.WebAuth({
     domain: "princess-minina.auth0.com",
     clientID: "D7qof03S1ZPHBdDrX00CHROyOdQlKqM2",
-    // redirectURI: "/callback",
-    redirectURI: "http://localhost:3000/callback",
+    redirectURI: "/callback",
+    // redirectURI: "http://localhost:3000/callback",
     audience: "https://princess-minina.auth0.com/userinfo",
     responseType: "token id_token",
     scope: "openid profile email read:messages"
@@ -65,8 +65,8 @@ class Auth {
 
     axios({
       method: "post",
-      url: "http://localhost:3000/api/user",
-      //  url: "/api/user",
+      // url: "http://localhost:3000/api/user",
+       url: "/api/user",
       headers,
       data: profile
     }).then(function (res) {
