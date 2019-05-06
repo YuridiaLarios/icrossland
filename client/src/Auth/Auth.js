@@ -7,7 +7,6 @@ const LOGIN_SUCCESS_PAGE = "/secret";
 const LOGIN_FAILURE_PAGE = "/";
 
 class Auth {
-
   accessToken;
   idToken;
   expiresAt;
@@ -18,7 +17,7 @@ class Auth {
     clientID: "D7qof03S1ZPHBdDrX00CHROyOdQlKqM2",
     redirectURI: "/callback",
     // redirectURI: "http://localhost:3000/callback",
-    audience: "https://princess-minina.auth0.com/userinfo",
+    audience: "https://icrosslandAPI",
     responseType: "token id_token",
     scope: "openid profile email read:messages"
   });
@@ -45,8 +44,8 @@ class Auth {
         this.setSession(authResults);
         this.checkForProfile();
       } else if (err) {
-        // location.pathname = LOGIN_FAILURE_PAGE;
-        history.replace('/');
+        location.pathname = LOGIN_FAILURE_PAGE;
+        // history.replace('/');
         alert(`Error: ${err.error}. Check the console for further details.`);
         console.log(err);
       }
@@ -58,6 +57,7 @@ class Auth {
       get profile into database!
     **********************************************************************/
     let profile = this.getProfile();
+    console.log(`access token :  ${this.getAccessToken()}`);
 
     const headers = {
       'Authorization': `Bearer ${this.getAccessToken()}`
@@ -84,15 +84,18 @@ class Auth {
     this.idToken = authResults.idToken;
     localStorage.setItem('isLoggedIn', 'true');
 
-    localStorage.setItem("access_token", authResults.accessToken);
-    localStorage.setItem("id_token", authResults.idToken);
-    localStorage.setItem("expires_at", expireAt);
+    localStorage.setItem("access_token", this.accessToken);
+    localStorage.setItem("id_token", this.idToken);
+    localStorage.setItem("expires_at", this.expiresAt);
     location.hash = "";
     location.pathname = LOGIN_SUCCESS_PAGE;
   }
 
   getAccessToken() {
-    return this.accessToken;
+    if (localStorage.getItem("id_token")) {
+      return localStorage.getItem("access_token");
+    } else
+      return "no access token"
   }
 
   getIdToken() {

@@ -24,6 +24,8 @@ class Profile extends Component {
 
   componentWillMount() {
     const { userProfile, getProfile } = this.props.auth;
+    console.log(`this is the userProfile: ${userProfile}`)
+    console.log(`this is the userProfile: ${getProfile()}`)
     if (!userProfile) {
       getProfile((err, profile) => {
         this.setState({ profile });

@@ -1,7 +1,25 @@
 const router = require("express").Router();
 const mongoose = require("mongoose");
 const User = require("../models/user-model");
+const jwt = require("express-jwt");
+const jwtAuthz = require('express-jwt-authz');
+const jwksRsa = require("jwks-rsa");
 
+
+const checkJwt = jwt({
+  // Dynamically provide a signing key based on the kid in the header and the singing keys provided by the JWKS endpoint.
+  secret: jwksRsa.expressJwtSecret({
+    cache: true,
+    rateLimit: true,
+    jwksRequestsPerMinute: 50,
+    jwksUri: `https://${process.env.AUTH0_DOMAIN}/.well-known/jwks.json`
+  }),
+
+  // Validate the audience and the issuer.
+  audience: process.env.AUTH0_AUDIENCE,
+  issuer: `https://${process.env.AUTH0_DOMAIN}/`,
+  algorithms: ["RS256"]
+});
 
 
 
@@ -19,7 +37,7 @@ router.get("/public", function (req, res) {
   });
 });
 
-router.get("/private", function (req, res) {
+router.get("/private", checkJwt, function (req, res) {
   res.json({
     message: "Hello from a private endpoint! You need to be authenticated and have a scope of read:messages to see this."
   });
@@ -56,7 +74,7 @@ router.route('/:id')
 })
 
 
-router.post("/user", function(req,res) {
+router.post("/user", checkJwt, function(req,res) {
   User.findOne({authId: req.body.sub}).then((currentUser) => {
     if (currentUser) {
       // already have user

@@ -14,16 +14,17 @@ class Profile extends Component {
       super(props);
       this.state = {
         users: [],
-        message: ''
+        message: '',
+        accessToken: ""
       }
     }
 
 
   securedPing() {
-    // const { getAccessToken } = this.props.auth;
-    // const headers = { 'Authorization': `Bearer ${getAccessToken()}`}
+    const {getAccessToken} = this.props.auth;
+    console.log(auth.getAccessToken());
+    const headers = { 'Authorization': `Bearer ${getAccessToken()}`}
     // axios.get(`http://localhost:3000/api/private`, { headers })
-    // axios.get("http://localhost:3000/api/private")
     axios.get("/api/private")
       .then(response => this.setState({ pingSecuredMessage: response.data.message }))
       .catch(error => this.setState({ pingSecuredMessage: error.message }));
@@ -40,6 +41,7 @@ class Profile extends Component {
     console.log(auth.getProfile());
     let profile = auth.getProfile();
     const headers = { 'Authorization': `Bearer ${auth.getAccessToken()}`}
+    console.log(auth.getAccessToken());
   
       axios({
         method: "post",
@@ -53,23 +55,13 @@ class Profile extends Component {
   }
 
   getUsers() {
-    // const url = "http://localhost:3000/api/allusers";
-    const url = "/api/allusers";
-
-    fetch(url)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        this.setState({
-          users: data
-        })
-      })
-      .catch((error) => {
-        this.setState({
-          error: true
-        })
-      });
+    const {getAccessToken} = this.props.auth;
+    console.log(auth.getAccessToken());
+    const headers = { 'Authorization': `Bearer ${getAccessToken()}`}
+    // axios.get("http://localhost:3000/api/allusers", { headers })
+    axios.get("/api/private", { headers })
+      .then(response => this.setState({ users: response.data }))
+      .catch(error => this.setState({ error: true}));
   }
 
   render() {

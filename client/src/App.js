@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import axios from "axios";
 import "./App.css";
 import {BrowserRouter, Route, Switch, Redirect} from "react-router-dom";
 import NavigationBar from "./components/NavigationBar";
@@ -37,23 +38,13 @@ class App extends Component {
   //MAIN ALL USERS UI
   // moving it here makes it accessible to all children components
   componentDidMount() {
-      // const url = "http://localhost:3000/api/allusers";
-      const url = "/api/allusers";
-  
-      fetch(url)
-        .then((response) => {
-          return response.json();
-        })
-        .then((data) => {
-          this.setState({
-            users: data
-          })
-        })
-        .catch((error) => {
-          this.setState({
-            error: true
-          })
-        });
+    const {getAccessToken} = this.props.auth;
+    console.log(this.props.auth.getAccessToken);
+    const headers = { 'Authorization': `Bearer ${getAccessToken()}`}
+    // axios.get("http://localhost:3000/api/allusers", { headers })
+    axios.get("/api/private", { headers })
+      .then(response => this.setState({ users: response.data }))
+      .catch(error => this.setState({ error: true}));
   }
 
   
