@@ -6,21 +6,18 @@ import axios from 'axios';
 const LOGIN_SUCCESS_PAGE = "/secret";
 const LOGIN_FAILURE_PAGE = "/";
 
-
-
-
 export default class Auth {
 
   accessToken;
   idToken;
   expiresAt;
   userProfile;
-  
+
   auth0 = new auth0.WebAuth({
     domain: "princess-minina.auth0.com",
     clientID: "D7qof03S1ZPHBdDrX00CHROyOdQlKqM2",
-    // redirectURI: "/callback",
-    redirectURI: "http://localhost:3000/callback",
+    redirectURI: "/callback",
+    // redirectURI: "http://localhost:3000/callback",
     audience: "https://princess-minina.auth0.com/userinfo",
     responseType: "token id_token",
     scope: "openid profile email read:messages"
@@ -34,9 +31,9 @@ export default class Auth {
     this.getAccessToken = this.getAccessToken.bind(this);
     this.getIdToken = this.getIdToken.bind(this);
     // this.renewSession = this.renewSession.bind(this);
-    this.getProfile = this.getProfile.bind(this); 
+    this.getProfile = this.getProfile.bind(this);
     this.checkForProfile = this.checkForProfile.bind(this);
-   }
+  }
 
   login() {
     this.auth0.authorize();
@@ -44,7 +41,7 @@ export default class Auth {
 
   handleAuthentication() {
     this.auth0.parseHash((err, authResults) => {
-      if(authResults && authResults.accessToken && authResults.idToken) {
+      if (authResults && authResults.accessToken && authResults.idToken) {
         this.setSession(authResults);
         this.checkForProfile();
       } else if (err) {
@@ -56,29 +53,31 @@ export default class Auth {
     });
   }
 
-  checkForProfile(){
+  checkForProfile() {
     /**********************************************************************
       get profile into database!
     **********************************************************************/
-     let profile = this.getProfile();
+    let profile = this.getProfile();
 
-     const headers = { 'Authorization': `Bearer ${this.getAccessToken()}`}
-   
-       axios({
-         method: "post",
-         url: "http://localhost:3000/api/user",
-        //  url: "/api/user",
-         headers,
-         data: profile
-       }).then(function(res){
-         console.log(`the response is: ${res}`);
-       });
+    const headers = {
+      'Authorization': `Bearer ${this.getAccessToken()}`
+    }
+
+    axios({
+      method: "post",
+      // url: "http://localhost:3000/api/user",
+       url: "/api/user",
+      headers,
+      data: profile
+    }).then(function (res) {
+      console.log(`the response is: ${res}`);
+    });
 
   }
 
 
   setSession(authResults) {
-  let expireAt = JSON.stringify((authResults.expiresIn) * 1000 + new Date().getTime());
+    let expireAt = JSON.stringify((authResults.expiresIn) * 1000 + new Date().getTime());
 
     this.expiresAt = expireAt;
     this.accessToken = authResults.accessToken;
@@ -122,7 +121,7 @@ export default class Auth {
   }
 
   getProfile() {
-    if(localStorage.getItem("id_token")) {
+    if (localStorage.getItem("id_token")) {
       this.userProfile = jwtDecode(localStorage.getItem("id_token"));
       return this.userProfile;
     } else {

@@ -42,8 +42,8 @@ class App extends Component {
   //MAIN ALL USERS UI
   // moving it here makes it accessible to all children components
   componentDidMount() {
-      const url = "http://localhost:3000/api/allusers";
-      // const url = "/api/allusers";
+      // const url = "http://localhost:3000/api/allusers";
+      const url = "/api/allusers";
   
       fetch(url)
         .then((response) => {
@@ -79,7 +79,7 @@ class App extends Component {
             <Switch>
             <Route exact path="/" render={props => <Homepage users={this.state.users}  {...this.props} getIndividualUserProfile={this.getIndividualUserProfile} />} />
             
-            <Route path='/secret' render={props => this.props.auth.isAuthenticated() ? (<Secret {...this.props}></Secret>) : (<Redirect to ={{ pathname: "/",}}/>)}/>
+            <Route path='/secret' render={props => this.props.auth.isAuthenticated() ? (<Secret users={this.state.users} {...this.props} getIndividualUserProfile={this.props.getIndividualUserProfile}></Secret>) : (<Redirect to ={{ pathname: "/",}}/>)}/>
 
             <Route path='/profile' render={props => this.props.auth.isAuthenticated() ? (<Profile {...this.props}></Profile>) : (<Redirect to ={{ pathname: "/",}}/>)}/>
           
