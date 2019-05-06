@@ -25,7 +25,7 @@ class Profile extends Component {
     console.log(auth.getAccessToken());
     const headers = { 'Authorization': `Bearer ${getAccessToken()}`}
     // axios.get(`http://localhost:3000/api/private`, { headers })
-    axios.get("/api/private")
+    axios.get("/api/private", { headers })
       .then(response => this.setState({ pingSecuredMessage: response.data.message }))
       .catch(error => this.setState({ pingSecuredMessage: error.message }));
   }
@@ -59,7 +59,7 @@ class Profile extends Component {
     console.log(auth.getAccessToken());
     const headers = { 'Authorization': `Bearer ${getAccessToken()}`}
     // axios.get("http://localhost:3000/api/allusers", { headers })
-    axios.get("/api/private", { headers })
+    axios.get("/api/allUsers", { headers })
       .then(response => this.setState({ users: response.data }))
       .catch(error => this.setState({ error: true}));
   }

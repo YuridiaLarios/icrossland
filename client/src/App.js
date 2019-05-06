@@ -42,7 +42,7 @@ class App extends Component {
     console.log(this.props.auth.getAccessToken);
     const headers = { 'Authorization': `Bearer ${getAccessToken()}`}
     // axios.get("http://localhost:3000/api/allusers", { headers })
-    axios.get("/api/private", { headers })
+    axios.get("/api/allUsers", { headers })
       .then(response => this.setState({ users: response.data }))
       .catch(error => this.setState({ error: true}));
   }
