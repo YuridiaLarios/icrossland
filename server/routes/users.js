@@ -37,7 +37,7 @@ router.get("/public", function (req, res) {
   });
 });
 
-router.get("/private", checkJwt, function (req, res) {
+router.get("/private", function (req, res) {
   res.json({
     message: "Hello from a private endpoint! You need to be authenticated and have a scope of read:messages to see this."
   });
@@ -74,7 +74,7 @@ router.route('/:id')
 })
 
 
-router.post("/user", checkJwt, function(req,res) {
+router.post("/user", function(req,res) {
   User.findOne({authId: req.body.sub}).then((currentUser) => {
     if (currentUser) {
       // already have user
