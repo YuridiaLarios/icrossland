@@ -17,13 +17,14 @@ class UserProfileButton extends Component {
     event.preventDefault();
     const { history } = this.props;
 
-    let profileUservalues = {
-      username: this.props.item.username,
-      _id: this.props.item._id
-    }
-    history.push(`/profile2/${this.props.item._id}`);
+    // let profileUserValues = {
+    //   username: this.props.item.username,
+    //   _id: this.props.item._id
+    // }
+    let profileUserValues = this.props.item;
+    history.push(`/userProfile/${this.props.item._id}`);
 
-    this.props.getIndividualUserProfile(profileUservalues);
+    this.props.getIndividualUserProfile(profileUserValues);
   };
 
   render() {

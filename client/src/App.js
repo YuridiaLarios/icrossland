@@ -6,9 +6,7 @@ import {Layout} from "./components/Layout";
 import Homepage  from "./Pages/Homepage";
 import Secret from "./Pages/Secret";
 import Profile from "./Pages/Profile";
-import Profile2 from "./Pages/Profile2";
-import UserProfile from "./Pages/userProfile";
-import Search from "./components/SearchForm";
+import UserProfile from "./Pages/UserProfile";
 import NotFound from "./Pages/NotFound";
 import Callback from "./components/Callback";
 
@@ -24,17 +22,14 @@ class App extends Component {
       }
     }
 
-
-
-
-    // COLLECTING CORRESPONDING USERID AND USERNAME AFTER CLICKING INDIVIDUAL PROFILE BUTTON
+    // function to get the info of an individual user profile
     // binds this method to getIndividualUserProfile instance
     getIndividualUserProfile = (currentUser) => {
       console.log("the name is: " + currentUser.username + " the id is: " + currentUser._id);
       this.setState({
         individualUserProfile: currentUser
       })
-    // console.log("the name from state is: " + this.state.individualUserProfile.username + "the id from state is: " + this.state.individualUserProfile._id)    
+    console.log("the name from state is: " + this.state.individualUserProfile.username + "the id from state is: " + this.state.individualUserProfile._id)    
   }
   
 
@@ -42,8 +37,8 @@ class App extends Component {
   //MAIN ALL USERS UI
   // moving it here makes it accessible to all children components
   componentDidMount() {
-      // const url = "http://localhost:3000/api/allusers";
-      const url = "/api/allusers";
+      const url = "http://localhost:3000/api/allusers";
+      // const url = "/api/allusers";
   
       fetch(url)
         .then((response) => {
@@ -82,10 +77,11 @@ class App extends Component {
             <Route path='/secret' render={props => this.props.auth.isAuthenticated() ? (<Secret users={this.state.users} {...this.props} getIndividualUserProfile={this.props.getIndividualUserProfile}></Secret>) : (<Redirect to ={{ pathname: "/",}}/>)}/>
 
             <Route path='/profile' render={props => this.props.auth.isAuthenticated() ? (<Profile {...this.props}></Profile>) : (<Redirect to ={{ pathname: "/",}}/>)}/>
-          
-            <Route path='/userProfile' render={props => (this.props.auth.isAuthenticated() ? <UserProfile {...this.props}></UserProfile> : <Homepage {...this.props}/>)} />
-            <Route path="/profile2/:userId" render={props => (this.props.auth.isAuthenticated() ? <Profile2 {...this.props}></Profile2> : <Homepage {...this.props}/>)} />
+
+            <Route path="/userProfile/:userId" render={props => (this.props.auth.isAuthenticated() ? <UserProfile {...this.props} user={this.state.individualUserProfile}></UserProfile> : <Homepage {...this.props}/>)} />
+
             <Route path='/logout' render={props => (this.props.auth.isAuthenticated() ? <Homepage {...this.props}></Homepage> : <Homepage {...this.props}/>)} />
+            
             <Route component={NotFound} />
             </Switch>
           </Layout>
