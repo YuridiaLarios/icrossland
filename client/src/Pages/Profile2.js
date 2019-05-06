@@ -33,21 +33,7 @@ class Profile extends Component {
     return (
       <div className="container">
         <Container>
-          <Card>
-            <Card.Header><h2>{profile.name}</h2></Card.Header>
-            <Card.Img className="profile-thumbnail" variant="top" src={profile.picture} />
-            <Card.Body>
-              <Card.Title>Nickname: {profile.nickname}</Card.Title>
-              <Card.Text>
-                {profile.email}
-              </Card.Text>
-              <Button variant="primary">Go somewhere</Button>
-              <pre>{JSON.stringify(profile, null, 2)}</pre>
-            </Card.Body>
-          </Card>
-        </Container>
-
-        <Container>
+          <h1>Profile2</h1>
           <Card>
             <Card.Header><h2>{profile.name}</h2></Card.Header>
             <Card.Img className="profile-thumbnail" variant="top" src={profile.picture} />

@@ -19,8 +19,8 @@ export default class Auth {
   auth0 = new auth0.WebAuth({
     domain: "princess-minina.auth0.com",
     clientID: "D7qof03S1ZPHBdDrX00CHROyOdQlKqM2",
-    redirectURI: "/callback",
-    // redirectURI: "http://localhost:3000/callback",
+    // redirectURI: "/callback",
+    redirectURI: "http://localhost:3000/callback",
     audience: "https://princess-minina.auth0.com/userinfo",
     responseType: "token id_token",
     scope: "openid profile email read:messages"
@@ -48,7 +48,8 @@ export default class Auth {
         this.setSession(authResults);
         this.checkForProfile();
       } else if (err) {
-        location.pathname = LOGIN_FAILURE_PAGE;
+        // location.pathname = LOGIN_FAILURE_PAGE;
+        history.replace('/');
         alert(`Error: ${err.error}. Check the console for further details.`);
         console.log(err);
       }
@@ -65,8 +66,8 @@ export default class Auth {
    
        axios({
          method: "post",
-        //  url: "http://localhost:3000/api/user",
-         url: "/api/user",
+         url: "http://localhost:3000/api/user",
+        //  url: "/api/user",
          headers,
          data: profile
        }).then(function(res){
@@ -116,7 +117,8 @@ export default class Auth {
     this.expiresAt = 0;
     this.userProfile = null;
 
-    location.pathname = LOGIN_FAILURE_PAGE;
+    // location.pathname = LOGIN_FAILURE_PAGE;
+    // history.replace('/');
   }
 
   getProfile() {

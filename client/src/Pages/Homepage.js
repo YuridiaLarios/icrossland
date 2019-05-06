@@ -1,8 +1,18 @@
 import React, {Component} from 'react'
 import logo from '../logo.svg';
+import {Row} from "react-bootstrap";
+import SingleUserDiv from "../components/SingleUserDiv"
+
 
 
 class Homepage extends Component {
+  constructor(props) {
+    super(props); // props is an object that has users in it now
+    this.state = {
+      users: props.users
+    };
+  }
+
   render() {
     return (
 
@@ -13,7 +23,22 @@ class Homepage extends Component {
             </h1>
       Do you want to see the profile area?
       {this.props.auth.isAuthenticated() &&
-          <a href="/secret">Click here</a>
+          <div>
+            <a href="/secret">Click here</a>
+            <div>
+            <h4>All users:</h4> 
+              <Row>
+                {
+                  this.props.users.map((item) => {
+                  return (
+                    <SingleUserDiv key={item.id} item={item} getIndividualUserProfile={this.props.getIndividualUserProfile}></SingleUserDiv>
+                  );
+                })  
+                }
+              </Row>
+            </div>
+          </div>
+        
       }
         
       {!this.props.auth.isAuthenticated() &&

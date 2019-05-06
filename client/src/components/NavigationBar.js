@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Nav, Navbar } from 'react-bootstrap';
+import { Button, Form, FormControl, Nav, Navbar } from 'react-bootstrap';
 import styled from 'styled-components';
+import { withRouter } from 'react-router-dom';
+
 
 
 const Styles = styled.div`
@@ -21,7 +23,7 @@ const Styles = styled.div`
   }
 `;
 
-export const NavigationBar = (props) => (
+ const NavigationBar = (props) => (
 
   <Styles>
     <Navbar expand="lg">
@@ -29,6 +31,10 @@ export const NavigationBar = (props) => (
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
+        <Form inline>
+         {/* <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+         <Button variant="outline-success">Search</Button> */}
+        </Form>
           <Nav.Item>
             <Link to="/">Homepage</Link>
           </Nav.Item>
@@ -57,3 +63,5 @@ export const NavigationBar = (props) => (
     </Navbar>
   </Styles>
 )
+
+export default withRouter(NavigationBar);

@@ -9,25 +9,30 @@ class UserProfileButton extends Component {
   constructor(props) {
     super(props); // props ia an object that has item.id and item.name in it now
     this.state = {
-      users: {},
-      error: false
+      users: {}
     };
-
-    this.routeChange = this.routeChange.bind(this);
   }
 
-  routeChange() {
-    let path = "/userProfile";
-    // this.props.history.push(path);
-  }
+  handleSubmit = (event) => {
+    event.preventDefault();
+    const { history } = this.props;
+
+    let profileUservalues = {
+      username: this.props.item.username,
+      _id: this.props.item._id
+    }
+    history.push(`/profile2/${this.props.item._id}`);
+
+    this.props.getIndividualUserProfile(profileUservalues);
+  };
 
   render() {
     return (
-      <Button variant="primary">Profile</Button>
+      <Button variant="primary" onClick={this.handleSubmit} >Profile</Button>
     );
   }
 }
   
 
 
-export default UserProfileButton;
+export default withRouter(UserProfileButton);

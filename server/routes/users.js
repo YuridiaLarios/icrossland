@@ -42,10 +42,25 @@ router.get("/allusers", function(req, res) {
   });
 })
 
+router.route('/:id')
+	.get((req, res) => {
+		User.findById(req.params.id)
+			.then(user => {
+				if (user) {
+					return res.json(user);
+				} else {
+					return res.status(404).json({ msg: 'User not found'})
+				}
+			})
+			.catch(err => console.log(err))
+})
+
+
 router.post("/user", function(req,res) {
   User.findOne({authId: req.body.sub}).then((currentUser) => {
     if (currentUser) {
       // already have user
+      console.log("User is already register");
       console.log("User is ", currentUser);
     } else {
       // if not, create user in our db
