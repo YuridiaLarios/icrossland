@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Button, Card,  Row} from "react-bootstrap";
+import {Button, Row} from "react-bootstrap";
 import axios from "axios";
 import "./Secret.css";
 import Auth from "../Auth/Auth";
@@ -23,15 +23,15 @@ class Profile extends Component {
     // const { getAccessToken } = this.props.auth;
     // const headers = { 'Authorization': `Bearer ${getAccessToken()}`}
     // axios.get(`http://localhost:3000/api/private`, { headers })
-    // axios.get("http://localhost:3000/api/private")
-    axios.get("/api/private")
+    axios.get("http://localhost:3000/api/private")
+    // axios.get("/api/private")
       .then(response => this.setState({ pingSecuredMessage: response.data.message }))
       .catch(error => this.setState({ pingSecuredMessage: error.message }));
   }
 
   ping() {
-    // axios.get("http://localhost:3000/api/public")
-    axios.get("/api/public")
+    axios.get("http://localhost:3000/api/public")
+    // axios.get("/api/public")
       .then(response => this.setState({ pingMessage: response.data.message }))
       .catch(error => this.setState({ pingMessage: error.message }));  
   }
@@ -43,8 +43,8 @@ class Profile extends Component {
   
       axios({
         method: "post",
-        // url: "http://localhost:3000/api/user",
-        url: "/api/user",
+        url: "http://localhost:3000/api/user",
+        // url: "/api/user",
         headers,
         data: profile
       }).then(function(res){
@@ -53,8 +53,8 @@ class Profile extends Component {
   }
 
   getUsers() {
-    // const url = "http://localhost:3000/api/allusers";
-    const url = "/api/allusers";
+    const url = "http://localhost:3000/api/allusers";
+    // const url = "/api/allusers";
 
     fetch(url)
       .then((response) => {
@@ -102,11 +102,11 @@ class Profile extends Component {
                 {
                   this.state.users.map((item) => {
                   return (
-                    <SingleUserDiv key={item.id} item={item} getIndividualUserProfile={this.props.getIndividualUserProfile}></SingleUserDiv>
+                    <SingleUserDiv key={item._id} item={item} getIndividualUserProfile={this.props.getIndividualUserProfile}></SingleUserDiv>
                   );
                 })  
                 }
-                </Row>
+              </Row>
           </div>  
       </div>
     )

@@ -30,8 +30,9 @@ class Homepage extends Component {
               <Row>
                 {
                   this.props.users.map((item) => {
+                    console.log(item);
                   return (
-                    <SingleUserDiv key={item.id} item={item} getIndividualUserProfile={this.props.getIndividualUserProfile}></SingleUserDiv>
+                    <SingleUserDiv key={item._id} item={item} getIndividualUserProfile={this.props.getIndividualUserProfile}></SingleUserDiv>
                   );
                 })  
                 }

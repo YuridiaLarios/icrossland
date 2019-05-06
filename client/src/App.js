@@ -37,8 +37,8 @@ class App extends Component {
   //MAIN ALL USERS UI
   // moving it here makes it accessible to all children components
   componentDidMount() {
-      // const url = "http://localhost:3000/api/allusers";
-      const url = "/api/allusers";
+      const url = "http://localhost:3000/api/allusers";
+      // const url = "/api/allusers";
   
       fetch(url)
         .then((response) => {

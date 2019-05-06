@@ -4,9 +4,9 @@ import axios from 'axios';
 
 /* eslint no-restricted-globals:0*/
 const LOGIN_SUCCESS_PAGE = "/secret";
-// const LOGIN_FAILURE_PAGE = "/";
+const LOGIN_FAILURE_PAGE = "/";
 
-export default class Auth {
+class Auth {
 
   accessToken;
   idToken;
@@ -16,8 +16,8 @@ export default class Auth {
   auth0 = new auth0.WebAuth({
     domain: "princess-minina.auth0.com",
     clientID: "D7qof03S1ZPHBdDrX00CHROyOdQlKqM2",
-    redirectURI: "/callback",
-    // redirectURI: "http://localhost:3000/callback",
+    // redirectURI: "/callback",
+    redirectURI: "http://localhost:3000/callback",
     audience: "https://princess-minina.auth0.com/userinfo",
     responseType: "token id_token",
     scope: "openid profile email read:messages"
@@ -65,8 +65,8 @@ export default class Auth {
 
     axios({
       method: "post",
-      // url: "http://localhost:3000/api/user",
-       url: "/api/user",
+      url: "http://localhost:3000/api/user",
+      //  url: "/api/user",
       headers,
       data: profile
     }).then(function (res) {
@@ -116,7 +116,7 @@ export default class Auth {
     this.expiresAt = 0;
     this.userProfile = null;
 
-    // location.pathname = LOGIN_FAILURE_PAGE;
+    location.pathname = LOGIN_FAILURE_PAGE;
     // history.replace('/');
   }
 
@@ -137,3 +137,5 @@ export default class Auth {
   //   });
   // }
 }
+
+export default Auth;

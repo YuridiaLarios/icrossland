@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Button, Card, Container} from "react-bootstrap";
+import { withRouter } from 'react-router-dom';
 import "../Auth/Auth";
 import "./Profile.css";
 
@@ -14,6 +15,11 @@ class Profile extends Component {
     }
   }
 
+  handleSubmit = (event) => {
+    event.preventDefault();
+    const { history } = this.props;
+    history.push('/');
+  };
 
 
   componentWillMount() {
@@ -41,8 +47,8 @@ class Profile extends Component {
               <Card.Text>
                 {profile.email}
               </Card.Text>
-              <Button variant="primary">Go somewhere</Button>
               <pre>{JSON.stringify(profile, null, 2)}</pre>
+              <Button onClick={this.handleSubmit} variant="primary">Homepage</Button>
             </Card.Body>
           </Card>
         </Container>
@@ -51,4 +57,4 @@ class Profile extends Component {
   }
 }
 
-export default Profile;
+export default withRouter(Profile);
