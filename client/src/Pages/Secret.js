@@ -50,10 +50,10 @@ class Profile extends Component {
   }
 
   postUser() {
-    console.log(auth.getProfile());
+    // console.log(auth.getProfile());
     let profile = auth.getProfile();
     const headers = { 'Authorization': `Bearer ${auth.getAccessToken()}`}
-    console.log(auth.getAccessToken());
+    // console.log(auth.getAccessToken());
   
       axios({
         method: "post",
@@ -63,7 +63,7 @@ class Profile extends Component {
         data: profile
       }).then((res) => {
         this.props.addUser(res);
-        console.log(`the response is: ${res}`);
+        // console.log(`the response is: ${res}`);
       });
   }
 

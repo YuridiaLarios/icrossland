@@ -21,25 +21,6 @@ class SingleUserDiv extends Component {
 
    // to handle deleting an event from database
    handleDeleteSearch = (deletedUser) => {
-    // const url = "http://localhost:3000/api/users/" + deletedUser._id;
-
-    // fetch(url, { //endpoint
-    //     method: 'delete'
-    //   })
-    //   .then((response) => {
-    //     return response.json();
-    //   })
-    //   .then((deletedUser) => {
-    //     this.props.deleteEvent(deletedUser)
-    //   })
-    //   .catch((error) => {
-    //     this.setState({
-    //       error: true
-    //     })
-    //   });
-    // // console.log(deletedUser._id);
-    // // this.props.deleteUser(deletedUser)
-
     const headers = { 'Authorization': `Bearer ${auth.getAccessToken()}`}
     console.log(auth.getAccessToken());
   

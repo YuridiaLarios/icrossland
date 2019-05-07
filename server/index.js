@@ -9,6 +9,8 @@ const User = require("./models/user-model");
 const cors = require("cors");
 const morgan = require("morgan");
 const users = require("./routes/users");
+const posts = require("./routes/posts");
+
 
 app.use(cors());
 
@@ -21,7 +23,9 @@ app.use(morgan(`API Request (port ${PORT}): :method :url :status :response-time 
 app.use(express.json()); 
 app.enable("trust proxy");
 
+// get ability to use created routes;
 app.use("/api", users);
+app.use("/api", posts);
 
 // mongo db connect
 mongoose.set("useCreateIndex", true)
