@@ -1,5 +1,5 @@
 const router = require("express").Router();
-import mongoose from "mongoose";
+// import mongoose from "mongoose";
 import Post from "../models/post-model";
 import jwt from "express-jwt";
 import jwtAuthz from "express-jwt-authz";
