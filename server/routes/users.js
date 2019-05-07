@@ -27,10 +27,6 @@ const checkJwt = jwt({
  ROUTES FOR TESTING PURPOSES
 **************************************/
 
-router.route("/users").get((req,res) => {
-  res.send("Hello you!");
-})
-
 router.get("/public", function (req, res) {
   res.json({
     message: "Hello from a public endpoint! You don't need to be authenticated to see this."
@@ -48,34 +44,42 @@ router.get("/private", function (req, res) {
 /*************************************
 ACTUAL ROUTES
 **************************************/
-router.get("/allusers", function(req, res) {
-  User.find({}, function(error, users){
-    if(error){
+
+// GET ALL USERS
+router.get("/users", function (req, res) {
+  User.find({}, function (error, users) {
+    if (error) {
       console.log("problem finding data");
       res.send("something went really wrong!!!");
-      next();
-    } 
-    // console.log(users);
-    res.json(users);
+    } else {
+      res.json(users);
+    }
   });
 })
 
-router.route('/:id')
-	.get((req, res) => {
-		User.findById(req.params.id)
-			.then(user => {
-				if (user) {
-					return res.json(user);
-				} else {
-					return res.status(404).json({ msg: 'User not found'})
-				}
-			})
-			.catch(err => console.log(err))
-})
+
+// GET USER BY ID
+router.get("/users/:id", function (req, res) {
+  User.findOne({
+    _id: req.params.id
+  }, function (error, user) {
+    if (error) {
+      console.log("problem finding data");
+      res.send("something went really wrong!!!");
+    } else {
+      res.json(user);
+    }
+  })
+});
 
 
-router.post("/user", function(req,res) {
-  User.findOne({authId: req.body.sub}).then((currentUser) => {
+
+
+// ADD/POST NEW USER TO DATABASE
+router.post("/users", function (req, res) {
+  User.findOne({
+    authId: req.body.sub
+  }).then((currentUser) => {
     if (currentUser) {
       // already have user
       console.log("User is already register");
@@ -87,17 +91,32 @@ router.post("/user", function(req,res) {
         username: req.body.name,
         email: req.body.email,
         thumbnailFile: req.body.picture
-      }, function(error, data){
-        if(error){
+      }, function (error, data) {
+        if (error) {
           console.log("There was a problem adding a document to the collection.");
           console.log(error);
           res.sendStatus(500)
         } else {
-          console.log("Data added to collection: ");
-          console.log(data);
-          res.sendStatus(200)
+          res.json(data);
         }
       })
+    }
+  })
+});
+
+
+
+// DELETE USER BY ID
+router.delete("/users/:id", function (req, res) {
+  User.findOneAndRemove({
+    _id: req.params.id
+  }, function (error, user) {
+    if (error) {
+      console.log("problem finding data");
+      res.send("something went really wrong!!!");
+    } else {
+      console.log("user deleted: ", req.params);
+      res.json(user);
     }
   })
 });

@@ -19,6 +19,18 @@ class Profile extends Component {
       }
     }
 
+  // ADDING USER TO UI
+  // binds this method to App.js instance
+  addUser2 = (newUser) => {
+    // CREATING A NEW INSTANCE SO REACT CAN COMPARE OLD STATES TO NEW STATES
+    let updatedUsers = Array.from(this.state.users);
+    updatedUsers.push(newUser);
+    this.setState({ // takes an object and merges that object into the current state
+      users: updatedUsers
+    })
+  }
+
+
 
   securedPing() {
     const {getAccessToken} = this.props.auth;
@@ -45,11 +57,12 @@ class Profile extends Component {
   
       axios({
         method: "post",
-        // url: "http://localhost:3000/api/user",
-        url: "/api/user",
+        // url: "http://localhost:3000/api/users",
+        url: "/api/users",
         headers,
         data: profile
-      }).then(function(res){
+      }).then((res) => {
+        this.props.addUser(res);
         console.log(`the response is: ${res}`);
       });
   }
@@ -58,8 +71,8 @@ class Profile extends Component {
     const {getAccessToken} = this.props.auth;
     console.log(auth.getAccessToken());
     const headers = { 'Authorization': `Bearer ${getAccessToken()}`}
-    // axios.get("http://localhost:3000/api/allusers", { headers })
-    axios.get("/api/allUsers", { headers })
+    // axios.get("http://localhost:3000/api/users", { headers })
+    axios.get("/api/users", { headers })
       .then(response => this.setState({ users: response.data }))
       .catch(error => this.setState({ error: true}));
   }

@@ -32,7 +32,7 @@ class Homepage extends Component {
                   this.props.users.map((item) => {
                     console.log(item);
                   return (
-                    <SingleUserDiv key={item._id} item={item} getIndividualUserProfile={this.props.getIndividualUserProfile}></SingleUserDiv>
+                    <SingleUserDiv key={item._id} item={item} getIndividualUserProfile={this.props.getIndividualUserProfile} addUser={this.props.addUser} deleteUser={this.props.deleteUser}></SingleUserDiv>
                   );
                 })  
                 }

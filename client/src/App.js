@@ -31,7 +31,35 @@ class App extends Component {
         individualUserProfile: currentUser
       })
     console.log("the name from state is: " + this.state.individualUserProfile.username + "the id from state is: " + this.state.individualUserProfile._id)    
+    }
+
+
+  // ADDING USER TO UI
+  // binds this method to App.js instance
+  addUser = (newUser) => {
+    // CREATING A NEW INSTANCE SO REACT CAN COMPARE OLD STATES TO NEW STATES
+    let updatedUsers = Array.from(this.state.users);
+    updatedUsers.push(newUser);
+    this.setState({ // takes an object and merges that object into the current state
+      users: updatedUsers
+    })
   }
+
+
+  // DELETING USER FROM UI
+  //binds this method to App.js instance
+  deleteUser = (deletedUser) => {
+    // CREATING A NEW INSTANCE SO REACT CAN COMPARE OLD STATES TO NEW STATES
+    let updatedUsers = Array.from(this.state.users);
+    let oldUser = this.state.users.findIndex(function (element) {
+      return deletedUser._id === element._id;
+    });
+    updatedUsers.splice(oldUser, 1);
+    this.setState({ // takes an object and merges that object into the current state
+      users: updatedUsers
+    })
+  }
+
   
 
 
@@ -41,8 +69,8 @@ class App extends Component {
     const {getAccessToken} = this.props.auth;
     console.log(this.props.auth.getAccessToken);
     const headers = { 'Authorization': `Bearer ${getAccessToken()}`}
-    // axios.get("http://localhost:3000/api/allusers", { headers })
-    axios.get("/api/allUsers", { headers })
+    // axios.get("http://localhost:3000/api/users", { headers })
+    axios.get("/api/users", { headers })
       .then(response => this.setState({ users: response.data }))
       .catch(error => this.setState({ error: true}));
   }
@@ -63,9 +91,9 @@ class App extends Component {
         <NavigationBar {...this.props}/>
           <Layout>
             <Switch>
-            <Route exact path="/" render={props => <Homepage users={this.state.users}  {...this.props} getIndividualUserProfile={this.getIndividualUserProfile} />} />
+            <Route exact path="/" render={props => <Homepage users={this.state.users}  {...this.props} getIndividualUserProfile={this.getIndividualUserProfile} addUser={this.addUser} deleteUser={this.deleteUser} />} />
             
-            <Route path='/secret' render={props => this.props.auth.isAuthenticated() ? (<Secret users={this.state.users} {...this.props} getIndividualUserProfile={this.props.getIndividualUserProfile}></Secret>) : (<Redirect to ={{ pathname: "/",}}/>)}/>
+            <Route path='/secret' render={props => this.props.auth.isAuthenticated() ? (<Secret users={this.state.users} {...this.props} getIndividualUserProfile={this.props.getIndividualUserProfile}  addUser={this.addUser}></Secret>) : (<Redirect to ={{ pathname: "/",}}/>)}/>
 
             <Route path='/profile' render={props => this.props.auth.isAuthenticated() ? (<Profile {...this.props}></Profile>) : (<Redirect to ={{ pathname: "/",}}/>)}/>
 

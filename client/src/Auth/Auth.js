@@ -65,8 +65,8 @@ class Auth {
 
     axios({
       method: "post",
-      // url: "http://localhost:3000/api/user",
-      url: "/api/user",
+      // url: "http://localhost:3000/api/users",
+      url: "/api/users",
       headers,
       data: profile
     }).then(function (res) {

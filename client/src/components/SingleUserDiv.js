@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import {Card} from "react-bootstrap";
 import UserProfileButton from "./UserProfileButton";
+import UserDeleteButton from "./UserDeleteButton";
+import axios from "axios";
+import Auth from "../Auth/Auth";
+
+
+const auth = new Auth();
+
 
 class SingleUserDiv extends Component {
   constructor(props) {
@@ -9,6 +16,44 @@ class SingleUserDiv extends Component {
       users: {},
     };
   }
+
+
+
+   // to handle deleting an event from database
+   handleDeleteSearch = (deletedUser) => {
+    // const url = "http://localhost:3000/api/users/" + deletedUser._id;
+
+    // fetch(url, { //endpoint
+    //     method: 'delete'
+    //   })
+    //   .then((response) => {
+    //     return response.json();
+    //   })
+    //   .then((deletedUser) => {
+    //     this.props.deleteEvent(deletedUser)
+    //   })
+    //   .catch((error) => {
+    //     this.setState({
+    //       error: true
+    //     })
+    //   });
+    // // console.log(deletedUser._id);
+    // // this.props.deleteUser(deletedUser)
+
+    const headers = { 'Authorization': `Bearer ${auth.getAccessToken()}`}
+    console.log(auth.getAccessToken());
+  
+      axios({
+        method: "delete",
+        // url: "http://localhost:3000/api/users/" + deletedUser._id,
+        url: "/api/users/" + deletedUser._id,
+        headers,
+      }).then((res) => {
+        this.props.deleteUser(res)
+        console.log(res);
+      });
+
+  };
 
 
   render(){
@@ -25,6 +70,7 @@ class SingleUserDiv extends Component {
             the card's content.
           </Card.Text>
           <UserProfileButton item={this.props.item} getIndividualUserProfile={this.props.getIndividualUserProfile}></UserProfileButton>
+          <UserDeleteButton item={this.props.item} handleDeleteSearch={this.handleDeleteSearch}></UserDeleteButton>
         </Card.Body>
       </Card>
     </div>
