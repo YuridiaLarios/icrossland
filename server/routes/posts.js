@@ -34,35 +34,22 @@ router.get("/public", function(req, res) {
 /*************************************
 ACTUAL ROUTES
 **************************************/
-// GET ALL POST
-router.get("/", function (req, res) {
-  Post.find({}, function (error, posts) {
-    if (error) {
-      console.log("problem finding data");
-      res.send("something went really wrong!!!");
-    } else {
-      res.json(posts);
-    }
-  });
-})
-
-
-
-// GET POST BY ID
-router.get("/:id", function (req, res) {
-  Post.findOne({
-    _id: req.params.id
-  }, function (error, post) {
-    if (error) {
-      console.log("problem finding data");
-      res.send("something went really wrong!!!");
-    } else {
-      res.json(post);
-    }
-  })
+// GET ALL POSTS
+router.get("/", (req, res) => {
+  Post.find()
+    .sort({ date: -1 })
+    .then(posts => res.json(posts))
+    .catch(err => res.status(404).json({ nopostsfound: "No posts found" }));
 });
 
-
+// GET POST BY ID
+router.get("/:id", (req, res) => {
+  Post.findById(req.params.id)
+    .then(post => res.json(post))
+    .catch(err =>
+      res.status(404).json({ nopostfound: "No post found with that ID" })
+    );
+});
 
 // POST NEW POST
 router.post("/newPost", async function(req, res) {
@@ -83,20 +70,23 @@ router.post("/newPost", async function(req, res) {
   }
 });
 
-
 // DELETE POST BY ID
-router.delete("/:id", function (req, res) {
-  Post.findOneAndRemove({
-    _id: req.params.id
-  }, function (error, post) {
-    if (error) {
-      console.log("problem finding data");
-      res.send("something went really wrong!!!");
-    } else {
-      console.log(`post with id: ${req.params}`);
-      res.json(post);
+router.delete("/:id", function(req, res) {
+  Post.findOneAndRemove(
+    {
+      _id: req.params.id
+    },
+    function(error, post) {
+      if (error) {
+        console.log("problem finding data");
+        res.send("something went really wrong!!!");
+      } else {
+        console.log(`post with id: ${req.params}`);
+        res.json(post);
+      }
     }
-  })
+  );
 });
+
 
 module.exports = router;

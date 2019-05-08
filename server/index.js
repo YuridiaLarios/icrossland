@@ -9,6 +9,8 @@ const cors = require("cors");
 const morgan = require("morgan");
 const users = require("./routes/users");
 const posts = require("./routes/posts");
+const stocks = require("./routes/stockMarket");
+
 
 app.use(cors());
 
@@ -27,6 +29,7 @@ app.enable("trust proxy");
 // Define Routes;
 app.use("/api", users);
 app.use("/api/posts", posts);
+app.use("/api/stocks", stocks);
 // app.use("/api/profile", profile);
 
 // mongo db connect

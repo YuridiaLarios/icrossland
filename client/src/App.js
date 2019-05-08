@@ -8,6 +8,7 @@ import Homepage from "./Pages/Homepage";
 import Secret from "./Pages/Secret";
 import Profile from "./Pages/Profile";
 import UserProfile from "./Pages/UserProfile";
+import StockProfile from "./Pages/StockProfile";
 import NotFound from "./Pages/NotFound";
 import Callback from "./components/Callback";
 
@@ -17,7 +18,9 @@ class App extends Component {
     super(props);
     this.state = {
       users: [],
-      individualUserProfile: {}
+      stocks: [],
+      individualUserProfile: {},
+      individualStockProfile: {}
     };
   }
 
@@ -35,6 +38,26 @@ class App extends Component {
         this.state.individualUserProfile.username +
         "the id from state is: " +
         this.state.individualUserProfile._id
+    );
+  };
+
+  // function to get the info of an individual stock profile
+  // binds this method to getIndividualStockProfile instance
+  getIndividualStockProfile = currentStock => {
+    console.log(
+      "the name before state is: " +
+        currentStock.name +
+        " the symbol before state is: " +
+        currentStock.symbol
+    );
+    this.setState({
+      individualStockProfile: currentStock
+    });
+    console.log(
+      "the name from app.js state is: " +
+        this.state.individualStockProfile.name +
+        "the symbol from app.js state is: " +
+        this.state.individualStockProfile.symbol
     );
   };
 
@@ -72,9 +95,14 @@ class App extends Component {
     console.log(this.props.auth.getAccessToken);
     const headers = { Authorization: `Bearer ${getAccessToken()}` };
 
-      // axios.get("http://localhost:3000/api/users", { headers })
+    // axios.get("http://localhost:3000/api/users", { headers })
       axios.get("/api/users", { headers })
       .then(response => this.setState({ users: response.data }))
+      .catch(error => this.setState({ error: true }));
+
+    // axios.get("http://localhost:3000/api/stocks", { headers })
+      axios.get("/api/stocks", { headers })
+      .then(response => this.setState({ stocks: response.data }))
       .catch(error => this.setState({ error: true }));
   }
 
@@ -99,8 +127,10 @@ class App extends Component {
                   render={props => (
                     <Homepage
                       users={this.state.users}
+                      stocks={this.state.stocks}
                       {...this.props}
                       getIndividualUserProfile={this.getIndividualUserProfile}
+                      getIndividualStockProfile={this.getIndividualStockProfile}
                       addUser={this.addUser}
                       deleteUser={this.deleteUser}
                     />
@@ -141,6 +171,20 @@ class App extends Component {
                   render={props =>
                     this.props.auth.isAuthenticated() ? (
                       <UserProfile
+                        {...this.props}
+                        user={this.state.individualUserProfile}
+                      />
+                    ) : (
+                      <Homepage {...this.props} />
+                    )
+                  }
+                />
+
+                <Route
+                  path="/stockProfile/:stockId"
+                  render={props =>
+                    this.props.auth.isAuthenticated() ? (
+                      <StockProfile
                         {...this.props}
                         user={this.state.individualUserProfile}
                       />
