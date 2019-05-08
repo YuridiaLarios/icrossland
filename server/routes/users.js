@@ -90,7 +90,7 @@ router.post("/users", function (req, res) {
         authId: req.body.sub,
         username: req.body.name,
         email: req.body.email,
-        thumbnailFile: req.body.picture
+        thumbnailFile: req.body.picture,
       }, function (error, data) {
         if (error) {
           console.log("There was a problem adding a document to the collection.");

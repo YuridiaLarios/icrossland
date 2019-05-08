@@ -1,6 +1,6 @@
 import auth0 from "auth0-js";
 import jwtDecode from "jwt-decode";
-import axios from 'axios';
+import axios from "axios";
 
 /* eslint no-restricted-globals:0*/
 const LOGIN_SUCCESS_PAGE = "/secret";
@@ -61,7 +61,7 @@ class Auth {
 
     const headers = {
       'Authorization': `Bearer ${this.getAccessToken()}`
-    }
+    };
 
     axios({
       method: "post",
@@ -69,20 +69,20 @@ class Auth {
       url: "/api/users",
       headers,
       data: profile
-    }).then(function (res) {
+    }).then(function(res) {
       console.log(`the response is: ${res}`);
     });
-
   }
 
-
   setSession(authResults) {
-    let expireAt = JSON.stringify((authResults.expiresIn) * 1000 + new Date().getTime());
+    let expireAt = JSON.stringify(
+      authResults.expiresIn * 1000 + new Date().getTime()
+    );
 
     this.expiresAt = expireAt;
     this.accessToken = authResults.accessToken;
     this.idToken = authResults.idToken;
-    localStorage.setItem('isLoggedIn', 'true');
+    localStorage.setItem("isLoggedIn", "true");
 
     localStorage.setItem("access_token", this.accessToken);
     localStorage.setItem("id_token", this.idToken);
@@ -94,8 +94,7 @@ class Auth {
   getAccessToken() {
     if (localStorage.getItem("id_token")) {
       return localStorage.getItem("access_token");
-    } else
-      return "no access token"
+    } else return "no access token";
   }
 
   getIdToken() {
@@ -111,7 +110,7 @@ class Auth {
     localStorage.removeItem("access_token");
     localStorage.removeItem("id_token");
     localStorage.removeItem("expires_at");
-    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem("isLoggedIn");
 
     // Remove tokens, expiry time and userProfile info
     this.accessToken = null;
