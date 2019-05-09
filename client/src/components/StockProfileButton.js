@@ -18,7 +18,7 @@ class UserProfileButton extends Component {
     const { history } = this.props;
 
     let profileStockValues = this.props.item;
-    history.push(`/stockProfile/${this.props.item.name}`);
+    history.push(`/stockProfile/${this.props.item.symbol}`);
 
     this.props.getIndividualUserProfile(profileStockValues);
   };
