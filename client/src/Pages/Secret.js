@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Button, Row } from "react-bootstrap";
-import { VARS_CONFIG } from './react-variables';
+import { VARS_CONFIG } from '../react-variables';
 import axios from "axios";
 import "./Secret.css";
 import Auth from "../Auth/Auth";
