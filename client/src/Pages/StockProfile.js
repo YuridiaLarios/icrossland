@@ -45,8 +45,7 @@ class StockProfile extends Component {
     const headers = { Authorization: `Bearer ${getAccessToken()}` };
     console.log("testing this.props.user.symbol: ", this.props.user.symbol);
 
-    axios
-      // .get("http://localhost:3000/api/stocks/history/", { headers })
+    // axios.get("http://localhost:3000/api/stocks/history/", { headers })
       axios.get("/api/history", { headers })
       .then(response => this.setState({ historyData: response }))
       .catch(error => this.setState({ error: true }));
