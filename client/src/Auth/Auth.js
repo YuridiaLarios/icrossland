@@ -1,8 +1,7 @@
 import auth0 from "auth0-js";
 import jwtDecode from "jwt-decode";
 import axios from "axios";
-import { VARS_CONFIG } from './react-variables';
-
+import { VARS_CONFIG } from "../react-variables";
 
 /* eslint no-restricted-globals:0*/
 const LOGIN_SUCCESS_PAGE = "/secret";
@@ -62,7 +61,7 @@ class Auth {
     console.log(`access token :  ${this.getAccessToken()}`);
 
     const headers = {
-      'Authorization': `Bearer ${this.getAccessToken()}`
+      Authorization: `Bearer ${this.getAccessToken()}`
     };
 
     axios({
