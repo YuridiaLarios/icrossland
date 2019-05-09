@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, Card, Container } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
-import { VARS_CONFIG } from '../react-variables';
+import { VARS_CONFIG } from "../react-variables";
 import "../Auth/Auth";
 import "./Profile.css";
 import axios from "axios";
@@ -47,7 +47,8 @@ class StockProfile extends Component {
     console.log("testing this.props.user.symbol: ", this.props.user.symbol);
 
     // axios.get("http://localhost:3000/api/stocks/history/", { headers })
-      axios.get(`${VARS_CONFIG.localhost}/api/history`, { headers })
+    axios
+      .get(`${VARS_CONFIG.localhost}/api/stocks/history`, { headers })
       .then(response => this.setState({ historyData: response }))
       .catch(error => this.setState({ error: true }));
 
@@ -91,6 +92,7 @@ class StockProfile extends Component {
           </pre>
         </Card>
         <Card>
+          <Card.Title>Historical Data {this.props.user.symbol}</Card.Title>
           <MyLineGraph historyData={this.state.historyData} />
         </Card>
       </div>
