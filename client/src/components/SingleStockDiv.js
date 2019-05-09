@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Card } from "react-bootstrap";
+import { VARS_CONFIG } from './react-variables';
 import UserProfileButton from "./UserProfileButton";
 import StockProfileButton from "./StockProfileButton";
 import UserDeleteButton from "./UserDeleteButton";

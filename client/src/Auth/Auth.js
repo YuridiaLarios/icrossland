@@ -1,6 +1,8 @@
 import auth0 from "auth0-js";
 import jwtDecode from "jwt-decode";
 import axios from "axios";
+import { VARS_CONFIG } from './react-variables';
+
 
 /* eslint no-restricted-globals:0*/
 const LOGIN_SUCCESS_PAGE = "/secret";

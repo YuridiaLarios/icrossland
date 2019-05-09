@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Button, Card, Container } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
+import { VARS_CONFIG } from './react-variables';
 import "../Auth/Auth";
 import "./Profile.css";
 import axios from "axios";
