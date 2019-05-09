@@ -11,6 +11,9 @@ Chart.defaults.global.elements.line.tension = 0.2;
 //--Chart Style Options--//
 
 export default class MyLineGraph extends PureComponent {
+  constructor(props) {
+    super(props); // props is an object that has passed date from parent component in it now
+  }
   chartRef = React.createRef();
 
   componentDidMount() {
@@ -29,18 +32,11 @@ export default class MyLineGraph extends PureComponent {
       data: {
         //Bring in data
         //Labels represent x-axis = time
-        labels: [
-          "2019-05-01",
-          "2019-05-02",
-          "2019-05-03",
-          "2019-05-06",
-          "2019-05-07",
-          "2019-05-08"
-        ],
+        labels: this.props.historyDates,
         datasets: [
           {
             label: "Open",
-            data: ["209.88", "209.84", "210.89", "204.29", "205.88", "201.90"],
+            data: this.props.historyOpenData,
             borderColor: "#98B9AB",
             borderWidth: 3,
             fill: false,
@@ -49,7 +45,7 @@ export default class MyLineGraph extends PureComponent {
           },
           {
             label: "Close",
-            data: ["210.52", "209.15", "211.75", "208.48", "202.86", "202.90"],
+            data: this.props.historyCloseData,
             borderColor: "#FF4500",
             borderWidth: 3,
             fill: false,
@@ -65,8 +61,7 @@ export default class MyLineGraph extends PureComponent {
         scales: {
           yAxes: [
             {
-              ticks: {
-              }
+              ticks: {}
             }
           ]
         },

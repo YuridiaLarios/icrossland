@@ -16,10 +16,32 @@ class StockProfile extends Component {
       user: props.user,
       profile: {},
       historyData: {},
+      historyDates: [],
+      historyOpenData: [],
+      historyCloseData: [],
       realHistoryData: {},
       error: false
     };
   }
+
+  organizedHistoryData = historyData => {
+    let historyDates = Array.from(Object.keys(historyData.data));
+    let historyOpenData = [];
+    let historyCloseData = [];
+    for (let i = 0; i < historyDates.length; i++) {
+      historyOpenData.push(historyData.data[historyDates[i]].open);
+      historyCloseData.push(historyData.data[historyDates[i]].close);
+    }
+    console.log(historyDates);
+    console.log(historyOpenData);
+    console.log(historyCloseData);
+
+    this.setState({
+      historyDates: historyDates,
+      historyOpenData: historyOpenData,
+      historyCloseData: historyCloseData
+    });
+  };
 
   handleSubmit = event => {
     event.preventDefault();
@@ -46,18 +68,26 @@ class StockProfile extends Component {
     const headers = { Authorization: `Bearer ${getAccessToken()}` };
     console.log("testing this.props.user.symbol: ", this.props.user.symbol);
 
-    // axios.get("http://localhost:3000/api/stocks/history/", { headers })
-    axios
-      .get(`${VARS_CONFIG.localhost}/api/stocks/history`, { headers })
-      .then(response => this.setState({ historyData: response }))
-      .catch(error => this.setState({ error: true }));
-
-    //REAL AXIOS CALL FOR HISTORY/USER.SYMBOL
+    // // FAKE AXIOS CALL FOR HISTORY/USER.SYMBOL
     // axios
-    //   .get(`http://localhost:3000/api/stocks/history/${this.props.user.symbol}`, { headers })
-    //   // axios.get(`${VARS_CONFIG.localhost}/api/history`, { headers })
-    //   .then(response => this.setState({ realHistoryData: response }))
+    //   .get(`${VARS_CONFIG.localhost}/api/stocks/history`, { headers })
+    //   .then(response => {
+    //     this.setState({ historyData: response });
+    //     this.organizedHistoryData(response);
+    //   })
     //   .catch(error => this.setState({ error: true }));
+
+    // REAL AXIOS CALL FOR HISTORY/USER.SYMBOL
+    axios
+      .get(
+        `${VARS_CONFIG.localhost}/api/stocks/history/${this.props.user.symbol}`,
+        { headers }
+      )
+      .then(response => {
+        this.setState({ realHistoryData: response });
+        this.organizedHistoryData(response);
+      })
+      .catch(error => this.setState({ error: true }));
   }
 
   render() {
@@ -71,7 +101,7 @@ class StockProfile extends Component {
             <Card.Header>
               <h2>{this.props.user.name}</h2>
             </Card.Header>
-            {/* <Card.Img className="profile-thumbnail" variant="top" src={this.props.user.thumbnailFile} /> */}
+
             <Card.Body>
               <Card.Title>Symbol: {this.props.user.symbol}</Card.Title>
               <Card.Text>Price: {this.props.user.price}</Card.Text>
@@ -93,7 +123,11 @@ class StockProfile extends Component {
         </Card>
         <Card>
           <Card.Title>Historical Data {this.props.user.symbol}</Card.Title>
-          <MyLineGraph historyData={this.state.historyData} />
+          <MyLineGraph
+            historyDates={this.state.historyDates}
+            historyOpenData={this.state.historyOpenData}
+            historyCloseData={this.state.historyCloseData}
+          />
         </Card>
       </div>
     );
