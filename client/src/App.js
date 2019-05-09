@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./App.css";
+import { VARS_CONFIG } from './react-variables';
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import NavigationBar from "./components/NavigationBar";
 import { Layout } from "./components/Layout";
@@ -96,12 +97,12 @@ class App extends Component {
     const headers = { Authorization: `Bearer ${getAccessToken()}` };
 
     // axios.get("http://localhost:3000/api/users", { headers })
-      axios.get("/api/users", { headers })
+      axios.get(`${VARS_CONFIG.localhost}/api/users`, { headers })
       .then(response => this.setState({ users: response.data }))
       .catch(error => this.setState({ error: true }));
 
     // axios.get("http://localhost:3000/api/stocks", { headers })
-      axios.get("/api/stocks", { headers })
+      axios.get(`${VARS_CONFIG.localhost}/api/stocks`, { headers })
       .then(response => this.setState({ stocks: response.data }))
       .catch(error => this.setState({ error: true }));
   }

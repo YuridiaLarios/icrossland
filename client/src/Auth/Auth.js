@@ -15,7 +15,7 @@ class Auth {
   auth0 = new auth0.WebAuth({
     domain: "princess-minina.auth0.com",
     clientID: "D7qof03S1ZPHBdDrX00CHROyOdQlKqM2",
-    redirectURI: "/callback",
+    redirectURI: `${VARS_CONFIG.localhost}/callback`,
     // redirectURI: "http://localhost:3000/callback",
     audience: "https://icrosslandAPI",
     responseType: "token id_token",
@@ -66,7 +66,7 @@ class Auth {
     axios({
       method: "post",
       // url: "http://localhost:3000/api/users",
-      url: "/api/users",
+      url: `${VARS_CONFIG.localhost}/api/users`,
       headers,
       data: profile
     }).then(function(res) {

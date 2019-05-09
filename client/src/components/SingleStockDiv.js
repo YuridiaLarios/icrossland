@@ -24,7 +24,7 @@ class SingleStockDiv extends Component {
     axios({
       method: "delete",
       // url: "http://localhost:3000/api/users/" + deletedUser._id,
-      url: "/api/users/" + deletedUser._id,
+      url: `${VARS_CONFIG.localhost}/api/users/` + deletedUser._id,
       headers
     }).then(res => {
       this.props.deleteUser(res);

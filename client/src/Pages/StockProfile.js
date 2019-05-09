@@ -46,14 +46,14 @@ class StockProfile extends Component {
     console.log("testing this.props.user.symbol: ", this.props.user.symbol);
 
     // axios.get("http://localhost:3000/api/stocks/history/", { headers })
-      axios.get("/api/history", { headers })
+      axios.get(`${VARS_CONFIG.localhost}/api/history`, { headers })
       .then(response => this.setState({ historyData: response }))
       .catch(error => this.setState({ error: true }));
 
     //REAL AXIOS CALL FOR HISTORY/USER.SYMBOL
     // axios
     //   .get(`http://localhost:3000/api/stocks/history/${this.props.user.symbol}`, { headers })
-    //   // axios.get(`/api/history`, { headers })
+    //   // axios.get(`${VARS_CONFIG.localhost}/api/history`, { headers })
     //   .then(response => this.setState({ realHistoryData: response }))
     //   .catch(error => this.setState({ error: true }));
   }
