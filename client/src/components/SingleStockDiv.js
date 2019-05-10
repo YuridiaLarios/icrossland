@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Card } from "react-bootstrap";
 import { VARS_CONFIG } from "../react-variables";
-// import UserProfileButton from "./UserProfileButton";
 import StockProfileButton from "./StockProfileButton";
 import UserDeleteButton from "./UserDeleteButton";
+import FavoriteStockButton from "./FavoriteStockButton";
 import axios from "axios";
 import Auth from "../Auth/Auth";
 
@@ -67,10 +67,11 @@ class SingleStockDiv extends Component {
               item={this.props.item}
               getIndividualStockProfile={this.props.getIndividualStockProfile}
             />
-            <UserDeleteButton
+            {/* <UserDeleteButton
               item={this.props.item}
               handleDeleteSearch={this.handleDeleteSearch}
-            />
+            /> */}
+            <FavoriteStockButton item={this.props.item} />
           </Card.Body>
         </Card>
       </div>

@@ -17,7 +17,7 @@ class Homepage extends Component {
     return (
       <div>
         <img src={logo} className="App-logo" alt="logo" />
-        <h1>Welcome to React, {this.props.name}</h1>
+        <h1>Welcome to icrossland, {this.props.name}</h1>
         Do you want to see the profile area?
         {this.props.auth.isAuthenticated() && (
           <div>
@@ -28,15 +28,15 @@ class Homepage extends Component {
               <Row>
                 {this.props.users.map(item => {
                   return (
-                      <SingleUserDiv
-                        key={item._id}
-                        item={item}
-                        getIndividualUserProfile={
-                          this.props.getIndividualUserProfile
-                        }
-                        addUser={this.props.addUser}
-                        deleteUser={this.props.deleteUser}
-                      />
+                    <SingleUserDiv
+                      key={item._id}
+                      item={item}
+                      getIndividualUserProfile={
+                        this.props.getIndividualUserProfile
+                      }
+                      addUser={this.props.addUser}
+                      deleteUser={this.props.deleteUser}
+                    />
                   );
                 })}
               </Row>
@@ -44,15 +44,15 @@ class Homepage extends Component {
               <Row>
                 {this.props.stocks.map(item => {
                   return (
-                      <SingleStockDiv
-                        key={item.symbol}
-                        item={item}
-                        getIndividualStockProfile={
-                          this.props.getIndividualStockProfile
-                        }
-                        addUser={this.props.addUser}
-                        deleteUser={this.props.deleteUser}
-                      />
+                    <SingleStockDiv
+                      key={item.symbol}
+                      item={item}
+                      getIndividualStockProfile={
+                        this.props.getIndividualStockProfile
+                      }
+                      addUser={this.props.addUser}
+                      deleteUser={this.props.deleteUser}
+                    />
                   );
                 })}
               </Row>

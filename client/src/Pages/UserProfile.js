@@ -79,7 +79,6 @@ class UserProfile extends Component {
             <Card.Body>
               <Card.Title>ID: {this.state.user._id}</Card.Title>
               <Card.Text>{this.state.user.email}</Card.Text>
-              <pre>{JSON.stringify(this.state.user, null, 2)}</pre>
             </Card.Body>
           </Card>
         </Container>

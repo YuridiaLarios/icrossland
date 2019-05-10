@@ -1,0 +1,621 @@
+[
+  {
+    "symbol": "AAPL",
+    "name": "Apple Inc.",
+    "currency": "USD",
+    "stock_exchange_long": "NASDAQ Stock Exchange",
+    "stock_exchange_short": "NASDAQ",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "BAM",
+    "name": "Brookfield Asset Management Inc.",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "ENB",
+    "name": "Enbridge Inc.",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "HSBA.L",
+    "name": "HSBC Holdings plc",
+    "currency": "GBX",
+    "stock_exchange_long": "London Stock Exchange",
+    "stock_exchange_short": "LSE",
+    "timezone": "BST",
+    "timezone_name": "Europe/London"
+  },
+  {
+    "symbol": "MSFT",
+    "name": "Microsoft Corporation",
+    "currency": "USD",
+    "stock_exchange_long": "NASDAQ Stock Exchange",
+    "stock_exchange_short": "NASDAQ",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "ANTM",
+    "name": "Anthem, Inc.",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "EXFO",
+    "name": "EXFO Inc.",
+    "currency": "USD",
+    "stock_exchange_long": "NASDAQ Stock Exchange",
+    "stock_exchange_short": "NASDAQ",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "FDX",
+    "name": "FedEx Corporation",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "W",
+    "name": "Wayfair Inc.",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "WELL",
+    "name": "Welltower Inc.",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "ASC",
+    "name": "Ardmore Shipping Corporation",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "CUZ",
+    "name": "Cousins Properties Incorporated",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "MEET",
+    "name": "The Meet Group, Inc.",
+    "currency": "USD",
+    "stock_exchange_long": "NASDAQ Stock Exchange",
+    "stock_exchange_short": "NASDAQ",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "REI",
+    "name": "Ring Energy, Inc.",
+    "currency": "USD",
+    "stock_exchange_long": "NYSE American Stock Exchange",
+    "stock_exchange_short": "AMEX",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "ROKU",
+    "name": "Roku, Inc.",
+    "currency": "USD",
+    "stock_exchange_long": "NASDAQ Stock Exchange",
+    "stock_exchange_short": "NASDAQ",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "AMD",
+    "name": "Advanced Micro Devices, Inc.",
+    "currency": "USD",
+    "stock_exchange_long": "NASDAQ Stock Exchange",
+    "stock_exchange_short": "NASDAQ",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "CTL",
+    "name": "CenturyLink, Inc.",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "CVX",
+    "name": "Chevron Corporation",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "PRGO",
+    "name": "Perrigo Company plc",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "TPR",
+    "name": "Tapestry, Inc.",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "AMZN",
+    "name": "Amazon.com, Inc.",
+    "currency": "USD",
+    "stock_exchange_long": "NASDAQ Stock Exchange",
+    "stock_exchange_short": "NASDAQ",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "BSX",
+    "name": "Boston Scientific Corporation",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "ILMN",
+    "name": "Illumina, Inc.",
+    "currency": "USD",
+    "stock_exchange_long": "NASDAQ Stock Exchange",
+    "stock_exchange_short": "NASDAQ",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "ISRG",
+    "name": "Intuitive Surgical, Inc.",
+    "currency": "USD",
+    "stock_exchange_long": "NASDAQ Stock Exchange",
+    "stock_exchange_short": "NASDAQ",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "NTAP",
+    "name": "NetApp, Inc.",
+    "currency": "USD",
+    "stock_exchange_long": "NASDAQ Stock Exchange",
+    "stock_exchange_short": "NASDAQ",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "FB",
+    "name": "Facebook, Inc.",
+    "currency": "USD",
+    "stock_exchange_long": "NASDAQ Stock Exchange",
+    "stock_exchange_short": "NASDAQ",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "HCA",
+    "name": "HCA Healthcare, Inc.",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "INTC",
+    "name": "Intel Corporation",
+    "currency": "USD",
+    "stock_exchange_long": "NASDAQ Stock Exchange",
+    "stock_exchange_short": "NASDAQ",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "OXY",
+    "name": "Occidental Petroleum Corporation",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "UA",
+    "name": "Under Armour, Inc.",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "BHC",
+    "name": "Bausch Health Companies Inc.",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "BXP",
+    "name": "Boston Properties, Inc.",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "CBS",
+    "name": "CBS Corporation",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "CGC",
+    "name": "Canopy Growth Corporation",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "CVS",
+    "name": "CVS Health Corporation",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "BHC",
+    "name": "Bausch Health Companies Inc.",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "BXP",
+    "name": "Boston Properties, Inc.",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "CBS",
+    "name": "CBS Corporation",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "CGC",
+    "name": "Canopy Growth Corporation",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "CVS",
+    "name": "CVS Health Corporation",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "1113.HK",
+    "name": "CK Asset Holdings Ltd",
+    "currency": "HKD",
+    "stock_exchange_long": "Hong Kong Stock Exchange",
+    "stock_exchange_short": "HKEX",
+    "timezone": "LMT",
+    "timezone_name": "Asia/Hong_Kong"
+  },
+  {
+    "symbol": "CMCSA",
+    "name": "Comcast Corporation",
+    "currency": "USD",
+    "stock_exchange_long": "NASDAQ Stock Exchange",
+    "stock_exchange_short": "NASDAQ",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "CNA",
+    "name": "CNA Financial Corporation",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "FNMA",
+    "name": "Federal National Mortgage Association",
+    "currency": "USD",
+    "stock_exchange_long": "OTC Markets Group",
+    "stock_exchange_short": "OTCMKTS",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "LNG",
+    "name": "Cheniere Energy, Inc.",
+    "currency": "USD",
+    "stock_exchange_long": "NYSE American Stock Exchange",
+    "stock_exchange_short": "AMEX",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "DELL",
+    "name": "Dell Technologies Inc.",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "ET",
+    "name": "Energy Transfer LP",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "F",
+    "name": "Ford Motor Company",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "GE",
+    "name": "General Electric Company",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "GILD",
+    "name": "Gilead Sciences, Inc.",
+    "currency": "USD",
+    "stock_exchange_long": "NASDAQ Stock Exchange",
+    "stock_exchange_short": "NASDAQ",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "HOG",
+    "name": "Harley-Davidson, Inc.",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "IQV",
+    "name": "IQVIA Holdings Inc.",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "JCI",
+    "name": "Johnson Controls International plc",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "KNX",
+    "name": "Knight-Swift Transportation Holdings Inc.",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "KR",
+    "name": "The Kroger Co.",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "LB",
+    "name": "L Brands, Inc.",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "LEN",
+    "name": "Lennar Corporation",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "MDR",
+    "name": "McDermott International, Inc.",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "MFC",
+    "name": "Manulife Financial Corporation",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "MPC",
+    "name": "Marathon Petroleum Corporation",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "DATA",
+    "name": "Tableau Software, Inc.",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "PYX",
+    "name": "Pyxus International, Inc.",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "RRC",
+    "name": "Range Resources Corporation",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "SYF",
+    "name": "Synchrony Financial",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "TEVA",
+    "name": "Teva Pharmaceutical Industries Limited",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "TSLA",
+    "name": "Tesla, Inc.",
+    "currency": "USD",
+    "stock_exchange_long": "NASDAQ Stock Exchange",
+    "stock_exchange_short": "NASDAQ",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "VOD",
+    "name": "Vodafone Group Plc",
+    "currency": "USD",
+    "stock_exchange_long": "NASDAQ Stock Exchange",
+    "stock_exchange_short": "NASDAQ",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "WAB",
+    "name": "Wabtec Corporation",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  },
+  {
+    "symbol": "WPP",
+    "name": "WPP plc",
+    "currency": "USD",
+    "stock_exchange_long": "New York Stock Exchange",
+    "stock_exchange_short": "NYSE",
+    "timezone": "EDT",
+    "timezone_name": "America/New_York"
+  }
+]
