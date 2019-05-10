@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./App.css";
-import { VARS_CONFIG } from './react-variables';
+import { VARS_CONFIG } from "./react-variables";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import NavigationBar from "./components/NavigationBar";
 import { Layout } from "./components/Layout";
@@ -28,38 +28,17 @@ class App extends Component {
   // function to get the info of an individual user profile
   // binds this method to getIndividualUserProfile instance
   getIndividualUserProfile = currentUser => {
-    console.log(
-      "the name is: " + currentUser.username + " the id is: " + currentUser._id
-    );
     this.setState({
       individualUserProfile: currentUser
     });
-    console.log(
-      "the name from state is: " +
-        this.state.individualUserProfile.username +
-        "the id from state is: " +
-        this.state.individualUserProfile._id
-    );
   };
 
   // function to get the info of an individual stock profile
   // binds this method to getIndividualStockProfile instance
   getIndividualStockProfile = currentStock => {
-    console.log(
-      "the name before state is: " +
-        currentStock.name +
-        " the symbol before state is: " +
-        currentStock.symbol
-    );
     this.setState({
       individualStockProfile: currentStock
     });
-    console.log(
-      "the name from app.js state is: " +
-        this.state.individualStockProfile.name +
-        "the symbol from app.js state is: " +
-        this.state.individualStockProfile.symbol
-    );
   };
 
   // ADDING USER TO UI
@@ -93,27 +72,27 @@ class App extends Component {
   // moving it here makes it accessible to all children components
   componentDidMount() {
     const { getAccessToken } = this.props.auth;
-    console.log(this.props.auth.getAccessToken);
+    // console.log(this.props.auth.getAccessToken);
     const headers = { Authorization: `Bearer ${getAccessToken()}` };
 
-    // axios.get("http://localhost:3000/api/users", { headers })
-      axios.get(`${VARS_CONFIG.localhost}/api/users`, { headers })
+    axios
+      .get(`${VARS_CONFIG.localhost}/api/users`, { headers })
       .then(response => this.setState({ users: response.data }))
       .catch(error => this.setState({ error: true }));
 
-    // axios.get("http://localhost:3000/api/stocks", { headers })
-      axios.get(`${VARS_CONFIG.localhost}/api/stocks`, { headers })
+    axios
+      .get(`${VARS_CONFIG.localhost}/api/stocks`, { headers })
       .then(response => this.setState({ stocks: response.data }))
       .catch(error => this.setState({ error: true }));
   }
 
   render() {
-    let mainComponent = "";
-    switch (this.props.location) {
-      case "callback":
-        mainComponent = <Callback />;
-        break;
-    }
+    // let mainComponent = "";
+    // switch (this.props.location) {
+    //   case "callback":
+    //     mainComponent = <Callback />;
+    //     break;
+    // }
 
     return (
       <div className="App">
@@ -137,6 +116,8 @@ class App extends Component {
                     />
                   )}
                 />
+
+                <Route path="/callback" render={props => <Callback />} />
 
                 <Route
                   path="/secret"
@@ -187,7 +168,7 @@ class App extends Component {
                     this.props.auth.isAuthenticated() ? (
                       <StockProfile
                         {...this.props}
-                        user={this.state.individualUserProfile}
+                        stock={this.state.individualStockProfile}
                       />
                     ) : (
                       <Homepage {...this.props} />
@@ -212,7 +193,7 @@ class App extends Component {
           </BrowserRouter>
         </header>
 
-        {mainComponent}
+        {/* {mainComponent} */}
       </div>
     );
   }

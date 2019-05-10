@@ -16,14 +16,8 @@ class UserProfileButton extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const { history } = this.props;
-
-    // let profileUserValues = {
-    //   username: this.props.item.username,
-    //   _id: this.props.item._id
-    // }
     let profileUserValues = this.props.item;
     history.push(`/userProfile/${this.props.item._id}`);
-
     this.props.getIndividualUserProfile(profileUserValues);
   };
 

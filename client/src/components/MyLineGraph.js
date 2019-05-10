@@ -11,9 +11,7 @@ Chart.defaults.global.elements.line.tension = 0.2;
 //--Chart Style Options--//
 
 export default class MyLineGraph extends PureComponent {
-  constructor(props) {
-    super(props); // props is an object that has passed date from parent component in it now
-  }
+
   chartRef = React.createRef();
 
   componentDidMount() {

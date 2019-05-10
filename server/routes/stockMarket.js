@@ -72,25 +72,18 @@ const checkJwt = jwt({
 /*************************************
  ROUTES FOR TESTING PURPOSES
 **************************************/
-// GET ALL DEMO STOCKS
-router.get("/", async function(req, res) {
-  await axios
-    .get(
-      "https://www.worldtradingdata.com/api/v1/stock?symbol=AAPL,MSFT,HSBA.L&api_token=demo"
-    )
-    .then(response => res.json(response.data.data))
-    .catch(error => res.json(error));
-});
 
-// FAKE GET STOCK HISTORY BY ID
+/*************************************
+  STOCKS HISTORY DATA CALLS
+**************************************/
+
+// (FAKE) GET STOCK HISTORY BY ID ONLY WORKS FOR AAPL
 router.get("/history", async function(req, res) {
-  // console.log(Object.keys(history));
-  // res.json(Object.keys(history));
   console.log(history);
   res.json(history);
 });
 
-// GET STOCK HISTORY BY ID (REAL API)
+// (REAL) GET STOCK HISTORY BY ID
 router.get("/history/:id", async function(req, res) {
   await axios
     .get(
@@ -108,4 +101,29 @@ router.get("/history/:id", async function(req, res) {
 //   await axios.get(`https://www.worldtradingdata.com/api/v1/history?symbol=AAPL&date_from=2019-05-01&sort=newest&api_token=${WTD_API}`).then((response) => res.json(response.data.history)).catch(error => res.json(error));
 // });
 
+/*************************************
+  STOCKS REAL-TIME DATA CALLS
+**************************************/
+
+// (FAKE) GET ALL DEMO STOCKS
+router.get("/", async function(req, res) {
+  await axios
+    .get(
+      "https://www.worldtradingdata.com/api/v1/stock?symbol=AAPL,MSFT,HSBA.L&api_token=demo"
+    )
+    .then(response => res.json(response.data.data))
+    .catch(error => res.json(error));
+});
+
+// (REAL) GET STOCK BY ID
+router.get("/:id", async function(req, res) {
+  await axios
+    .get(
+      `https://www.worldtradingdata.com/api/v1/stock?symbol=${
+        req.params.id
+      }&api_token=${process.env.WTD_API}`
+    )
+    .then(response => res.json(response.data.data[0]))
+    .catch(error => res.json(error));
+});
 module.exports = router;

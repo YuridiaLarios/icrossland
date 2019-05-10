@@ -5,7 +5,6 @@ import { VARS_CONFIG } from "../react-variables";
 import "../Auth/Auth";
 import "./Profile.css";
 import axios from "axios";
-import SingleUserDiv from "../components/SingleUserDiv";
 import MyLineGraph from "../components/MyLineGraph";
 
 class StockProfile extends Component {
@@ -13,7 +12,7 @@ class StockProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: props.user,
+      stock: props.stock,
       profile: {},
       historyData: {},
       historyDates: [],
@@ -49,45 +48,57 @@ class StockProfile extends Component {
     history.push("/");
   };
 
-  componentDidMount() {}
-
   componentWillMount() {
-    const { userProfile, getProfile } = this.props.auth;
-    if (!userProfile) {
-      getProfile((err, profile) => {
-        this.setState({ profile });
-      });
-      console.log("user data from parent component: ", this.props.user);
-    } else {
-      this.setState({ profile: userProfile });
-      console.log("user data from parent component: ", this.props.user);
+    function isEmpty(obj) {
+      for (var key in obj) {
+        if (obj.hasOwnProperty(key)) return false;
+      }
+      return true;
     }
 
     const { getAccessToken } = this.props.auth;
-    console.log(this.props.auth.getAccessToken);
+    // console.log(this.props.auth.getAccessToken);
     const headers = { Authorization: `Bearer ${getAccessToken()}` };
-    console.log("testing this.props.user.symbol: ", this.props.user.symbol);
 
-    // // FAKE AXIOS CALL FOR HISTORY/USER.SYMBOL
-    // axios
-    //   .get(`${VARS_CONFIG.localhost}/api/stocks/history`, { headers })
-    //   .then(response => {
-    //     this.setState({ historyData: response });
-    //     this.organizedHistoryData(response);
-    //   })
-    //   .catch(error => this.setState({ error: true }));
+    if (isEmpty(this.props.stock)) {
+      console.log("no props, fetch needed");
+      axios
+        .get(
+          `${VARS_CONFIG.localhost}/api/stocks/${
+            this.props.match.params.stockId
+          }`,
+          { headers }
+        )
+        .then(response => {
+          this.setState({ stock: response.data });
+        })
+        .catch(error => this.setState({ error: true }));
 
-    // REAL AXIOS CALL FOR HISTORY/USER.SYMBOL
-    axios
-      .get(
-        `${VARS_CONFIG.localhost}/api/stocks/history/${this.props.user.symbol}`,
-        { headers }
-      )
-      .then(response => {
-        this.setState({ realHistoryData: response });
-        this.organizedHistoryData(response);
-      })
-      .catch(error => this.setState({ error: true }));
+      // FAKE AXIOS CALL FOR HISTORY/USER.SYMBOL
+      axios
+        .get(`${VARS_CONFIG.localhost}/api/stocks/history`, { headers })
+        .then(response => {
+          this.setState({ historyData: response });
+          this.organizedHistoryData(response);
+        })
+        .catch(error => this.setState({ error: true }));
+    } else {
+      console.log("props were passed!");
+
+      //REAL AXIOS CALL FOR HISTORY/USER.SYMBOL
+      axios
+        .get(
+          `${VARS_CONFIG.localhost}/api/stocks/history/${
+            this.props.match.params.stockId
+          }`,
+          { headers }
+        )
+        .then(response => {
+          this.setState({ historyData: response });
+          this.organizedHistoryData(response);
+        })
+        .catch(error => this.setState({ error: true }));
+    }
   }
 
   render() {
@@ -99,30 +110,24 @@ class StockProfile extends Component {
         <Container>
           <Card>
             <Card.Header>
-              <h2>{this.props.user.name}</h2>
+              <h2>{this.state.stock.name}</h2>
             </Card.Header>
 
             <Card.Body>
-              <Card.Title>Symbol: {this.props.user.symbol}</Card.Title>
-              <Card.Text>Price: {this.props.user.price}</Card.Text>
-              <pre>{JSON.stringify(this.props.user, null, 2)}</pre>
+              <Card.Title>Symbol: {this.state.stock.symbol}</Card.Title>
+              <Card.Text>Price: {this.state.stock.price}</Card.Text>
+              <pre>{JSON.stringify(this.state.stock, null, 2)}</pre>
             </Card.Body>
           </Card>
         </Container>
         <Card>
-          <Card.Title>FAKE HARDCODED HISTORY</Card.Title>
+          <Card.Title>HISTORY DATA</Card.Title>
           <pre className="layout__item u-1/2-lap-and-up">
             {JSON.stringify(this.state.historyData, null, 2)}
           </pre>
         </Card>
         <Card>
-          <Card.Title>REAL HISTORY</Card.Title>
-          <pre className="layout__item u-1/2-lap-and-up">
-            {JSON.stringify(this.state.realHistoryData, null, 2)}
-          </pre>
-        </Card>
-        <Card>
-          <Card.Title>Historical Data {this.props.user.symbol}</Card.Title>
+          <Card.Title>Historical Data {this.state.stock.symbol}</Card.Title>
           <MyLineGraph
             historyDates={this.state.historyDates}
             historyOpenData={this.state.historyOpenData}

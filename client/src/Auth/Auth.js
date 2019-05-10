@@ -17,7 +17,6 @@ class Auth {
     domain: "princess-minina.auth0.com",
     clientID: "D7qof03S1ZPHBdDrX00CHROyOdQlKqM2",
     redirectURI: `${VARS_CONFIG.localhost}/callback`,
-    // redirectURI: "http://localhost:3000/callback",
     audience: "https://icrosslandAPI",
     responseType: "token id_token",
     scope: "openid profile email read:messages"
@@ -66,7 +65,6 @@ class Auth {
 
     axios({
       method: "post",
-      // url: "http://localhost:3000/api/users",
       url: `${VARS_CONFIG.localhost}/api/users`,
       headers,
       data: profile

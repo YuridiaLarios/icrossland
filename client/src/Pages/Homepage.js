@@ -27,9 +27,7 @@ class Homepage extends Component {
               {/* USERS DIVS */}
               <Row>
                 {this.props.users.map(item => {
-                  console.log(item);
                   return (
-                    <div>
                       <SingleUserDiv
                         key={item._id}
                         item={item}
@@ -39,29 +37,22 @@ class Homepage extends Component {
                         addUser={this.props.addUser}
                         deleteUser={this.props.deleteUser}
                       />
-                    </div>
                   );
                 })}
               </Row>
               {/* STOCKS DIVS */}
               <Row>
                 {this.props.stocks.map(item => {
-                  console.log(item);
                   return (
-                    <div>
                       <SingleStockDiv
                         key={item.symbol}
                         item={item}
-                        getIndividualUserProfile={
-                          this.props.getIndividualUserProfile
-                        }
                         getIndividualStockProfile={
-                          this.getIndividualStockProfile
+                          this.props.getIndividualStockProfile
                         }
                         addUser={this.props.addUser}
                         deleteUser={this.props.deleteUser}
                       />
-                    </div>
                   );
                 })}
               </Row>

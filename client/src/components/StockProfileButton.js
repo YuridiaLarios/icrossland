@@ -4,23 +4,21 @@ import { withRouter } from 'react-router-dom';
 
 
 
-class UserProfileButton extends Component {
+class StockProfileButton extends Component {
 
   constructor(props) {
     super(props); // props ia an object that has item.id and item.name in it now
     this.state = {
-      stock: {}
+      stocks: {}
     };
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
     const { history } = this.props;
-
     let profileStockValues = this.props.item;
     history.push(`/stockProfile/${this.props.item.symbol}`);
-
-    this.props.getIndividualUserProfile(profileStockValues);
+    this.props.getIndividualStockProfile(profileStockValues);
   };
 
   render() {
@@ -32,4 +30,4 @@ class UserProfileButton extends Component {
   
 
 
-export default withRouter(UserProfileButton);
+export default withRouter(StockProfileButton);
