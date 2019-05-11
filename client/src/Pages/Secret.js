@@ -5,6 +5,7 @@ import axios from "axios";
 import "./Secret.css";
 import Auth from "../Auth/Auth";
 import SingleUserDiv from "../components/SingleUserDiv";
+import SingleStockDiv from "../components/SingleStockDiv";
 
 const auth = new Auth();
 let myId;
@@ -140,6 +141,21 @@ class Profile extends Component {
                 <Card.Text>{this.state.user.favoriteStocks}</Card.Text>
               </Card.Body>
             </Card>
+            <Row>
+              {/* TODO: convert track button into untrack button inside user dashboard */}
+              {this.state.favStocks.map(item => {
+                return (
+                  <SingleStockDiv
+                    key={item.symbol}
+                    item={item}
+                    getIndividualStockProfile={
+                      this.props.getIndividualStockProfile
+                    }
+                    getSymbolToTrack={this.props.getSymbolToTrack}
+                  />
+                );
+              })}
+            </Row>
           </Container>
         </div>
         <div className="container">

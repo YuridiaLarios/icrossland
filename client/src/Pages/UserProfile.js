@@ -87,7 +87,6 @@ class UserProfile extends Component {
         </Container>
         <Row>
           <Card.Text>{this.state.user.favoriteStocks}</Card.Text>
-          <Card.Text />
           {this.state.favStocks.map(item => {
             return (
               <SingleStockDiv

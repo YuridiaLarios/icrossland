@@ -171,6 +171,9 @@ class App extends Component {
                         getIndividualUserProfile={
                           this.props.getIndividualUserProfile
                         }
+                        getIndividualStockProfile={
+                          this.getIndividualStockProfile
+                        }
                         addUser={this.addUser}
                       />
                     ) : (
