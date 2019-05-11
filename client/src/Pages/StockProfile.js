@@ -31,10 +31,7 @@ class StockProfile extends Component {
       historyOpenData.push(historyData.data[historyDates[i]].open);
       historyCloseData.push(historyData.data[historyDates[i]].close);
     }
-    console.log(historyDates);
-    console.log(historyOpenData);
-    console.log(historyCloseData);
-
+    
     this.setState({
       historyDates: historyDates,
       historyOpenData: historyOpenData,

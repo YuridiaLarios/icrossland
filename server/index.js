@@ -12,6 +12,7 @@ const posts = require("./routes/posts");
 const stocks = require("./routes/stockMarket");
 
 
+
 app.use(cors());
 
 const PORT = process.env.PORT || 3000;

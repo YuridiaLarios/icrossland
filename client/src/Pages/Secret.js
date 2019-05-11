@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { Button, Row } from "react-bootstrap";
-import { VARS_CONFIG } from '../react-variables';
+import { VARS_CONFIG } from "../react-variables";
 import axios from "axios";
 import "./Secret.css";
 import Auth from "../Auth/Auth";
 import SingleUserDiv from "../components/SingleUserDiv";
 
 const auth = new Auth();
+let myId;
 
 class Profile extends Component {
   // CONSTRUCTOR
@@ -17,6 +18,32 @@ class Profile extends Component {
       message: "",
       accessToken: ""
     };
+  }
+
+  componentWillMount() {
+    let profile = auth.getProfile();
+    const { getAccessToken } = this.props.auth;
+    console.log("accessToken from App.js = ", getAccessToken());
+    const headers = { Authorization: `Bearer ${auth.getAccessToken()}` };
+
+    axios({
+      method: "get",
+      url: `${VARS_CONFIG.localhost}/api/currentUserID`,
+      headers,
+      params: profile
+    }).then(res => {
+      myId = res.data._id;
+      localStorage.setItem("myId", res.data._id);
+      axios({
+        method: "get",
+        url: `${VARS_CONFIG.localhost}/api/myProfile`,
+        headers,
+        params: myId
+      }).then(res2 => {
+        console.log("the freaking carried id = ", myId);
+        console.log("this is my profile!!!", res2.data);
+      });
+    });
   }
 
   // ADDING USER TO UI
@@ -33,9 +60,10 @@ class Profile extends Component {
 
   securedPing() {
     const { getAccessToken } = this.props.auth;
-    console.log(auth.getAccessToken());
+    console.log("acesstoken from Secret securedPing = ", auth.getAccessToken());
     const headers = { Authorization: `Bearer ${getAccessToken()}` };
-      axios.get(`${VARS_CONFIG.localhost}/api/private`, { headers })
+    axios
+      .get(`${VARS_CONFIG.localhost}/api/private`, { headers })
       .then(response =>
         this.setState({ pingSecuredMessage: response.data.message })
       )
@@ -43,16 +71,15 @@ class Profile extends Component {
   }
 
   ping() {
-      axios.get(`${VARS_CONFIG.localhost}/api/public`)
+    axios
+      .get(`${VARS_CONFIG.localhost}/api/public`)
       .then(response => this.setState({ pingMessage: response.data.message }))
       .catch(error => this.setState({ pingMessage: error.message }));
   }
 
   postUser() {
-    // console.log(auth.getProfile());
     let profile = auth.getProfile();
     const headers = { Authorization: `Bearer ${auth.getAccessToken()}` };
-    // console.log(auth.getAccessToken());
 
     axios({
       method: "post",
@@ -61,7 +88,6 @@ class Profile extends Component {
       data: profile
     }).then(res => {
       this.props.addUser(res);
-      // console.log(`the response is: ${res}`);
     });
   }
 
@@ -69,7 +95,8 @@ class Profile extends Component {
     const { getAccessToken } = this.props.auth;
     console.log(auth.getAccessToken());
     const headers = { Authorization: `Bearer ${getAccessToken()}` };
-      axios.get(`${VARS_CONFIG.localhost}/api/users`, { headers })
+    axios
+      .get(`${VARS_CONFIG.localhost}/api/users`, { headers })
       .then(response => this.setState({ users: response.data }))
       .catch(error => this.setState({ error: true }));
   }

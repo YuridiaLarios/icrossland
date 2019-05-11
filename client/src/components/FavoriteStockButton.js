@@ -11,11 +11,14 @@ class FavoriteStockButton extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    let stockSymbol = this.props.item.symbol
+    console.log("track button Clicked!" + this.props.item.symbol);
+    this.props.getSymbolToTrack(stockSymbol);
   };
 
   render() {
     return (
-      <Button variant="primary" onClick={this.handleSubmit}>
+      <Button variant="info" onClick={this.handleSubmit}>
         Track
       </Button>
     );

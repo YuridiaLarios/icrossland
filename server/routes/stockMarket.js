@@ -70,16 +70,11 @@ const checkJwt = jwt({
 });
 
 /*************************************
- ROUTES FOR TESTING PURPOSES
-**************************************/
-
-/*************************************
   STOCKS HISTORY DATA CALLS
 **************************************/
 
 // (FAKE) GET STOCK HISTORY BY ID ONLY WORKS FOR AAPL
 router.get("/history", async function(req, res) {
-  console.log(history);
   res.json(history);
 });
 
@@ -106,10 +101,28 @@ router.get("/history/:id", async function(req, res) {
 **************************************/
 
 // (FAKE) GET ALL DEMO STOCKS
+// router.get("/", async function(req, res) {
+//   // console.log("req in the gell all stocks: ", req.query);
+//   console.log("req in the gell all stocks: ", req.query.data);
+
+//   let demoSymbols = "AAPL,MSFT,HSBA.L";
+
+//   await axios
+//     .get(
+//       `https://www.worldtradingdata.com/api/v1/stock?symbol=${demoSymbols}&api_token=demo`
+//     )
+//     .then(response => res.json(response.data.data))
+//     .catch(error => res.json(error));
+// });
+
+// (REAL) GET ALL DEMO STOCKS
 router.get("/", async function(req, res) {
+  let demoSymbols = req.query.data;
   await axios
     .get(
-      "https://www.worldtradingdata.com/api/v1/stock?symbol=AAPL,MSFT,HSBA.L&api_token=demo"
+      `https://www.worldtradingdata.com/api/v1/stock?symbol=${demoSymbols}&api_token=${
+        process.env.WTD_API
+      }`
     )
     .then(response => res.json(response.data.data))
     .catch(error => res.json(error));

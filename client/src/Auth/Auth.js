@@ -12,6 +12,7 @@ class Auth {
   idToken;
   expiresAt;
   userProfile;
+  myId;
 
   auth0 = new auth0.WebAuth({
     domain: "princess-minina.auth0.com",
@@ -45,19 +46,36 @@ class Auth {
         this.checkForProfile();
       } else if (err) {
         location.pathname = LOGIN_FAILURE_PAGE;
-        // history.replace('/');
         alert(`Error: ${err.error}. Check the console for further details.`);
         console.log(err);
       }
     });
   }
 
+  // setLocalStorageID() {
+  //   let profile = this.getProfile();
+  //   const headers = {
+  //     Authorization: `Bearer ${this.getAccessToken()}`
+  //   };
+
+  //   axios({
+  //     method: "get",
+  //     url: `${VARS_CONFIG.localhost}/api/currentUserID`,
+  //     headers,
+  //     params: profile
+  //   }).then(res => {
+  //     let myId = res.data._id;
+  //     console.log("fuckkkkkkkkkkkkkk!");
+  //     localStorage.setItem("myId", myId);
+  //   });
+  // }
+
   checkForProfile() {
     /**********************************************************************
       get profile into database!
     **********************************************************************/
     let profile = this.getProfile();
-    console.log(`access token :  ${this.getAccessToken()}`);
+    console.log(`access token from Auth.js:  ${this.getAccessToken()}`);
 
     const headers = {
       Authorization: `Bearer ${this.getAccessToken()}`
@@ -68,9 +86,14 @@ class Auth {
       url: `${VARS_CONFIG.localhost}/api/users`,
       headers,
       data: profile
-    }).then(function(res) {
-      console.log(`the response is: ${res}`);
-    });
+    })
+      .then(res => {
+        console.log(`the response is: ${res}`);
+      })
+      .catch(err => {
+        console.log("post axios failure", err);
+      });
+    // this.setLocalStorageID();
   }
 
   setSession(authResults) {
@@ -110,15 +133,16 @@ class Auth {
     localStorage.removeItem("id_token");
     localStorage.removeItem("expires_at");
     localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("myId");
 
     // Remove tokens, expiry time and userProfile info
     this.accessToken = null;
     this.idToken = null;
     this.expiresAt = 0;
     this.userProfile = null;
+    this.myId = null;
 
     location.pathname = LOGIN_FAILURE_PAGE;
-    // history.replace('/');
   }
 
   getProfile() {
@@ -129,14 +153,6 @@ class Auth {
       return {};
     }
   }
-  // getProfile(cb) {
-  //   this.auth0.client.userInfo(this.accessToken, (err, profile) => {
-  //     if (profile) {
-  //       this.userProfile = profile;
-  //     }
-  //     cb(err, profile);
-  //   });
-  // }
 }
 
 export default Auth;

@@ -50,6 +50,7 @@ class Homepage extends Component {
                       getIndividualStockProfile={
                         this.props.getIndividualStockProfile
                       }
+                      getSymbolToTrack={this.props.getSymbolToTrack}
                       addUser={this.props.addUser}
                       deleteUser={this.props.deleteUser}
                     />

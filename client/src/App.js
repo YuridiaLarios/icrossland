@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./App.css";
+import Auth from "./Auth/Auth";
 import { VARS_CONFIG } from "./react-variables";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import NavigationBar from "./components/NavigationBar";
@@ -13,6 +14,8 @@ import StockProfile from "./Pages/StockProfile";
 import NotFound from "./Pages/NotFound";
 import Callback from "./components/Callback";
 
+const auth = new Auth();
+
 class App extends Component {
   // CONSTRUCTOR
   constructor(props) {
@@ -20,6 +23,7 @@ class App extends Component {
     this.state = {
       users: [],
       stocks: [],
+      favoriteStocks: [],
       individualUserProfile: {},
       individualStockProfile: {}
     };
@@ -39,6 +43,33 @@ class App extends Component {
     this.setState({
       individualStockProfile: currentStock
     });
+  };
+
+  updateSymbolsInDatabase() {
+    let symbols = this.state.favoriteStocks;
+    console.log("Symbols updated:", symbols);
+
+    axios({
+      method: "put",
+      url: `${VARS_CONFIG.localhost}/api/stockFav`,
+      headers: {
+        accept: "application/json"
+      },
+      data: symbols
+    }).then(res => {
+      console.log(`the response is: ${res}`);
+    });
+  }
+
+  getSymbolToTrack = currentSymbol => {
+    let updatedSymbols = Array.from(this.state.favoriteStocks);
+    updatedSymbols.push(currentSymbol);
+    this.setState(
+      {
+        favoriteStocks: updatedSymbols
+      },
+      this.updateSymbolsInDatabase
+    );
   };
 
   // ADDING USER TO UI
@@ -68,32 +99,42 @@ class App extends Component {
     });
   };
 
-  //MAIN ALL USERS UI
-  // moving it here makes it accessible to all children components
-  componentDidMount() {
+  componentWillMount() {
+    let profile = auth.getProfile();
     const { getAccessToken } = this.props.auth;
-    // console.log(this.props.auth.getAccessToken);
-    const headers = { Authorization: `Bearer ${getAccessToken()}` };
+    console.log("accessToken from App.js = ", getAccessToken());
+    console.log("Auth 0 id from app.js = ", profile.sub);
+    const headers = { Authorization: `Bearer ${auth.getAccessToken()}` };
 
+    //MAIN ALL USERS UI
     axios
       .get(`${VARS_CONFIG.localhost}/api/users`, { headers })
       .then(response => this.setState({ users: response.data }))
       .catch(error => this.setState({ error: true }));
 
+    //MAIN ALL STOCKS UI
     axios
-      .get(`${VARS_CONFIG.localhost}/api/stocks`, { headers })
+      .get(`${VARS_CONFIG.localhost}/api/stocks`, {
+        params: { data: "HSBA.L,MSFT,AAPL,F,CVS" },
+        headers
+      })
       .then(response => this.setState({ stocks: response.data }))
+      .catch(error => this.setState({ error: true }));
+
+    //MAIN ALL SYMBOLS FOR CURRENT USER
+    axios
+      .get(`${VARS_CONFIG.localhost}/api/myFavoriteStocks`, {
+        params: profile.sub,
+        headers
+      })
+      .then(response => {
+        console.log("the back kitty response: ", response.data.favoriteStocks);
+        this.setState({ favoriteStocks: response.data.favoriteStocks });
+      })
       .catch(error => this.setState({ error: true }));
   }
 
   render() {
-    // let mainComponent = "";
-    // switch (this.props.location) {
-    //   case "callback":
-    //     mainComponent = <Callback />;
-    //     break;
-    // }
-
     return (
       <div className="App">
         <header>
@@ -111,6 +152,7 @@ class App extends Component {
                       {...this.props}
                       getIndividualUserProfile={this.getIndividualUserProfile}
                       getIndividualStockProfile={this.getIndividualStockProfile}
+                      getSymbolToTrack={this.getSymbolToTrack}
                       addUser={this.addUser}
                       deleteUser={this.deleteUser}
                     />

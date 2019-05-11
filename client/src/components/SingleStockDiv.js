@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Card } from "react-bootstrap";
 import { VARS_CONFIG } from "../react-variables";
 import StockProfileButton from "./StockProfileButton";
-import UserDeleteButton from "./UserDeleteButton";
+// import UserDeleteButton from "./UserDeleteButton";
 import FavoriteStockButton from "./FavoriteStockButton";
 import axios from "axios";
 import Auth from "../Auth/Auth";
@@ -20,7 +20,7 @@ class SingleStockDiv extends Component {
   // to handle deleting an event from database
   handleDeleteSearch = deletedUser => {
     const headers = { Authorization: `Bearer ${auth.getAccessToken()}` };
-    console.log(auth.getAccessToken());
+    console.log("access token from singleStockUser = ", auth.getAccessToken());
 
     axios({
       method: "delete",
@@ -71,7 +71,10 @@ class SingleStockDiv extends Component {
               item={this.props.item}
               handleDeleteSearch={this.handleDeleteSearch}
             /> */}
-            <FavoriteStockButton item={this.props.item} />
+            <FavoriteStockButton
+              item={this.props.item}
+              getSymbolToTrack={this.props.getSymbolToTrack}
+            />
           </Card.Body>
         </Card>
       </div>

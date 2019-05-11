@@ -16,7 +16,6 @@ class UserDeleteButton extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const userToBeDeleted = this.props.item;
-    console.log(userToBeDeleted);
     this.props.handleDeleteSearch(userToBeDeleted);
 
   };

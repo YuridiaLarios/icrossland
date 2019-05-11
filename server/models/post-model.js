@@ -1,10 +1,10 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const postSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
-    ref: 'users',
+    ref: "users"
   },
   text: {
     type: String,
@@ -15,11 +15,11 @@ const postSchema = new Schema({
   },
   avatar: {
     type: String
-  }, 
+  },
   date: {
     type: Date,
     default: Date.now
-  },
+  }
   // likes: [
   //   {
   //     user: {
@@ -50,9 +50,8 @@ const postSchema = new Schema({
   //     }
   //   }
   // ],
-
 });
 
-const Post = mongoose.model('Post', postSchema);
+const Post = mongoose.model("Post", postSchema);
 
 module.exports = Post;

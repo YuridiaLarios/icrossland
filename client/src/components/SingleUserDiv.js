@@ -19,7 +19,7 @@ class SingleUserDiv extends Component {
   // to handle deleting an event from database
   handleDeleteSearch = deletedUser => {
     const headers = { Authorization: `Bearer ${auth.getAccessToken()}` };
-    console.log(auth.getAccessToken());
+    console.log("acesstoken from singleUserDiv = ", auth.getAccessToken());
 
     axios({
       method: "delete",

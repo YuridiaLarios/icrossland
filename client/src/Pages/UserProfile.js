@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { Button, Card, Container } from "react-bootstrap";
+import { Button, Card, Container, Row } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
 import { VARS_CONFIG } from "../react-variables";
+import SingleStockDiv from "../components/SingleStockDiv";
 import axios from "axios";
 import "../Auth/Auth";
 import "./Profile.css";
@@ -12,8 +13,8 @@ class UserProfile extends Component {
     super(props);
     this.state = {
       user: props.user,
-      profile: {},
-      error: false
+      error: false,
+      favStocks: []
     };
   }
 
@@ -23,7 +24,18 @@ class UserProfile extends Component {
     history.push("/");
   };
 
-  componentWillMount() {
+  getFavoriteStocks() {
+    let stringSymbols = this.state.user.favoriteStocks.toString();
+    axios
+      .get(`${VARS_CONFIG.localhost}/api/stocks/`, {
+        params: {
+          data: stringSymbols
+        }
+      })
+      .then(res => this.setState({ favStocks: res.data }));
+  }
+
+  componentDidMount() {
     function isEmpty(obj) {
       for (var key in obj) {
         if (obj.hasOwnProperty(key)) return false;
@@ -34,7 +46,6 @@ class UserProfile extends Component {
     if (isEmpty(this.props.user)) {
       console.log("no props, fetch needed");
       const { getAccessToken } = this.props.auth;
-      // console.log(this.props.auth.getAccessToken);
       const headers = { Authorization: `Bearer ${getAccessToken()}` };
       axios
         .get(
@@ -44,19 +55,11 @@ class UserProfile extends Component {
           { headers }
         )
         .then(response => {
-          this.setState({ user: response.data });
+          this.setState({ user: response.data }, this.getFavoriteStocks);
         })
         .catch(error => this.setState({ error: true }));
-    }
-    const { userProfile, getProfile } = this.props.auth;
-    if (!userProfile) {
-      getProfile((err, profile) => {
-        this.setState({ profile });
-      });
-      console.log("user data from parent component: ", this.props.user);
     } else {
-      this.setState({ profile: userProfile });
-      console.log("user data from parent component: ", this.props.user);
+      this.getFavoriteStocks();
     }
   }
 
@@ -82,6 +85,20 @@ class UserProfile extends Component {
             </Card.Body>
           </Card>
         </Container>
+        <Row>
+          <Card.Text>{this.state.user.favoriteStocks}</Card.Text>
+          <Card.Text />
+          {this.state.favStocks.map(item => {
+            return (
+              <SingleStockDiv
+                key={item.symbol}
+                item={item}
+                getIndividualStockProfile={this.props.getIndividualStockProfile}
+                getSymbolToTrack={this.props.getSymbolToTrack}
+              />
+            );
+          })}
+        </Row>
       </div>
     );
   }
