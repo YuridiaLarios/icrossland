@@ -102,8 +102,8 @@ class App extends Component {
   componentWillMount() {
     let profile = auth.getProfile();
     const { getAccessToken } = this.props.auth;
-    console.log("accessToken from App.js = ", getAccessToken());
-    console.log("Auth 0 id from app.js = ", profile.sub);
+    // console.log("accessToken from App.js = ", getAccessToken());
+    // console.log("Auth 0 id from app.js = ", profile.sub);
     const headers = { Authorization: `Bearer ${auth.getAccessToken()}` };
 
     //MAIN ALL USERS UI
@@ -115,7 +115,7 @@ class App extends Component {
     //MAIN ALL STOCKS UI
     axios
       .get(`${VARS_CONFIG.localhost}/api/stocks`, {
-        params: { data: "HSBA.L,MSFT,AAPL,F,CVS" },
+        params: { data: "HSBA.L,MSFT,AAPL,F,CVS,ENB,ANTM,EXFO,FDX,W,UBER,LYFT,GOOGL,CVX,CBS,BXP,FB,AMZN,ET,DELL,CMCSA,TSLA,DATA,TEVA" },
         headers
       })
       .then(response => this.setState({ stocks: response.data }))
