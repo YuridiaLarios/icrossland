@@ -13,12 +13,6 @@ class Profile extends Component {
     };
   }
 
-  handleSubmit = event => {
-    event.preventDefault();
-    const { history } = this.props;
-    history.push("/");
-  };
-
   componentWillMount() {
     const { userProfile, getProfile } = this.props.auth;
     if (!userProfile) {
@@ -32,29 +26,7 @@ class Profile extends Component {
 
   render() {
     const { profile } = this.state;
-    return (
-      <div className="container">
-        <Container>
-          <Card>
-            <Card.Header>
-              <h2>{profile.name}</h2>
-            </Card.Header>
-            <Card.Img
-              className="profile-thumbnail"
-              variant="top"
-              src={profile.picture}
-            />
-            <Card.Body>
-              <Card.Title>Nickname: {profile.nickname}</Card.Title>
-              <Card.Text>{profile.email}</Card.Text>
-              <Button onClick={this.handleSubmit} variant="primary">
-                Homepage
-              </Button>
-            </Card.Body>
-          </Card>
-        </Container>
-      </div>
-    );
+    return <p>To be updated!!!</p>;
   }
 }
 

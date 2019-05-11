@@ -18,7 +18,7 @@ class Homepage extends Component {
       <div>
         <img src={logo} className="App-logo" alt="logo" />
         <h1>Welcome to icrossland, {this.props.name}</h1>
-        Do you want to see the profile area?
+        <p>Do you want to see the profile area?</p>
         {this.props.auth.isAuthenticated() && (
           <div>
             <a href="/secret">Click here</a>
