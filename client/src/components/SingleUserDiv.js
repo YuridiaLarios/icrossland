@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { Card } from "react-bootstrap";
-import { VARS_CONFIG } from '../react-variables';
+import { VARS_CONFIG } from "../react-variables";
 import UserProfileButton from "./UserProfileButton";
-import UserDeleteButton from "./UserDeleteButton";
 import axios from "axios";
 import Auth from "../Auth/Auth";
 
@@ -47,10 +46,6 @@ class SingleUserDiv extends Component {
             <UserProfileButton
               item={this.props.item}
               getIndividualUserProfile={this.props.getIndividualUserProfile}
-            />
-            <UserDeleteButton
-              item={this.props.item}
-              handleDeleteSearch={this.handleDeleteSearch}
             />
           </Card.Body>
         </Card>

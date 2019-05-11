@@ -23,7 +23,7 @@ class App extends Component {
     this.state = {
       users: [],
       stocks: [],
-      favoriteStocks: [],
+      favoriteStocks: ["Empty Start Tracking Stocks"],
       individualUserProfile: {},
       individualStockProfile: {}
     };
@@ -186,7 +186,16 @@ class App extends Component {
                   path="/profile"
                   render={props =>
                     this.props.auth.isAuthenticated() ? (
-                      <Profile {...this.props} />
+                      <Profile
+                        {...this.props}
+                        users={this.state.users}
+                        getIndividualUserProfile={this.getIndividualUserProfile}
+                        deleteUser={this.deleteUser}
+                        getIndividualStockProfile={
+                          this.getIndividualStockProfile
+                        }
+                        getSymbolToTrack={this.getSymbolToTrack}
+                      />
                     ) : (
                       <Redirect to={{ pathname: "/" }} />
                     )

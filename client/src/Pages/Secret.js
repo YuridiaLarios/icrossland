@@ -4,7 +4,6 @@ import { VARS_CONFIG } from "../react-variables";
 import axios from "axios";
 import "./Secret.css";
 import Auth from "../Auth/Auth";
-import SingleUserDiv from "../components/SingleUserDiv";
 import SingleStockDiv from "../components/SingleStockDiv";
 
 const auth = new Auth();
@@ -117,7 +116,6 @@ class Profile extends Component {
   }
 
   render() {
-    const { profile } = this.state;
     return (
       <div>
         <h1>
@@ -169,23 +167,6 @@ class Profile extends Component {
 
           <Button onClick={this.postUser.bind(this)}>Post User</Button>
           <p />
-
-          <Button onClick={this.getUsers.bind(this)}>Get all users</Button>
-        </div>
-
-        <div>
-          <h4>All users:</h4>
-          <Row>
-            {this.state.users.map(item => {
-              return (
-                <SingleUserDiv
-                  key={item._id}
-                  item={item}
-                  getIndividualUserProfile={this.props.getIndividualUserProfile}
-                />
-              );
-            })}
-          </Row>
         </div>
       </div>
     );

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import logo from "../logo.svg";
 import { Row } from "react-bootstrap";
-import SingleUserDiv from "../components/SingleUserDiv";
 import SingleStockDiv from "../components/SingleStockDiv";
 
 class Homepage extends Component {
@@ -18,28 +17,11 @@ class Homepage extends Component {
       <div>
         <img src={logo} className="App-logo" alt="logo" />
         <h1>Welcome to icrossland, {this.props.name}</h1>
-        <p>Do you want to see the profile area?</p>
+        <p>Do you want to see your dashboard?</p>
         {this.props.auth.isAuthenticated() && (
           <div>
             <a href="/secret">Click here</a>
             <div>
-              <h4>All users:</h4>
-              {/* USERS DIVS */}
-              <Row>
-                {this.props.users.map(item => {
-                  return (
-                    <SingleUserDiv
-                      key={item._id}
-                      item={item}
-                      getIndividualUserProfile={
-                        this.props.getIndividualUserProfile
-                      }
-                      addUser={this.props.addUser}
-                      deleteUser={this.props.deleteUser}
-                    />
-                  );
-                })}
-              </Row>
               {/* STOCKS DIVS */}
               <Row>
                 {this.props.stocks.map(item => {

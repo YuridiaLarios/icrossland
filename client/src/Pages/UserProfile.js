@@ -64,6 +64,23 @@ class UserProfile extends Component {
   }
 
   render() {
+    const favoriteStocks = this.state.favStocks ? (
+      <>
+        {/* <Card.Text>{this.state.user.favoriteStocks}</Card.Text> */}
+        {this.state.favStocks.map(item => {
+          return (
+            <SingleStockDiv
+              key={item.symbol}
+              item={item}
+              getIndividualStockProfile={this.props.getIndividualStockProfile}
+              getSymbolToTrack={this.props.getSymbolToTrack}
+            />
+          );
+        })}
+      </>
+    ) : (
+      <div>Go Explore and track some stocks!</div>
+    );
     return (
       <div className="container">
         <Button onClick={this.handleSubmit} variant="primary">
@@ -82,22 +99,10 @@ class UserProfile extends Component {
             <Card.Body>
               <Card.Title>ID: {this.state.user._id}</Card.Title>
               <Card.Text>{this.state.user.email}</Card.Text>
+              <Row>{favoriteStocks}</Row>
             </Card.Body>
           </Card>
         </Container>
-        <Row>
-          <Card.Text>{this.state.user.favoriteStocks}</Card.Text>
-          {this.state.favStocks.map(item => {
-            return (
-              <SingleStockDiv
-                key={item.symbol}
-                item={item}
-                getIndividualStockProfile={this.props.getIndividualStockProfile}
-                getSymbolToTrack={this.props.getSymbolToTrack}
-              />
-            );
-          })}
-        </Row>
       </div>
     );
   }

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { Button, Card, Container } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
+import SingleUserDiv from "../components/SingleUserDiv";
 import "../Auth/Auth";
 import "./Profile.css";
 
@@ -9,6 +10,7 @@ class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      users: props.users,
       profile: {}
     };
   }
@@ -25,8 +27,25 @@ class Profile extends Component {
   }
 
   render() {
-    const { profile } = this.state;
-    return <p>To be updated!!!</p>;
+    return (
+      <div>
+        <h4>All users:</h4>
+        {/* USERS DIVS */}
+        <Row>
+          {this.props.users.map(item => {
+            return (
+              <SingleUserDiv
+                key={item._id}
+                item={item}
+                getIndividualUserProfile={this.props.getIndividualUserProfile}
+                addUser={this.props.addUser}
+                deleteUser={this.props.deleteUser}
+              />
+            );
+          })}
+        </Row>
+      </div>
+    );
   }
 }
 

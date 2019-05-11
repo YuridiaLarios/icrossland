@@ -168,7 +168,7 @@ router.delete("/users/:id", function(req, res) {
 // ADD SYMBOLS TO USER'S FAVORITE STOCKS
 router.put("/stockFav", function(req, res) {
   //TODO: hardcoded id
-  let id = "5cd6112ce79c9836cccd214e";
+  let id = "5cd71b9b3b04986c2f2cc1ff";
   let symbols = [...new Set(req.body)];
 
   console.log(symbols);
