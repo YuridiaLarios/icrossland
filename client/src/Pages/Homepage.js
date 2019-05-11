@@ -20,7 +20,7 @@ class Homepage extends Component {
         <p>Do you want to see your dashboard?</p>
         {this.props.auth.isAuthenticated() && (
           <div>
-            <a href="/secret">Click here</a>
+            <a href="/dashboard">Click here</a>
             <div>
               {/* STOCKS DIVS */}
               <Row>

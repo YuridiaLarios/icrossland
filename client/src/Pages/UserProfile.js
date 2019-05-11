@@ -79,13 +79,10 @@ class UserProfile extends Component {
         })}
       </>
     ) : (
-      <div>Go Explore and track some stocks!</div>
+      <div>No stocks are been track!</div>
     );
     return (
       <div className="container">
-        <Button onClick={this.handleSubmit} variant="primary">
-          All users
-        </Button>
         <Container>
           <Card>
             <Card.Header>

@@ -4,7 +4,7 @@ import axios from "axios";
 import { VARS_CONFIG } from "../react-variables";
 
 /* eslint no-restricted-globals:0*/
-const LOGIN_SUCCESS_PAGE = "/secret";
+const LOGIN_SUCCESS_PAGE = "/dashboard";
 const LOGIN_FAILURE_PAGE = "/";
 
 class Auth {

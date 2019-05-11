@@ -40,12 +40,12 @@ const NavigationBar = props => (
           )}
           {props.auth.isAuthenticated() && (
             <Nav.Item>
-              <Link to="/secret">Dashboard</Link>
+              <Link to="/dashboard">Dashboard</Link>
             </Nav.Item>
           )}
           {props.auth.isAuthenticated() && (
             <Nav.Item>
-              <Link to="/profile">Users</Link>
+              <Link to="/users">Users</Link>
             </Nav.Item>
           )}
           {!props.auth.isAuthenticated() && (

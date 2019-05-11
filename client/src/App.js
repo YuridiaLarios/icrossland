@@ -7,8 +7,8 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import NavigationBar from "./components/NavigationBar";
 import { Layout } from "./components/Layout";
 import Homepage from "./Pages/Homepage";
-import Secret from "./Pages/Secret";
-import Profile from "./Pages/Profile";
+import Dashboard from "./Pages/Dashboard";
+import Users from "./Pages/Users";
 import UserProfile from "./Pages/UserProfile";
 import StockProfile from "./Pages/StockProfile";
 import NotFound from "./Pages/NotFound";
@@ -115,7 +115,10 @@ class App extends Component {
     //MAIN ALL STOCKS UI
     axios
       .get(`${VARS_CONFIG.localhost}/api/stocks`, {
-        params: { data: "HSBA.L,MSFT,AAPL,F,CVS,ENB,ANTM,EXFO,FDX,W,UBER,LYFT,GOOGL,CVX,CBS,BXP,FB,AMZN,ET,DELL,CMCSA,TSLA,DATA,TEVA" },
+        params: {
+          data:
+            "HSBA.L,MSFT,AAPL,F,CVS,ENB,ANTM,EXFO,FDX,W,UBER,LYFT,GOOGL,CVX,CBS,BXP,FB,AMZN,ET,DELL,CMCSA,TSLA,DATA,TEVA"
+        },
         headers
       })
       .then(response => this.setState({ stocks: response.data }))
@@ -162,10 +165,10 @@ class App extends Component {
                 <Route path="/callback" render={props => <Callback />} />
 
                 <Route
-                  path="/secret"
+                  path="/Dashboard"
                   render={props =>
                     this.props.auth.isAuthenticated() ? (
-                      <Secret
+                      <Dashboard
                         users={this.state.users}
                         {...this.props}
                         getIndividualUserProfile={
@@ -183,10 +186,10 @@ class App extends Component {
                 />
 
                 <Route
-                  path="/profile"
+                  path="/users"
                   render={props =>
                     this.props.auth.isAuthenticated() ? (
-                      <Profile
+                      <Users
                         {...this.props}
                         users={this.state.users}
                         getIndividualUserProfile={this.getIndividualUserProfile}

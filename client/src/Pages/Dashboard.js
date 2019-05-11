@@ -2,14 +2,14 @@ import React, { Component } from "react";
 import { Button, Card, Container, Row } from "react-bootstrap";
 import { VARS_CONFIG } from "../react-variables";
 import axios from "axios";
-import "./Secret.css";
+import "./Dashboard.css";
 import Auth from "../Auth/Auth";
 import SingleStockDiv from "../components/SingleStockDiv";
 
 const auth = new Auth();
 let myId;
 
-class Profile extends Component {
+class Dashboard extends Component {
   // CONSTRUCTOR
   constructor(props) {
     super(props);
@@ -36,7 +36,7 @@ class Profile extends Component {
   componentWillMount() {
     let profile = auth.getProfile();
     const { getAccessToken } = this.props.auth;
-    console.log("accessToken from Secret.js = ", getAccessToken());
+    // console.log("accessToken from Dashboard.js = ", getAccessToken());
     const headers = { Authorization: `Bearer ${auth.getAccessToken()}` };
 
     axios({
@@ -74,7 +74,7 @@ class Profile extends Component {
 
   securedPing() {
     const { getAccessToken } = this.props.auth;
-    console.log("acesstoken from Secret securedPing = ", auth.getAccessToken());
+    // console.log("acesstoken from Dashboard securedPing = ", auth.getAccessToken());
     const headers = { Authorization: `Bearer ${getAccessToken()}` };
     axios
       .get(`${VARS_CONFIG.localhost}/api/private`, { headers })
@@ -119,7 +119,7 @@ class Profile extends Component {
     return (
       <div>
         <h1>
-          This is a super secret area. Jump back to <a href="/">Home</a>
+          Welcome to your Dashboard. <br /> <a href="/">Explore</a> more stocks!
         </h1>
         <br />
         <div className="container">
@@ -173,4 +173,4 @@ class Profile extends Component {
   }
 }
 
-export default Profile;
+export default Dashboard;
