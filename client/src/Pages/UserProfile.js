@@ -66,7 +66,6 @@ class UserProfile extends Component {
   render() {
     const favoriteStocks = this.state.favStocks ? (
       <>
-        {/* <Card.Text>{this.state.user.favoriteStocks}</Card.Text> */}
         {this.state.favStocks.map(item => {
           return (
             <SingleStockDiv

@@ -167,13 +167,14 @@ router.delete("/users/:id", function(req, res) {
 
 // ADD SYMBOLS TO USER'S FAVORITE STOCKS
 router.put("/stockFav", function(req, res) {
-  //TODO: hardcoded id
-  let id = "5cd71b9b3b04986c2f2cc1ff";
+  // console.log("caracol req: ", req.query[0]);
+  // let id = "5cd71b9b3b04986c2f2cc1ff";
+  let authID = req.query[0];
   let symbols = [...new Set(req.body)];
 
-  console.log(symbols);
+  // console.log(symbols);
 
-  User.findOne({ _id: id }, function(err, foundObject) {
+  User.findOne({ authId: authID }, function(err, foundObject) {
     if (err) {
       console.log(err);
       res.status(500).send();
@@ -197,7 +198,6 @@ router.put("/stockFav", function(req, res) {
 
 // GET MY SYMBOLS FOR FAVORITE STOCKS
 router.get("/myFavoriteStocks", function(req, res) {
-  console.log("caracol req: ", req.query[0]);
   let authID = req.query[0];
   User.findOne(
     {

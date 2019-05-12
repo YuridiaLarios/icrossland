@@ -116,6 +116,22 @@ class Dashboard extends Component {
   }
 
   render() {
+    const favoriteStocks = this.state.favStocks ? (
+      <>
+        {this.state.favStocks.map(item => {
+          return (
+            <SingleStockDiv
+              key={item.symbol}
+              item={item}
+              getIndividualStockProfile={this.props.getIndividualStockProfile}
+              getSymbolToTrack={this.props.getSymbolToTrack}
+            />
+          );
+        })}
+      </>
+    ) : (
+      <div>No stocks are been track!</div>
+    );
     return (
       <div>
         <h1>
@@ -136,24 +152,9 @@ class Dashboard extends Component {
               <Card.Body>
                 <Card.Title>ID: {this.state.user._id}</Card.Title>
                 <Card.Text>{this.state.user.email}</Card.Text>
-                <Card.Text>{this.state.user.favoriteStocks}</Card.Text>
+                <Row>{favoriteStocks}</Row>
               </Card.Body>
             </Card>
-            <Row>
-              {/* TODO: convert track button into untrack button inside user dashboard */}
-              {this.state.favStocks.map(item => {
-                return (
-                  <SingleStockDiv
-                    key={item.symbol}
-                    item={item}
-                    getIndividualStockProfile={
-                      this.props.getIndividualStockProfile
-                    }
-                    getSymbolToTrack={this.props.getSymbolToTrack}
-                  />
-                );
-              })}
-            </Row>
           </Container>
         </div>
         <div className="container">

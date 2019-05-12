@@ -15,48 +15,6 @@ import NotFound from "./Pages/NotFound";
 import Callback from "./components/Callback";
 
 const auth = new Auth();
-let users2 = [
-  {
-    name: "Leonard Rogers",
-    email: "egestas@justonecante.org"
-  },
-  {
-    name: "Walker Pace",
-    email: "erat.eget.tincidunt@idsapienCras.org"
-  },
-  {
-    name: "Lance Mcintyre",
-    email: "Nam.ligula@quamvel.net"
-  },
-  {
-    name: "Rudyard Conway",
-    email: "sit@nunc.org"
-  },
-  {
-    name: "Chadwick Oneal",
-    email: "laoreet@dictum.edu"
-  },
-  {
-    name: "Isaiah Kent",
-    email: "diam.dictum@lobortisquam.co.uk"
-  },
-  {
-    name: "Griffith Perkins",
-    email: "congue@acfermentumvel.ca"
-  },
-  {
-    name: "Lawrence Wheeler",
-    email: "ac.libero@Duisac.org"
-  },
-  {
-    name: "Preston Walker",
-    email: "egestas.rhoncus@eudui.co.uk"
-  },
-  {
-    name: "Simon Brewer",
-    email: "nunc.sed@Fuscediamnunc.co.uk"
-  }
-];
 
 class App extends Component {
   // CONSTRUCTOR
@@ -89,6 +47,7 @@ class App extends Component {
   };
 
   updateSymbolsInDatabase() {
+    let profile = auth.getProfile();
     let symbols = this.state.favoriteStocks;
     console.log("Symbols updated:", symbols);
 
@@ -98,6 +57,7 @@ class App extends Component {
       headers: {
         accept: "application/json"
       },
+      params: profile.sub,
       data: symbols
     }).then(res => {
       console.log(`the response is: ${res}`);
@@ -149,9 +109,6 @@ class App extends Component {
     // console.log("Auth 0 id from app.js = ", profile.sub);
     const headers = { Authorization: `Bearer ${auth.getAccessToken()}` };
 
-    // FAKE USERS UI
-    this.setState({ fakeusers: users2 });
-
     //MAIN ALL USERS UI
     axios
       .get(`${VARS_CONFIG.localhost}/api/users`, { headers })
@@ -163,7 +120,7 @@ class App extends Component {
       .get(`${VARS_CONFIG.localhost}/api/stocks`, {
         params: {
           data:
-            "HSBA.L,MSFT,AAPL,F,CVS,ENB,ANTM,EXFO,FDX,W,UBER,LYFT,GOOGL,CVX,CBS,BXP,FB,AMZN,ET,DELL,CMCSA,TSLA,DATA,TEVA"
+            "HSBA.L,MSFT,AAPL,F,C,ANTM,EXFO,FDX,W,UBER,LYFT,GOOGL,CVX,CBS,BXP,FB,AMZN,ET,DELL,CMCSA,TSLA,DATA,TEVA,BAM,EXFO,WELL,ASC,CUZ,MEET,REI,ROKU,AMD,CTL,PRGO,TPR,BSX,ILMN,ISRG,NTAP,HCA,INTC,OXY,UA,CVS,BHC,CGC,1113.HK,CNA"
         },
         headers
       })
@@ -259,6 +216,9 @@ class App extends Component {
                       <UserProfile
                         {...this.props}
                         user={this.state.individualUserProfile}
+                        getIndividualStockProfile={
+                          this.getIndividualStockProfile
+                        }
                       />
                     ) : (
                       <Homepage {...this.props} />
