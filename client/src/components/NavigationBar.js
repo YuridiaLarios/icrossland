@@ -1,31 +1,53 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Form, Nav, Navbar } from "react-bootstrap";
+import { Button, Form, Nav, Navbar } from "react-bootstrap";
+import logo2 from "../globe-308800.svg";
 import styled from "styled-components";
 import { withRouter } from "react-router-dom";
 
 const Styles = styled.div`
   .navbar {
-    background-color: #222;
+    background-color: rgb(41, 128, 185);
   }
 
   a,
-  .navbar-brand,
   .navbar-nav .nav-link {
     margin: 0 15px;
     color: white;
+    font-weight: bold;
+    padding: 10px;
 
     &:hover {
-      color: #61dafb;
+      text-decoration: none;
+      opacity: 0.9;
+    }
+  }
+
+  .navbar-brand {
+    font-size: 16px;
+    margin: 0 10px;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    &:hover {
+      color: white;
+      opacity: 0.8;
       text-decoration: none;
     }
+  }
+
+  .navbar-brand > img {
+    margin-left: -20px;
+    padding: 1px 28px;
   }
 `;
 
 const NavigationBar = props => (
   <Styles>
     <Navbar expand="lg">
-      <Navbar.Brand href="/">icrossland</Navbar.Brand>
+      <Navbar.Brand href="/">
+        icrossland <img src={logo2} style={{ width: 100, marginTop: -7 }} />
+      </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
@@ -49,11 +71,9 @@ const NavigationBar = props => (
             </Nav.Item>
           )}
           {!props.auth.isAuthenticated() && (
-            <Nav.Item>
-              <Link to="/" onClick={props.auth.login}>
-                Login{" "}
-              </Link>
-            </Nav.Item>
+            <Button onClick={props.auth.login} variant="outline-primary">
+              <Link to="#"> Login </Link>
+            </Button>
           )}
           {props.auth.isAuthenticated() && (
             <Nav.Item>

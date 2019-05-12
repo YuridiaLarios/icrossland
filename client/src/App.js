@@ -14,7 +14,7 @@ import StockProfile from "./Pages/StockProfile";
 import NotFound from "./Pages/NotFound";
 import Callback from "./components/Callback";
 
-const auth = new Auth();
+  const auth = new Auth();
 
 class App extends Component {
   // CONSTRUCTOR

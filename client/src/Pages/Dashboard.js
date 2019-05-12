@@ -135,7 +135,8 @@ class Dashboard extends Component {
     return (
       <div>
         <h1>
-          Welcome to your Dashboard. <br /> <a href="/">Explore</a> more stocks!
+          Welcome to your Dashboard, {this.props.name}!a-pap <br />{" "}
+          <a href="/">Explore</a> more stocks!
         </h1>
         <br />
         <div className="container">
