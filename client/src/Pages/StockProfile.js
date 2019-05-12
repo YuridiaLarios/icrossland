@@ -31,7 +31,7 @@ class StockProfile extends Component {
       historyOpenData.push(historyData.data[historyDates[i]].open);
       historyCloseData.push(historyData.data[historyDates[i]].close);
     }
-    
+
     this.setState({
       historyDates: historyDates,
       historyOpenData: historyOpenData,
@@ -101,9 +101,6 @@ class StockProfile extends Component {
   render() {
     return (
       <div className="container">
-        <Button onClick={this.handleSubmit} variant="primary">
-          All users + stocks
-        </Button>
         <Container>
           <Card>
             <Card.Header>

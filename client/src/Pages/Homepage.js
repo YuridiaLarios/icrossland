@@ -5,14 +5,28 @@ import SingleStockDiv from "../components/SingleStockDiv";
 
 class Homepage extends Component {
   constructor(props) {
-    super(props); // props is an object that has users in it now
+    super(props);
     this.state = {
-      users: props.users,
-      stocks: props.stocks
+      searchString: ""
     };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange() {
+    this.setState({
+      searchString: this.refs.search.value
+    });
   }
 
   render() {
+    let _stocks = this.props.stocks;
+    let search = this.state.searchString.trim().toLowerCase();
+
+    if (search.length > 0) {
+      _stocks = _stocks.filter(function(stock) {
+        return stock.name.toLowerCase().match(search);
+      });
+    }
     return (
       <div>
         <img src={logo} className="App-logo" alt="logo" />
@@ -22,9 +36,16 @@ class Homepage extends Component {
           <div>
             <a href="/dashboard">Click here</a>
             <div>
+              <input
+                type="text"
+                value={this.state.searchString}
+                ref="search"
+                onChange={this.handleChange}
+                placeholder="type name here"
+              />
               {/* STOCKS DIVS */}
               <Row>
-                {this.props.stocks.map(item => {
+                {_stocks.map(item => {
                   return (
                     <SingleStockDiv
                       key={item.symbol}

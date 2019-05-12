@@ -15,12 +15,55 @@ import NotFound from "./Pages/NotFound";
 import Callback from "./components/Callback";
 
 const auth = new Auth();
+let users2 = [
+  {
+    name: "Leonard Rogers",
+    email: "egestas@justonecante.org"
+  },
+  {
+    name: "Walker Pace",
+    email: "erat.eget.tincidunt@idsapienCras.org"
+  },
+  {
+    name: "Lance Mcintyre",
+    email: "Nam.ligula@quamvel.net"
+  },
+  {
+    name: "Rudyard Conway",
+    email: "sit@nunc.org"
+  },
+  {
+    name: "Chadwick Oneal",
+    email: "laoreet@dictum.edu"
+  },
+  {
+    name: "Isaiah Kent",
+    email: "diam.dictum@lobortisquam.co.uk"
+  },
+  {
+    name: "Griffith Perkins",
+    email: "congue@acfermentumvel.ca"
+  },
+  {
+    name: "Lawrence Wheeler",
+    email: "ac.libero@Duisac.org"
+  },
+  {
+    name: "Preston Walker",
+    email: "egestas.rhoncus@eudui.co.uk"
+  },
+  {
+    name: "Simon Brewer",
+    email: "nunc.sed@Fuscediamnunc.co.uk"
+  }
+];
 
 class App extends Component {
   // CONSTRUCTOR
   constructor(props) {
     super(props);
     this.state = {
+      fakeusers: [],
       users: [],
       stocks: [],
       favoriteStocks: ["Empty Start Tracking Stocks"],
@@ -106,6 +149,9 @@ class App extends Component {
     // console.log("Auth 0 id from app.js = ", profile.sub);
     const headers = { Authorization: `Bearer ${auth.getAccessToken()}` };
 
+    // FAKE USERS UI
+    this.setState({ fakeusers: users2 });
+
     //MAIN ALL USERS UI
     axios
       .get(`${VARS_CONFIG.localhost}/api/users`, { headers })
@@ -150,6 +196,7 @@ class App extends Component {
                   path="/"
                   render={props => (
                     <Homepage
+                      fakeusers={this.state.fakeusers}
                       users={this.state.users}
                       stocks={this.state.stocks}
                       {...this.props}
