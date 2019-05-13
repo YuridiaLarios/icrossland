@@ -159,8 +159,10 @@ class Dashboard extends Component {
       user: {},
       favStocks: [],
       message: "",
+      searchString: "",
       accessToken: ""
     };
+    this.handleChange = this.handleChange.bind(this);
   }
 
   getFavoriteStocks() {
@@ -256,13 +258,28 @@ class Dashboard extends Component {
       .catch(error => this.setState({ error: true }));
   }
 
+  handleChange() {
+    this.setState({
+      searchString: this.refs.search.value
+    });
+  }
+
   render() {
+    let _favStocks = this.state.favStocks;
+    let search = this.state.searchString.trim().toLowerCase();
+
+    if (search.length > 0) {
+      _favStocks = _favStocks.filter(function(stock) {
+        return stock.name.toLowerCase().match(search);
+      });
+    }
+
     let joined = this.state.user.date;
     let joinedDate = new Date(joined).toLocaleDateString();
 
     const favoriteStocks = this.state.favStocks ? (
       <>
-        {this.state.favStocks.map(item => {
+        {_favStocks.map(item => {
           return (
             <SingleStockDiv
               key={item.symbol}
@@ -303,6 +320,13 @@ class Dashboard extends Component {
                       <Card.Text>ID: {this.state.user._id}</Card.Text>
                       <Card.Text>Email: {this.state.user.email}</Card.Text>
                       <Card.Text>Joined: {joinedDate}</Card.Text>
+                      <input
+                        type="text"
+                        value={this.state.searchString}
+                        ref="search"
+                        onChange={this.handleChange}
+                        placeholder="Filter by Name"
+                      />
                     </div>
                   </Card.Body>
                 </Card>
