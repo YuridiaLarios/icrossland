@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
 import { VARS_CONFIG } from "../react-variables";
 import axios from "axios";
-import Styles from "./DashboardStyles.js";
+import Styles from "./Pages-Styles/DashboardStyles.js";
 import Auth from "../Auth/Auth";
 import SingleStockDiv from "../components/SingleStockDiv";
 
