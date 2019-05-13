@@ -79,6 +79,27 @@ const Styles = styled.div`
     padding: 10px;
   }
 
+  .searchbar {
+    font-size: 1rem;
+    text-align: center;
+    border: none;
+    outline: none;
+    border-radius: 10rem;
+    box-shadow: 0px 0px 10px -8px rgba(0, 0, 0, 1);
+    padding: 10px;
+    transition: all 0.2s;
+    transition-delay: 0.1s;
+  }
+
+  input[type="text"]:focus {
+    box-shadow: 0 0 3pt 2pt #007bff;
+    width: 15rem;
+  }
+
+  .searchbar:hover {
+    width: 15rem;
+  }
+
   .app-card-list {
     // background-color: green;
     display: inline-block;

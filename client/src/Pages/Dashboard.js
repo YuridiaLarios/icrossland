@@ -180,6 +180,7 @@ class Dashboard extends Component {
                       <Card.Text>Email: {this.state.user.email}</Card.Text>
                       <Card.Text>Joined: {joinedDate}</Card.Text>
                       <input
+                        className="searchbar"
                         type="text"
                         value={this.state.searchString}
                         ref="search"
