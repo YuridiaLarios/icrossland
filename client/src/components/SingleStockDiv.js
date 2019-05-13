@@ -2,10 +2,12 @@ import React, { Component } from "react";
 import { Card } from "react-bootstrap";
 import { VARS_CONFIG } from "../react-variables";
 import StockProfileButton from "./StockProfileButton";
-// import UserDeleteButton from "./UserDeleteButton";
 import FavoriteStockButton from "./FavoriteStockButton";
 import axios from "axios";
 import Auth from "../Auth/Auth";
+import styled from "styled-components";
+
+const Styles = styled.div``;
 
 const auth = new Auth();
 
@@ -34,28 +36,39 @@ class SingleStockDiv extends Component {
 
   render() {
     return (
-      // <div className="col s12 m12 l4">
       <Card id="stock-card" style={{ width: "18rem" }}>
         {/* <Card id="stock-card"> */}
         <Card.Body>
           <Card.Title>{this.props.item.name}</Card.Title>
           <Card.Text>
-            Symbol: {this.props.item.symbol} <br />
-            Currency: {this.props.item.currency} <br />
-            price_open: {this.props.item.price_open} <br /> <br />
+            <span className="stockSymbol">
+              {this.props.item.symbol} <br />
+            </span>
+            {this.props.item.stock_exchange_long} <br /> <br />
+            <span
+              className={
+                "stockDayChange " +
+                (parseFloat(this.props.item.day_change) >= 0
+                  ? "green-positive"
+                  : "red-negative")
+              }
+            >
+              {this.props.item.day_change}
+            </span>
+            <br /> <br />
+            <span className="stockOpenPrice">
+              {this.props.item.price_open} {this.props.item.currency}
+            </span>
+            <br />
             day_high: {this.props.item.day_high} <br /> <br />
             day_low: {this.props.item.day_low} <br /> <br />
             {/* 52_week_high: {this.props.item.52_week_high} <br /> <br /> */}
             {/* 52_week_low: {this.props.item.52_week_low} <br /> <br /> */}
-            day_change: {this.props.item.day_change} <br /> <br />
             change_pct: {this.props.item.change_pct} <br /> <br />
             close_yesterday: {this.props.item.close_yesterday} <br /> <br />
             market_cap: {this.props.item.market_cap} <br /> <br />
             volume: {this.props.item.volume} <br /> <br />
             shares: {this.props.item.shares} <br /> <br />
-            stock_exchange_long: {
-              this.props.item.stock_exchange_long
-            } <br /> <br />
             stock_exchange_short: {
               this.props.item.stock_exchange_short
             } <br /> <br />
@@ -74,7 +87,6 @@ class SingleStockDiv extends Component {
           />
         </Card.Body>
       </Card>
-      // </div>
     );
   }
 }

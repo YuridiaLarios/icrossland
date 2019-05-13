@@ -80,14 +80,14 @@ const Styles = styled.div`
   }
 
   .app-card-list {
-    background-color: green;
+    // background-color: green;
     display: inline-block;
     margin-left: 40px;
     white-space: nowrap;
   }
 
   #stock-card {
-    background-color: red;
+    // background-color: red;
     display: inline-block;
     margin: 10px;
     white-space: auto;
@@ -103,6 +103,24 @@ const Styles = styled.div`
 
   .card-body {
     white-space: normal;
+    font-family: "initial";
+    font-size: 1.15em;
+  }
+  .stockSymbol {
+    font-weight: bold;
+  }
+
+  .stockDayChange {
+    font-size: 36px;
+    font-weight: bold;
+  }
+
+  .green-positive {
+    color: #008000;
+  }
+
+  .red-negative {
+    color: #ff0000;
   }
 `;
 const auth = new Auth();
