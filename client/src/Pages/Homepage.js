@@ -35,7 +35,7 @@ class Homepage extends Component {
           {!this.props.auth.isAuthenticated() && (
             <header>
               <h1 className="h1-main-header">Welcome to icrossland</h1>
-              <Card className="text-center">
+              <Card className="text-center tranparency">
                 <Card.Body>
                   <img src={logo2} className="App-logo" alt="logo2" />
 
@@ -47,7 +47,6 @@ class Homepage extends Component {
                   >
                     LOGIN
                   </a>
-                  <div className="graph-container" />
                 </Card.Body>
               </Card>
               <img src={logo4} className="header-shaping-img" alt="logo4" />

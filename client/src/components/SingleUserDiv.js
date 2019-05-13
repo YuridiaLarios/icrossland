@@ -31,25 +31,24 @@ class SingleUserDiv extends Component {
   };
 
   render() {
+    let joined = this.props.item.date;
+    let joinedDate = new Date(joined).toLocaleDateString();
     return (
-      <div className="col s12 m12 l4">
-        <Card style={{ width: "18rem" }}>
-          <Card.Img variant="top" src={this.props.item.thumbnailFile} />
-          <Card.Body>
-            <Card.Title>{this.props.item.username}</Card.Title>
-            <Card.Text>
-              {this.props.item.email} <br />
-              {this.props.item._id} <br /> <br />
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </Card.Text>
-            <UserProfileButton
-              item={this.props.item}
-              getIndividualUserProfile={this.props.getIndividualUserProfile}
-            />
-          </Card.Body>
-        </Card>
-      </div>
+      <Card id="individualUserCard" style={{ width: "18rem" }}>
+        <Card.Img variant="top" src={this.props.item.thumbnailFile} />
+        <Card.Body>
+          <Card.Title className="card-username">
+            {this.props.item.username}
+          </Card.Title>
+          {/* <Card.Text>{this.props.item.email}</Card.Text> */}
+          {/* <Card.Text>ID: {this.props.item._id}</Card.Text> */}
+          <Card.Text>Joined: {joinedDate}</Card.Text>
+          <UserProfileButton
+            item={this.props.item}
+            getIndividualUserProfile={this.props.getIndividualUserProfile}
+          />
+        </Card.Body>
+      </Card>
     );
   }
 }

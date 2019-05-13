@@ -6,7 +6,7 @@ const Styles = styled.div`
     background-color: white;
   }
   header {
-    height: height: 100vh;
+    // height: height: 50vh;
     background-image: linear-gradient(
       rgb(41, 128, 185),
       rgb(109, 213, 250),
@@ -16,7 +16,7 @@ const Styles = styled.div`
   }
 
   .header-shaping-img {
-    height: 41vmin;
+    height: 20vmin;
     width: 100%;
     pointer-events: none;
   }
@@ -27,7 +27,7 @@ const Styles = styled.div`
     margin: 0px;
     font-family: "Lato", sans-serif;
     font-weight: 400;
-    line-height: 1.7;
+    // line-height: 1.7;
     color: #eee;
     display: block;
     font-size: 40px;
@@ -49,6 +49,8 @@ const Styles = styled.div`
     margin: auto
     box-shadow: 5px 10px 20px 1px rgb(0, 0, 0, 0.253);
     border-radius: 20px;
+    opacity: 0.9;
+    filter: alpha(opacity=60); /* For IE8 and earlier */
   }
 
   h2 {
@@ -66,7 +68,7 @@ const Styles = styled.div`
   }
 
   .btn:hover {
-    opacity: 0.7;
+    opacity: 0.8;
     transform: translateY(-2px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   }

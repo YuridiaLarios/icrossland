@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Row } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
 import SingleUserDiv from "../components/SingleUserDiv";
+import Styles from "./Pages-Styles/UsersStyles";
 import "../Auth/Auth";
 import "./Profile.css";
 
@@ -44,30 +45,32 @@ class Profile extends Component {
       });
     }
     return (
-      <div>
-        <h4>All users:</h4>
-        <input
-          type="text"
-          value={this.state.searchString}
-          ref="search"
-          onChange={this.handleChange}
-          placeholder="type name here"
-        />
-        {/* USERS DIVS */}
-        <Row>
-          {_users.map(item => {
-            return (
-              <SingleUserDiv
-                key={item._id}
-                item={item}
-                getIndividualUserProfile={this.props.getIndividualUserProfile}
-                addUser={this.props.addUser}
-                deleteUser={this.props.deleteUser}
-              />
-            );
-          })}
-        </Row>
-      </div>
+      <Styles>
+        <div className="USERS-body">
+          <h1>All Users</h1>{" "}
+          <input
+            type="text"
+            value={this.state.searchString}
+            ref="search"
+            onChange={this.handleChange}
+            placeholder="type name here"
+          />
+          {/* USERS DIVS */}
+          <Row sm={6} md={6} lg={4} className="usersContainer">
+            {_users.map(item => {
+              return (
+                <SingleUserDiv
+                  key={item._id}
+                  item={item}
+                  getIndividualUserProfile={this.props.getIndividualUserProfile}
+                  addUser={this.props.addUser}
+                  deleteUser={this.props.deleteUser}
+                />
+              );
+            })}
+          </Row>
+        </div>
+      </Styles>
     );
   }
 }
