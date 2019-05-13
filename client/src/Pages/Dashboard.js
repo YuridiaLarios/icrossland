@@ -54,6 +54,7 @@ const Styles = styled.div`
     width: 500px;
     display: flex;
     font-family: "initial";
+    z-index: 2;
   }
 
   #user-card-header {
@@ -111,16 +112,34 @@ const Styles = styled.div`
   }
 
   .stockDayChange {
-    font-size: 36px;
+    font-size: 32px;
+    padding: 10px 1px;
     font-weight: bold;
+    margin-bottom: 0px;
   }
 
   .green-positive {
     color: #008000;
+    border: solid 2px #008000;
+    border-radius: 20px;
+    margin: 0px;
   }
 
   .red-negative {
     color: #ff0000;
+    border: solid 2px #ff0000;
+    border-radius: 20px;
+    margin: 0px;
+  }
+  .small-text {
+    display: block;
+    margin-left: 18px;
+    font-size: 18px;
+  }
+
+  .stockOpenPrice {
+    font-size: 22px;
+    font-weight: bold;
   }
 `;
 const auth = new Auth();
@@ -262,7 +281,6 @@ class Dashboard extends Component {
           <Container>
             <Row>
               <Col sm={4}>
-                {" "}
                 <Card id="user-card">
                   <Card.Header id="user-card-header">
                     {this.state.user.username}

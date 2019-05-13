@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card } from "react-bootstrap";
+import { Card, Table } from "react-bootstrap";
 import { VARS_CONFIG } from "../react-variables";
 import StockProfileButton from "./StockProfileButton";
 import FavoriteStockButton from "./FavoriteStockButton";
@@ -37,15 +37,14 @@ class SingleStockDiv extends Component {
   render() {
     return (
       <Card id="stock-card" style={{ width: "18rem" }}>
-        {/* <Card id="stock-card"> */}
         <Card.Body>
           <Card.Title>{this.props.item.name}</Card.Title>
-          <Card.Text>
+          <div>
             <span className="stockSymbol">
               {this.props.item.symbol} <br />
             </span>
             {this.props.item.stock_exchange_long} <br /> <br />
-            <span
+            <div
               className={
                 "stockDayChange " +
                 (parseFloat(this.props.item.day_change) >= 0
@@ -54,17 +53,29 @@ class SingleStockDiv extends Component {
               }
             >
               {this.props.item.day_change}
-            </span>
+              <span className="small-text">
+                ({this.props.item.change_pct}%)
+              </span>
+            </div>
             <br /> <br />
             <span className="stockOpenPrice">
               {this.props.item.price_open} {this.props.item.currency}
             </span>
             <br />
-            day_high: {this.props.item.day_high} <br /> <br />
-            day_low: {this.props.item.day_low} <br /> <br />
+            <Table>
+              <tbody>
+                <tr>
+                  <td>High:</td>
+                  <td>{this.props.item.day_high}</td>
+                </tr>
+                <tr>
+                  <td>Low:</td>
+                  <td>{this.props.item.day_low}</td>
+                </tr>
+              </tbody>
+            </Table>
             {/* 52_week_high: {this.props.item.52_week_high} <br /> <br /> */}
             {/* 52_week_low: {this.props.item.52_week_low} <br /> <br /> */}
-            change_pct: {this.props.item.change_pct} <br /> <br />
             close_yesterday: {this.props.item.close_yesterday} <br /> <br />
             market_cap: {this.props.item.market_cap} <br /> <br />
             volume: {this.props.item.volume} <br /> <br />
@@ -76,7 +87,7 @@ class SingleStockDiv extends Component {
             timezone_name: {this.props.item.timezone_name} <br /> <br />
             gmt_offset: {this.props.item.gmt_offset} <br /> <br />
             last_trade_time: {this.props.item.last_trade_time} <br /> <br />
-          </Card.Text>
+          </div>
           <StockProfileButton
             item={this.props.item}
             getIndividualStockProfile={this.props.getIndividualStockProfile}
