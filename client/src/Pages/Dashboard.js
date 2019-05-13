@@ -257,6 +257,9 @@ class Dashboard extends Component {
   }
 
   render() {
+    let joined = this.state.user.date;
+    let joinedDate = new Date(joined).toLocaleDateString();
+
     const favoriteStocks = this.state.favStocks ? (
       <>
         {this.state.favStocks.map(item => {
@@ -290,20 +293,16 @@ class Dashboard extends Component {
                   <Card.Header id="user-card-header">
                     {this.state.user.username}
                   </Card.Header>
-                  {/* <Card.Header>Yuridia Larios</Card.Header> */}
                   <Card.Img
                     className="profile-thumbnail"
                     variant="top"
                     src={this.state.user.thumbnailFile}
-                    // src="https://lh3.googleusercontent.com/-22ngK4Xfd58/AAAAAAAAAAI/AAAAAAAAADc/wucKInim5zw/photo.jpg"
                   />
                   <Card.Body>
                     <div className="user-info">
                       <Card.Text>ID: {this.state.user._id}</Card.Text>
-                      {/* <Card.Text>ID: 123456</Card.Text> */}
                       <Card.Text>Email: {this.state.user.email}</Card.Text>
-                      {/* <Card.Text>yuriydani@gmail.com</Card.Text> */}
-                      {/* <Card.Text>aap f ll </Card.Text> */}
+                      <Card.Text>Joined: {joinedDate}</Card.Text>
                     </div>
                   </Card.Body>
                 </Card>
