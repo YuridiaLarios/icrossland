@@ -11,7 +11,7 @@ class FavoriteStockButton extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    let stockSymbol = this.props.item.symbol
+    let stockSymbol = this.props.item.symbol;
     console.log("track button Clicked!" + this.props.item.symbol);
     this.props.getSymbolToTrack(stockSymbol);
   };
