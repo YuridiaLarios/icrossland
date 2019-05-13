@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Card, Container, Row } from "react-bootstrap";
+import { Card, Container, Row } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
 import { VARS_CONFIG } from "../react-variables";
 import SingleStockDiv from "../components/SingleStockDiv";

@@ -3,7 +3,7 @@ import logo2 from "../globe-308800.svg";
 import logo4 from "../header.svg";
 
 import styled from "styled-components";
-import { Button, Card, Container, Image, Row } from "react-bootstrap";
+import { Card, Container, Row } from "react-bootstrap";
 import SingleStockDiv from "../components/SingleStockDiv";
 
 const Styles = styled.div`
@@ -130,7 +130,7 @@ class Homepage extends Component {
                   <a
                     href="#"
                     onClick={this.props.auth.login}
-                    class="btn btn-blue btn-animated"
+                    className="btn btn-blue btn-animated"
                   >
                     LOGIN
                   </a>

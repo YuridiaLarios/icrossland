@@ -104,7 +104,7 @@ class App extends Component {
 
   componentWillMount() {
     let profile = auth.getProfile();
-    const { getAccessToken } = this.props.auth;
+    // const { getAccessToken } = this.props.auth;
     // console.log("accessToken from App.js = ", getAccessToken());
     // console.log("Auth 0 id from app.js = ", profile.sub);
     const headers = { Authorization: `Bearer ${auth.getAccessToken()}` };

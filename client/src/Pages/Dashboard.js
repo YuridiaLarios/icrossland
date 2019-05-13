@@ -1,11 +1,110 @@
 import React, { Component } from "react";
-import { Button, Card, Container, Row } from "react-bootstrap";
+import { Card, Col, Container, Row } from "react-bootstrap";
 import { VARS_CONFIG } from "../react-variables";
 import axios from "axios";
+import styled from "styled-components";
 import "./Dashboard.css";
 import Auth from "../Auth/Auth";
 import SingleStockDiv from "../components/SingleStockDiv";
 
+const Styles = styled.div`
+  .DASHBOARD-body {
+    margin-top: 0px;
+    background: radial-gradient(#e5e5e5, #ffff, #e5e5e5);
+    // background: green;
+    padding: 50px;
+    padding-top: 50px;
+  }
+  h1 {
+    font-family: "initial";
+  }
+
+  .btn:link,
+  .btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 12px 20px;
+    display: inline-block;
+    border-radius: 100px;
+    transition: all 0.2s;
+    margin: 20px;
+  }
+
+  .btn:hover {
+    opacity: 0.7;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgb(105, 105, 105);
+  }
+
+  .btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 25px 40px rgba(0, 0, 0, 0.2);
+  }
+
+  .btn-blue {
+    background-color: rgb(41, 128, 185);
+    color: white;
+  }
+
+  #user-card {
+    margin-bottom: 45px;
+    margin-top: 0px;
+    box-shadow: 0px 0px 10px -8px rgba(0, 0, 0, 1);
+    border-radius: 15px 50px;
+    width: 500px;
+    display: flex;
+    font-family: "initial";
+  }
+
+  #user-card-header {
+    text-transform: uppercase;
+    border-radius: 10px 50px 0px 0px;
+    padding: 20px;
+  }
+
+  .profile-thumbnail {
+    margin: 0 auto;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    width: 200px;
+    border-radius: 50%;
+  }
+
+  .user-info {
+    font-weight: bold;
+    font-size: 16px;
+    color: #696969;
+    margin-top: 0px;
+    margin-bottom: 30px;
+    padding: 10px;
+  }
+
+  .app-card-list {
+    background-color: green;
+    display: inline-block;
+    margin-left: 40px;
+    white-space: nowrap;
+  }
+
+  #stock-card {
+    background-color: red;
+    display: inline-block;
+    margin: 10px;
+    white-space: auto;
+  }
+
+  #stock-card {
+    @media (min-width: 768px) {
+      width: 80%;
+      white-space: nowrap;
+      margin-top: 0;
+    }
+  }
+
+  .card-body {
+    white-space: normal;
+  }
+`;
 const auth = new Auth();
 let myId;
 
@@ -35,7 +134,7 @@ class Dashboard extends Component {
 
   componentWillMount() {
     let profile = auth.getProfile();
-    const { getAccessToken } = this.props.auth;
+    // const { getAccessToken } = this.props.auth;
     // console.log("accessToken from Dashboard.js = ", getAccessToken());
     const headers = { Authorization: `Bearer ${auth.getAccessToken()}` };
 
@@ -133,44 +232,66 @@ class Dashboard extends Component {
       <div>No stocks are been track!</div>
     );
     return (
-      <div>
-        <h1>
-          Welcome to your Dashboard, {this.props.name}!a-pap <br />{" "}
-          <a href="/">Explore</a> more stocks!
-        </h1>
-        <br />
-        <div className="container">
+      <Styles>
+        <div className="DASHBOARD-body">
+          <h1>
+            Welcome to your Dashboard, {this.props.name}! <br />{" "}
+            <a href="/" className="btn btn-blue btn-animated">
+              Explore more stocks
+            </a>
+          </h1>
+          <br />
           <Container>
-            <Card>
-              <Card.Header>
-                <h2>{this.state.user.username}</h2>
-              </Card.Header>
-              <Card.Img
-                className="profile-thumbnail"
-                variant="top"
-                src={this.state.user.thumbnailFile}
-              />
-              <Card.Body>
-                <Card.Title>ID: {this.state.user._id}</Card.Title>
-                <Card.Text>{this.state.user.email}</Card.Text>
-                <Row>{favoriteStocks}</Row>
-              </Card.Body>
-            </Card>
+            <Row>
+              <Col sm={4}>
+                {" "}
+                <Card id="user-card">
+                  <Card.Header id="user-card-header">
+                    {this.state.user.username}
+                  </Card.Header>
+                  {/* <Card.Header>Yuridia Larios</Card.Header> */}
+                  <Card.Img
+                    className="profile-thumbnail"
+                    variant="top"
+                    src={this.state.user.thumbnailFile}
+                    // src="https://lh3.googleusercontent.com/-22ngK4Xfd58/AAAAAAAAAAI/AAAAAAAAADc/wucKInim5zw/photo.jpg"
+                  />
+                  <Card.Body>
+                    <div className="user-info">
+                      <Card.Text>ID: {this.state.user._id}</Card.Text>
+                      {/* <Card.Text>ID: 123456</Card.Text> */}
+                      <Card.Text>Email: {this.state.user.email}</Card.Text>
+                      {/* <Card.Text>yuriydani@gmail.com</Card.Text> */}
+                      {/* <Card.Text>aap f ll </Card.Text> */}
+                    </div>
+                  </Card.Body>
+                </Card>
+              </Col>
+              <Col sm={8} style={{ overflowX: "scroll", fontSize: "14px" }}>
+                <div className="app-card-list" id="app-card-list">
+                  {favoriteStocks}
+                </div>
+              </Col>
+            </Row>
           </Container>
+
+          <div>
+            <></>
+          </div>
+          {/* <div className="container">
+            <h3>Make a Call to the Server</h3>
+            <Button onClick={this.ping.bind(this)}>Ping</Button>
+            <h2> {this.state.pingMessage}</h2>
+
+            <Button onClick={this.securedPing.bind(this)}>Call Private</Button>
+
+            <h2> {this.state.pingSecuredMessage}</h2>
+
+            <Button onClick={this.postUser.bind(this)}>Post User</Button>
+            <p />
+          </div> */}
         </div>
-        <div className="container">
-          <h3>Make a Call to the Server</h3>
-          <Button onClick={this.ping.bind(this)}>Ping</Button>
-          <h2> {this.state.pingMessage}</h2>
-
-          <Button onClick={this.securedPing.bind(this)}>Call Private</Button>
-
-          <h2> {this.state.pingSecuredMessage}</h2>
-
-          <Button onClick={this.postUser.bind(this)}>Post User</Button>
-          <p />
-        </div>
-      </div>
+      </Styles>
     );
   }
 }

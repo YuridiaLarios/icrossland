@@ -46,7 +46,12 @@ const NavigationBar = props => (
   <Styles>
     <Navbar expand="lg">
       <Navbar.Brand href="/">
-        icrossland <img src={logo2} style={{ width: 100, marginTop: -7 }} />
+        icrossland{" "}
+        <img
+          src={logo2}
+          style={{ width: 100, marginTop: -7 }}
+          alt="logo: Planet Earth"
+        />
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
