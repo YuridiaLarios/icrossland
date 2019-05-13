@@ -49,11 +49,12 @@ class Profile extends Component {
         <div className="USERS-body">
           <h1>All Users</h1>{" "}
           <input
+            className="searchbar"
             type="text"
             value={this.state.searchString}
             ref="search"
             onChange={this.handleChange}
-            placeholder="type name here"
+            placeholder="Filter by Name"
           />
           {/* USERS DIVS */}
           <Row sm={6} md={6} lg={4} className="usersContainer">

@@ -3,6 +3,7 @@ import styled from "styled-components";
 const Styles = styled.div`
   .DASHBOARD-body {
     margin-top: 0px;
+    background: rgba(229, 229, 229, 0.3);
     background: radial-gradient(#e5e5e5, #ffff, #e5e5e5);
     // background: green;
     padding: 50px;

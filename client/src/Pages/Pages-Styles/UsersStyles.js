@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
 const Styles = styled.div`
+  //TODO: fix body color when empty user search result
   .USERS-body {
     margin-top: 0px;
+    background: rgba(229, 229, 229, 0.3);
     background: radial-gradient(#e5e5e5, #ffff, #e5e5e5);
-    // background: green;
     padding: 50px;
     padding-top: 50px;
   }
@@ -12,8 +13,28 @@ const Styles = styled.div`
   h1 {
     font-family: "initial";
   }
+  .searchbar {
+    font-size: 1.4rem;
+    text-align: center;
+    border: none;
+    outline: none;
+    border-radius: 10rem;
+    box-shadow: 0px 0px 10px -8px rgba(0, 0, 0, 1);
+    padding: 12px;
+    transition: all 0.2s;
+    transition-delay: 0.1s;
+  }
+
+  input[type="text"]:focus {
+    box-shadow: 0 0 3pt 2pt #007bff;
+    width: 20rem;
+  }
+
+  .searchbar:hover {
+    width: 20rem;
+  }
+
   .usersContainer {
-    // background-color: red;
     width: 85%;
     margin: 0 auto;
     padding: 60px;
