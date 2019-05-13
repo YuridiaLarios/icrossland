@@ -35,6 +35,11 @@ class SingleStockDiv extends Component {
   };
 
   render() {
+    let prevClose = this.props.item.last_trade_time;
+    let prevCloseDate =
+      new Date(prevClose).toLocaleDateString() +
+      " " +
+      new Date(prevClose).toTimeString();
     return (
       <Card id="stock-card" style={{ width: "18rem" }}>
         <Card.Body>
@@ -57,10 +62,11 @@ class SingleStockDiv extends Component {
                 ({this.props.item.change_pct}%)
               </span>
             </div>
-            <br /> <br />
+            <br />
             <span className="stockOpenPrice">
               {this.props.item.price_open} {this.props.item.currency}
             </span>
+            <br />
             <br />
             <Table>
               <tbody>
@@ -72,21 +78,24 @@ class SingleStockDiv extends Component {
                   <td>Low:</td>
                   <td>{this.props.item.day_low}</td>
                 </tr>
+                <tr>
+                  <td>Prev close:</td>
+                  <td>{this.props.item.close_yesterday}</td>
+                </tr>
               </tbody>
             </Table>
+            Closed: {prevCloseDate} <br /> <br />
             {/* 52_week_high: {this.props.item.52_week_high} <br /> <br /> */}
             {/* 52_week_low: {this.props.item.52_week_low} <br /> <br /> */}
-            close_yesterday: {this.props.item.close_yesterday} <br /> <br />
-            market_cap: {this.props.item.market_cap} <br /> <br />
-            volume: {this.props.item.volume} <br /> <br />
-            shares: {this.props.item.shares} <br /> <br />
-            stock_exchange_short: {
+            {/* market_cap: {this.props.item.market_cap} <br /> <br /> */}
+            {/* volume: {this.props.item.volume} <br /> <br /> */}
+            {/* shares: {this.props.item.shares} <br /> <br /> */}
+            {/* stock_exchange_short: {
               this.props.item.stock_exchange_short
-            } <br /> <br />
-            timezone: {this.props.item.timezone} <br /> <br />
-            timezone_name: {this.props.item.timezone_name} <br /> <br />
-            gmt_offset: {this.props.item.gmt_offset} <br /> <br />
-            last_trade_time: {this.props.item.last_trade_time} <br /> <br />
+            } <br /> <br /> */}
+            {/* timezone: {this.props.item.timezone} <br /> <br /> */}
+            {/* timezone_name: {this.props.item.timezone_name} <br /> <br /> */}
+            {/* gmt_offset: {this.props.item.gmt_offset} <br /> <br /> */}
           </div>
           <StockProfileButton
             item={this.props.item}

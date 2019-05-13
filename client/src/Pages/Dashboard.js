@@ -19,6 +19,10 @@ const Styles = styled.div`
     font-family: "initial";
   }
 
+  .btn {
+    margin: 10px;
+  }
+
   .btn:link,
   .btn:visited {
     text-transform: uppercase;
@@ -55,6 +59,7 @@ const Styles = styled.div`
     display: flex;
     font-family: "initial";
     z-index: 2;
+    height: 100%;
   }
 
   #user-card-header {
