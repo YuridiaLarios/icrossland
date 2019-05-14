@@ -1,13 +1,13 @@
 import styled from "styled-components";
 const Styles = styled.div`
   .STOCKPROFILE-body {
-    background-color: red;
+    background: rgba(229, 229, 229, 0.3);
+    background: radial-gradient(#e5e5e5, #ffff, #e5e5e5);
     padding: 50px;
     padding-top: 50px;
   }
 
   .STOCKPROFILE-row {
-    background-color: pink;
     width: 90%;
     margin: 50px auto;
     text-align: center;
@@ -18,7 +18,6 @@ const Styles = styled.div`
     font-family: "initial";
   }
 
-
   .individual-stock-card {
     margin: 10px;
   }
@@ -28,6 +27,7 @@ const Styles = styled.div`
     font-family: "initial";
     font-size: 1.15em;
   }
+
   .stockSymbol {
     font-weight: bold;
   }
