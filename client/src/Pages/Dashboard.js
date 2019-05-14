@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card, Col, Container, Row } from "react-bootstrap";
+import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import { VARS_CONFIG } from "../react-variables";
 import axios from "axios";
 import Styles from "./Pages-Styles/DashboardStyles.js";
@@ -93,18 +93,8 @@ class Dashboard extends Component {
       .catch(error => this.setState({ pingMessage: error.message }));
   }
 
-  postUser() {
-    let profile = auth.getProfile();
-    const headers = { Authorization: `Bearer ${auth.getAccessToken()}` };
-
-    axios({
-      method: "post",
-      url: `${VARS_CONFIG.localhost}/api/users`,
-      headers,
-      data: profile
-    }).then(res => {
-      this.props.addUser(res);
-    });
+  deleteApple() {
+    this.props.deleteFavSymbol("AAPL");
   }
 
   getUsers() {
@@ -192,9 +182,7 @@ class Dashboard extends Component {
                 </Card>
               </Col>
               <Col sm={8} style={{ overflowX: "scroll", fontSize: "14px" }}>
-                <div className="favStock-card-list">
-                  {favoriteStocks}
-                </div>
+                <div className="favStock-card-list">{favoriteStocks}</div>
               </Col>
             </Row>
           </Container>
@@ -202,7 +190,7 @@ class Dashboard extends Component {
           <div>
             <></>
           </div>
-          {/* <div className="container">
+          <div className="container">
             <h3>Make a Call to the Server</h3>
             <Button onClick={this.ping.bind(this)}>Ping</Button>
             <h2> {this.state.pingMessage}</h2>
@@ -211,9 +199,11 @@ class Dashboard extends Component {
 
             <h2> {this.state.pingSecuredMessage}</h2>
 
-            <Button onClick={this.postUser.bind(this)}>Post User</Button>
+            <Button onClick={this.deleteApple.bind(this)}>
+              Delete Apple from favorites
+            </Button>
             <p />
-          </div> */}
+          </div>
         </div>
       </Styles>
     );

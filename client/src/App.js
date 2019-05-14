@@ -14,7 +14,7 @@ import StockProfile from "./Pages/StockProfile";
 import NotFound from "./Pages/NotFound";
 import Callback from "./components/Callback";
 
-  const auth = new Auth();
+const auth = new Auth();
 
 class App extends Component {
   // CONSTRUCTOR
@@ -24,7 +24,7 @@ class App extends Component {
       fakeusers: [],
       users: [],
       stocks: [],
-      favoriteStocks: ["Empty Start Tracking Stocks"],
+      favoriteStocks: [], //TODO: Consider using a new Set()
       individualUserProfile: {},
       individualStockProfile: {}
     };
@@ -64,9 +64,38 @@ class App extends Component {
     });
   }
 
-  getSymbolToTrack = currentSymbol => {
-    let updatedSymbols = Array.from(this.state.favoriteStocks);
-    updatedSymbols.push(currentSymbol);
+  deleteFavSymbol = symbol => {
+    let updatedSymbols = this.state.favoriteStocks.slice();
+
+    let symbolIndex = updatedSymbols.indexOf(symbol);
+    console.log("symbol index= ", symbolIndex);
+    updatedSymbols.splice(symbolIndex, 1);
+    this.setState(
+      {
+        favoriteStocks: updatedSymbols
+      },
+      this.updateSymbolsInDatabase
+    );
+  };
+
+  addSymbolToTrack = symbol => {
+    let updatedSymbols = this.state.favoriteStocks.slice();
+    updatedSymbols.push(symbol);
+    this.setState(
+      {
+        favoriteStocks: updatedSymbols
+      },
+      this.updateSymbolsInDatabase
+    );
+  };
+
+  removeSymbolToTrack = symbol => {
+    let updatedSymbols = this.state.favoriteStocks.slice();
+
+    // TODO:
+    // make call to database favSymbols to delete from there
+    // normalization: having entities stored in a map/object key by their id. it makes insertion/deletion/access fast and easy because it is for a map/object .
+    updatedSymbols.splice(symbol);
     this.setState(
       {
         favoriteStocks: updatedSymbols
@@ -159,7 +188,7 @@ class App extends Component {
                       {...this.props}
                       getIndividualUserProfile={this.getIndividualUserProfile}
                       getIndividualStockProfile={this.getIndividualStockProfile}
-                      getSymbolToTrack={this.getSymbolToTrack}
+                      getSymbolToTrack={this.addSymbolToTrack}
                       addUser={this.addUser}
                       deleteUser={this.deleteUser}
                     />
@@ -182,6 +211,7 @@ class App extends Component {
                           this.getIndividualStockProfile
                         }
                         addUser={this.addUser}
+                        deleteFavSymbol={this.deleteFavSymbol}
                       />
                     ) : (
                       <Redirect to={{ pathname: "/" }} />
@@ -201,7 +231,7 @@ class App extends Component {
                         getIndividualStockProfile={
                           this.getIndividualStockProfile
                         }
-                        getSymbolToTrack={this.getSymbolToTrack}
+                        getSymbolToTrack={this.addSymbolToTrack}
                       />
                     ) : (
                       <Redirect to={{ pathname: "/" }} />

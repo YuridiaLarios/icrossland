@@ -165,7 +165,7 @@ router.delete("/users/:id", function(req, res) {
   );
 });
 
-// ADD SYMBOLS TO USER'S FAVORITE STOCKS
+// UPDATE SYMBOLS TO USER'S FAVORITE STOCKS
 router.put("/stockFav", function(req, res) {
   // console.log("caracol req: ", req.query[0]);
   // let id = "5cd71b9b3b04986c2f2cc1ff";
