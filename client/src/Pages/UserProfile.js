@@ -81,13 +81,17 @@ class UserProfile extends Component {
     ) : (
       <div>No stocks are been track!</div>
     );
+
+    let joined = this.state.user.date;
+    let joinedDate = new Date(joined).toLocaleDateString();
+
     return (
       <Styles>
-        <div className="container">
+        <div className="USER-body">
           <Container>
-            <Card>
-              <Card.Header>
-                <h2>{this.state.user.username}</h2>
+            <Card className="user-card">
+              <Card.Header className="user-card-header">
+                <h1>{this.state.user.username}</h1>
               </Card.Header>
               <Card.Img
                 className="profile-thumbnail"
@@ -95,8 +99,11 @@ class UserProfile extends Component {
                 src={this.state.user.thumbnailFile}
               />
               <Card.Body>
-                <Card.Title>ID: {this.state.user._id}</Card.Title>
+                <Card.Text>ID: {this.state.user._id}</Card.Text>
                 <Card.Text>{this.state.user.email}</Card.Text>
+                <Card.Text>Joined: {joinedDate}</Card.Text>
+              </Card.Body>
+              <Card.Body className="user-favorite-stocks">
                 <Row>{favoriteStocks}</Row>
               </Card.Body>
             </Card>

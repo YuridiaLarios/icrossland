@@ -1,6 +1,6 @@
 import styled from "styled-components";
 const Styles = styled.div`
-  .DASHBOARD-body {
+  .USER-body {
     margin-top: 0px;
     background: rgba(229, 229, 229, 0.3);
     background: radial-gradient(#e5e5e5, #ffff, #e5e5e5);
@@ -37,24 +37,17 @@ const Styles = styled.div`
     box-shadow: 0 25px 40px rgba(0, 0, 0, 0.2);
   }
 
-  .btn-blue {
-    background-color: rgb(41, 128, 185);
-    color: white;
-  }
-
-  #user-card {
+  .user-card {
     margin-bottom: 45px;
     margin-top: 0px;
     box-shadow: 0px 0px 10px -8px rgba(0, 0, 0, 1);
     border-radius: 15px 50px;
-    width: 500px;
-    display: flex;
+    width: 90%;
     font-family: "initial";
-    z-index: 2;
-    height: 100%;
+    margin: 0 auto;
   }
 
-  #user-card-header {
+  .user-card-header {
     text-transform: uppercase;
     border-radius: 10px 50px 0px 0px;
     padding: 20px;
@@ -68,47 +61,15 @@ const Styles = styled.div`
     border-radius: 50%;
   }
 
-  .user-info {
-    font-weight: bold;
-    font-size: 16px;
-    color: #696969;
-    margin-top: 0px;
-    margin-bottom: 30px;
-    padding: 10px;
-  }
-
-  .searchbar {
-    font-size: 1rem;
-    text-align: center;
-    border: none;
-    outline: none;
-    border-radius: 10rem;
-    box-shadow: 0px 0px 10px -8px rgba(0, 0, 0, 1);
-    padding: 10px;
-    transition: all 0.2s;
-    transition-delay: 0.1s;
-  }
-
-  input[type="text"]:focus {
-    box-shadow: 0 0 3pt 2pt #007bff;
-    width: 15rem;
-  }
-
-  .searchbar:hover {
-    width: 15rem;
-  }
-
-  .favStock-card-list {
-    display: inline-block;
-    margin-left: 40px;
-    white-space: nowrap;
+  .user-favorite-stocks {
+    margin: 10px auto;
   }
 
   #stock-card {
-    // background-color: red;
     display: inline-block;
     margin: 10px;
     white-space: auto;
+    box-shadow: 0px 0px 10px -8px rgba(0, 0, 0, 1);
   }
 
   #stock-card {

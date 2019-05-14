@@ -5,9 +5,6 @@ import StockProfileButton from "./StockProfileButton";
 import FavoriteStockButton from "./FavoriteStockButton";
 import axios from "axios";
 import Auth from "../Auth/Auth";
-import styled from "styled-components";
-
-const Styles = styled.div``;
 
 const auth = new Auth();
 
@@ -41,7 +38,7 @@ class SingleStockDiv extends Component {
       " " +
       new Date(prevClose).toTimeString();
     return (
-      <Card id="stock-card" style={{ width: "18rem", height: "43rem" }}>
+      <Card id="stock-card" style={{ width: "22rem", height: "43rem" }}>
         <Card.Body>
           <Card.Title>{this.props.item.name}</Card.Title>
           <div>
