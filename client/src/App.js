@@ -30,21 +30,31 @@ class App extends Component {
     };
   }
 
+  /******************************************************************** 
+  USER FUNCTIONS
+  *********************************************************************/
+
   // function to get the info of an individual user profile
-  // binds this method to getIndividualUserProfile instance
   getIndividualUserProfile = currentUser => {
     this.setState({
       individualUserProfile: currentUser
     });
   };
 
+  /******************************************************************** 
+  STOCK FUNCTIONS
+  *********************************************************************/
+
   // function to get the info of an individual stock profile
-  // binds this method to getIndividualStockProfile instance
   getIndividualStockProfile = currentStock => {
     this.setState({
       individualStockProfile: currentStock
     });
   };
+
+  /******************************************************************** 
+  FAVORITE STOCKS FUNCTIONS
+  *********************************************************************/
 
   updateSymbolsInDatabase() {
     let profile = auth.getProfile();
@@ -64,7 +74,18 @@ class App extends Component {
     });
   }
 
-  deleteFavSymbol = symbol => {
+  addSymbolToTrack = symbol => {
+    let updatedSymbols = this.state.favoriteStocks.slice();
+    updatedSymbols.push(symbol);
+    this.setState(
+      {
+        favoriteStocks: updatedSymbols
+      },
+      this.updateSymbolsInDatabase
+    );
+  };
+
+  deleteSymbolToTrack = symbol => {
     let updatedSymbols = this.state.favoriteStocks.slice();
 
     let symbolIndex = updatedSymbols.indexOf(symbol);
@@ -78,60 +99,34 @@ class App extends Component {
     );
   };
 
-  addSymbolToTrack = symbol => {
-    let updatedSymbols = this.state.favoriteStocks.slice();
-    updatedSymbols.push(symbol);
-    this.setState(
-      {
-        favoriteStocks: updatedSymbols
-      },
-      this.updateSymbolsInDatabase
-    );
-  };
+  // // ADDING USER TO UI
+  // // binds this method to App.js instance
+  // addUser = newUser => {
+  //   // CREATING A NEW INSTANCE SO REACT CAN COMPARE OLD STATES TO NEW STATES
+  //   let updatedUsers = Array.from(this.state.users);
+  //   updatedUsers.push(newUser);
+  //   this.setState({
+  //     // takes an object and merges that object into the current state
+  //     users: updatedUsers
+  //   });
+  // };
 
-  removeSymbolToTrack = symbol => {
-    let updatedSymbols = this.state.favoriteStocks.slice();
+  // // DELETING USER FROM UI
+  // //binds this method to App.js instance
+  // deleteUser = deletedUser => {
+  //   // CREATING A NEW INSTANCE SO REACT CAN COMPARE OLD STATES TO NEW STATES
+  //   let updatedUsers = Array.from(this.state.users);
+  //   let oldUser = this.state.users.findIndex(function(element) {
+  //     return deletedUser._id === element._id;
+  //   });
+  //   updatedUsers.splice(oldUser, 1);
+  //   this.setState({
+  //     // takes an object and merges that object into the current state
+  //     users: updatedUsers
+  //   });
+  // };
 
-    // TODO:
-    // make call to database favSymbols to delete from there
-    // normalization: having entities stored in a map/object key by their id. it makes insertion/deletion/access fast and easy because it is for a map/object .
-    updatedSymbols.splice(symbol);
-    this.setState(
-      {
-        favoriteStocks: updatedSymbols
-      },
-      this.updateSymbolsInDatabase
-    );
-  };
-
-  // ADDING USER TO UI
-  // binds this method to App.js instance
-  addUser = newUser => {
-    // CREATING A NEW INSTANCE SO REACT CAN COMPARE OLD STATES TO NEW STATES
-    let updatedUsers = Array.from(this.state.users);
-    updatedUsers.push(newUser);
-    this.setState({
-      // takes an object and merges that object into the current state
-      users: updatedUsers
-    });
-  };
-
-  // DELETING USER FROM UI
-  //binds this method to App.js instance
-  deleteUser = deletedUser => {
-    // CREATING A NEW INSTANCE SO REACT CAN COMPARE OLD STATES TO NEW STATES
-    let updatedUsers = Array.from(this.state.users);
-    let oldUser = this.state.users.findIndex(function(element) {
-      return deletedUser._id === element._id;
-    });
-    updatedUsers.splice(oldUser, 1);
-    this.setState({
-      // takes an object and merges that object into the current state
-      users: updatedUsers
-    });
-  };
-
-  componentWillMount() {
+  componentDidMount() {
     let profile = auth.getProfile();
     // const { getAccessToken } = this.props.auth;
     // console.log("accessToken from App.js = ", getAccessToken());
@@ -163,7 +158,6 @@ class App extends Component {
         headers
       })
       .then(response => {
-        console.log("the back kitty response: ", response.data.favoriteStocks);
         this.setState({ favoriteStocks: response.data.favoriteStocks });
       })
       .catch(error => this.setState({ error: true }));
@@ -182,15 +176,12 @@ class App extends Component {
                   path="/"
                   render={props => (
                     <Homepage
-                      fakeusers={this.state.fakeusers}
                       users={this.state.users}
                       stocks={this.state.stocks}
                       {...this.props}
                       getIndividualUserProfile={this.getIndividualUserProfile}
                       getIndividualStockProfile={this.getIndividualStockProfile}
                       getSymbolToTrack={this.addSymbolToTrack}
-                      addUser={this.addUser}
-                      deleteUser={this.deleteUser}
                     />
                   )}
                 />
@@ -203,6 +194,7 @@ class App extends Component {
                     this.props.auth.isAuthenticated() ? (
                       <Dashboard
                         users={this.state.users}
+                        favoriteStocks={this.state.favoriteStocks}
                         {...this.props}
                         getIndividualUserProfile={
                           this.props.getIndividualUserProfile
@@ -210,8 +202,7 @@ class App extends Component {
                         getIndividualStockProfile={
                           this.getIndividualStockProfile
                         }
-                        addUser={this.addUser}
-                        deleteFavSymbol={this.deleteFavSymbol}
+                        deleteSymbolToTrack={this.deleteSymbolToTrack}
                       />
                     ) : (
                       <Redirect to={{ pathname: "/" }} />

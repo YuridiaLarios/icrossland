@@ -14,7 +14,6 @@ class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      users: [],
       user: {},
       favStocks: [],
       message: "",
@@ -25,7 +24,20 @@ class Dashboard extends Component {
   }
 
   getFavoriteStocks() {
-    let stringSymbols = this.state.user.favoriteStocks.toString();
+    let favoriteStocks;
+    if (this.props.favoriteStocks) {
+      favoriteStocks = this.props.favoriteStocks;
+    } else {
+      axios
+        .get(`${VARS_CONFIG.localhost}/api/myFavoriteStocks`, {
+          params: this.state.user.sub
+        })
+        .then(response => {
+          favoriteStocks = response.data.favoriteStocks;
+        })
+        .catch(error => this.setState({ error: true }));
+    }
+    let stringSymbols = favoriteStocks.toString();
     axios
       .get(`${VARS_CONFIG.localhost}/api/stocks/`, {
         params: {
@@ -33,6 +45,20 @@ class Dashboard extends Component {
         }
       })
       .then(res => this.setState({ favStocks: res.data }));
+  }
+
+  componentDidUpdate(prevProps) {
+    // Typical usage (don't forget to compare props):
+    if (this.props.favoriteStocks !== prevProps.favoriteStocks) {
+      let stringSymbols = this.props.favoriteStocks.toString();
+      axios
+        .get(`${VARS_CONFIG.localhost}/api/stocks/`, {
+          params: {
+            data: stringSymbols
+          }
+        })
+        .then(res => this.setState({ favStocks: res.data }));
+    }
   }
 
   componentWillMount() {
@@ -46,10 +72,10 @@ class Dashboard extends Component {
       url: `${VARS_CONFIG.localhost}/api/currentUserID`,
       headers,
       params: profile
-    }).then(res => {
-      this.setState({ user: res.data }, this.getFavoriteStocks);
-      myId = res.data._id;
-      localStorage.setItem("myId", res.data._id);
+    }).then(user => {
+      this.setState({ user: user.data }, this.getFavoriteStocks);
+      myId = user.data._id;
+      localStorage.setItem("myId", user.data._id);
       axios({
         method: "get",
         url: `${VARS_CONFIG.localhost}/api/myProfile`,
@@ -62,17 +88,17 @@ class Dashboard extends Component {
     });
   }
 
-  // ADDING USER TO UI
-  // binds this method to App.js instance
-  addUser2 = newUser => {
-    // CREATING A NEW INSTANCE SO REACT CAN COMPARE OLD STATES TO NEW STATES
-    let updatedUsers = Array.from(this.state.users);
-    updatedUsers.push(newUser);
-    this.setState({
-      // takes an object and merges that object into the current state
-      users: updatedUsers
-    });
-  };
+  // // ADDING USER TO UI
+  // // binds this method to App.js instance
+  // addUser2 = newUser => {
+  //   // CREATING A NEW INSTANCE SO REACT CAN COMPARE OLD STATES TO NEW STATES
+  //   let updatedUsers = Array.from(this.state.users);
+  //   updatedUsers.push(newUser);
+  //   this.setState({
+  //     // takes an object and merges that object into the current state
+  //     users: updatedUsers
+  //   });
+  // };
 
   securedPing() {
     const { getAccessToken } = this.props.auth;
@@ -94,7 +120,7 @@ class Dashboard extends Component {
   }
 
   deleteApple() {
-    this.props.deleteFavSymbol("AAPL");
+    this.props.deleteSymbolToTrack("AAPL");
   }
 
   getUsers() {
@@ -126,6 +152,10 @@ class Dashboard extends Component {
     let joined = this.state.user.date;
     let joinedDate = new Date(joined).toLocaleDateString();
 
+    // console.log(
+    //   "the props that arrived for favStocks:",
+    //   this.props.favoriteStocks
+    // );
     const favoriteStocks = this.state.favStocks ? (
       <>
         {_favStocks.map(item => {

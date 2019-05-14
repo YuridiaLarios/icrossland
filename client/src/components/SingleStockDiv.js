@@ -10,7 +10,7 @@ const auth = new Auth();
 
 class SingleStockDiv extends Component {
   constructor(props) {
-    super(props); // props ia an object that has item.id and item.name in it now
+    super(props); 
     this.state = {
       stock: {}
     };
