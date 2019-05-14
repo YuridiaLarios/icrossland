@@ -3,6 +3,7 @@ import { Card, Container, Row } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
 import { VARS_CONFIG } from "../react-variables";
 import SingleStockDiv from "../components/SingleStockDiv";
+import Styles from "./Pages-Styles/SingleUserStyles";
 import axios from "axios";
 import "../Auth/Auth";
 import "./Profile.css";
@@ -81,25 +82,27 @@ class UserProfile extends Component {
       <div>No stocks are been track!</div>
     );
     return (
-      <div className="container">
-        <Container>
-          <Card>
-            <Card.Header>
-              <h2>{this.state.user.username}</h2>
-            </Card.Header>
-            <Card.Img
-              className="profile-thumbnail"
-              variant="top"
-              src={this.state.user.thumbnailFile}
-            />
-            <Card.Body>
-              <Card.Title>ID: {this.state.user._id}</Card.Title>
-              <Card.Text>{this.state.user.email}</Card.Text>
-              <Row>{favoriteStocks}</Row>
-            </Card.Body>
-          </Card>
-        </Container>
-      </div>
+      <Styles>
+        <div className="container">
+          <Container>
+            <Card>
+              <Card.Header>
+                <h2>{this.state.user.username}</h2>
+              </Card.Header>
+              <Card.Img
+                className="profile-thumbnail"
+                variant="top"
+                src={this.state.user.thumbnailFile}
+              />
+              <Card.Body>
+                <Card.Title>ID: {this.state.user._id}</Card.Title>
+                <Card.Text>{this.state.user.email}</Card.Text>
+                <Row>{favoriteStocks}</Row>
+              </Card.Body>
+            </Card>
+          </Container>
+        </div>
+      </Styles>
     );
   }
 }

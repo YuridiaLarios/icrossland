@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Row } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
 import SingleUserDiv from "../components/SingleUserDiv";
-import Styles from "./Pages-Styles/UsersStyles";
+import Styles from "./Pages-Styles/AllUsersStyles";
 import "../Auth/Auth";
 import "./Profile.css";
 
