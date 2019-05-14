@@ -192,7 +192,7 @@ class Dashboard extends Component {
                 </Card>
               </Col>
               <Col sm={8} style={{ overflowX: "scroll", fontSize: "14px" }}>
-                <div className="app-card-list" id="app-card-list">
+                <div className="favStock-card-list">
                   {favoriteStocks}
                 </div>
               </Col>

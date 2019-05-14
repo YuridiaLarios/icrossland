@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import logo2 from "../globe-308800.svg";
 import logo4 from "../header.svg";
 import Styles from "./Pages-Styles/HomepageStyles";
-import { Card, Container, Row } from "react-bootstrap";
+import { Card, Col, Container, Row } from "react-bootstrap";
 import SingleStockDiv from "../components/SingleStockDiv";
 
 class Homepage extends Component {
@@ -33,13 +33,13 @@ class Homepage extends Component {
       <Styles>
         <Container className="HOMEPAGE-body">
           {!this.props.auth.isAuthenticated() && (
-            <header>
-              <h1 className="h1-main-header">Welcome to icrossland</h1>
-              <Card className="text-center tranparency">
+            <header className="LOGIN-header">
+              <h1 className="LOGIN-h1-main-header">Welcome to icrossland</h1>
+              <Card id="LOGIN-welcome-card" className="text-center tranparency">
                 <Card.Body>
                   <img src={logo2} className="App-logo" alt="logo2" />
 
-                  <h2>Please login first</h2>
+                  <h2 className="LOGIN-h2">Please login first</h2>
                   <a
                     href="#"
                     onClick={this.props.auth.login}
@@ -49,25 +49,30 @@ class Homepage extends Component {
                   </a>
                 </Card.Body>
               </Card>
-              <img src={logo4} className="header-shaping-img" alt="logo4" />
+              <img
+                src={logo4}
+                className="LOGIN-header-shaping-img"
+                alt="logo4"
+              />
             </header>
           )}
 
           {this.props.auth.isAuthenticated() && (
             <div>
-              <a href="/dashboard">Click here</a>
-              <div>
-                <input
-                  type="text"
-                  value={this.state.searchString}
-                  ref="search"
-                  onChange={this.handleChange}
-                  placeholder="type name here"
-                />
-                {/* STOCKS DIVS */}
-                <Row>
-                  {_stocks.map(item => {
-                    return (
+              <h1>Explore Stocks </h1>
+              <input
+                className="searchbar"
+                type="text"
+                value={this.state.searchString}
+                ref="search"
+                onChange={this.handleChange}
+                placeholder="Filter by Name"
+              />
+              {/* STOCKS CARDS */}
+              <Row className="row-card-stocks">
+                {_stocks.map(item => {
+                  return (
+                    <div className="col s12 m12 l4 individual-stock-card">
                       <SingleStockDiv
                         key={item.symbol}
                         item={item}
@@ -78,10 +83,10 @@ class Homepage extends Component {
                         addUser={this.props.addUser}
                         deleteUser={this.props.deleteUser}
                       />
-                    );
-                  })}
-                </Row>
-              </div>
+                    </div>
+                  );
+                })}
+              </Row>
             </div>
           )}
         </Container>

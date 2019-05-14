@@ -14,6 +14,7 @@ const Styles = styled.div`
     font-family: "initial";
   }
   .searchbar {
+    margin: 10px;
     font-size: 1.4rem;
     text-align: center;
     border: none;

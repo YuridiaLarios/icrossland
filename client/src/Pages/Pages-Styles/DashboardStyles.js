@@ -5,7 +5,6 @@ const Styles = styled.div`
     margin-top: 0px;
     background: rgba(229, 229, 229, 0.3);
     background: radial-gradient(#e5e5e5, #ffff, #e5e5e5);
-    // background: green;
     padding: 50px;
     padding-top: 50px;
   }
@@ -100,8 +99,7 @@ const Styles = styled.div`
     width: 15rem;
   }
 
-  .app-card-list {
-    // background-color: green;
+  .favStock-card-list {
     display: inline-block;
     margin-left: 40px;
     white-space: nowrap;

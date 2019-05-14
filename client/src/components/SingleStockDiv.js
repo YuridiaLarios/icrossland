@@ -41,7 +41,7 @@ class SingleStockDiv extends Component {
       " " +
       new Date(prevClose).toTimeString();
     return (
-      <Card id="stock-card" style={{ width: "18rem" }}>
+      <Card id="stock-card" style={{ width: "18rem", height: "43rem" }}>
         <Card.Body>
           <Card.Title>{this.props.item.name}</Card.Title>
           <div>
