@@ -89,14 +89,17 @@ class App extends Component {
     let updatedSymbols = this.state.favoriteStocks.slice();
 
     let symbolIndex = updatedSymbols.indexOf(symbol);
-    console.log("symbol index= ", symbolIndex);
-    updatedSymbols.splice(symbolIndex, 1);
-    this.setState(
-      {
-        favoriteStocks: updatedSymbols
-      },
-      this.updateSymbolsInDatabase
-    );
+    if (symbolIndex != -1) {
+      updatedSymbols.splice(symbolIndex, 1);
+      this.setState(
+        {
+          favoriteStocks: updatedSymbols
+        },
+        this.updateSymbolsInDatabase
+      );
+    } else {
+      console.log("symbol not found to be deleted");
+    }
   };
 
   // // ADDING USER TO UI

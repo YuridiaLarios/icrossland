@@ -26,8 +26,10 @@ class Dashboard extends Component {
   getFavoriteStocks() {
     let favoriteStocks;
     if (this.props.favoriteStocks) {
+      console.log("props were passed!");
       favoriteStocks = this.props.favoriteStocks;
     } else {
+      console.log("fetch is needed!");
       axios
         .get(`${VARS_CONFIG.localhost}/api/myFavoriteStocks`, {
           params: this.state.user.sub
@@ -87,18 +89,6 @@ class Dashboard extends Component {
       });
     });
   }
-
-  // // ADDING USER TO UI
-  // // binds this method to App.js instance
-  // addUser2 = newUser => {
-  //   // CREATING A NEW INSTANCE SO REACT CAN COMPARE OLD STATES TO NEW STATES
-  //   let updatedUsers = Array.from(this.state.users);
-  //   updatedUsers.push(newUser);
-  //   this.setState({
-  //     // takes an object and merges that object into the current state
-  //     users: updatedUsers
-  //   });
-  // };
 
   securedPing() {
     const { getAccessToken } = this.props.auth;
