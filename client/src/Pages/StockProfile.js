@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { Card, Container } from "react-bootstrap";
+import { Card, Col, Container, Row } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
 import { VARS_CONFIG } from "../react-variables";
 import "../Auth/Auth";
 import "./Profile.css";
 import axios from "axios";
+import Styles from "./Pages-Styles/StockProfileStyles";
 import MyLineGraph from "../components/MyLineGraph";
 
 class StockProfile extends Component {
@@ -100,35 +101,44 @@ class StockProfile extends Component {
 
   render() {
     return (
-      <div className="container">
-        <Container>
-          <Card>
-            <Card.Header>
-              <h2>{this.state.stock.name}</h2>
-            </Card.Header>
+      <Styles>
+        <div className="STOCKPROFILE-body">
+          <h1>{this.state.stock.name}</h1>
+          <Container>
+            <Row className="STOCKPROFILE-row">
+              <Col sm={4}>
+                <Card>
+                  <Card.Header>
+                    <h2>{this.state.stock.name}</h2>
+                  </Card.Header>
 
-            <Card.Body>
-              <Card.Title>Symbol: {this.state.stock.symbol}</Card.Title>
-              <Card.Text>Price: {this.state.stock.price}</Card.Text>
-              <pre>{JSON.stringify(this.state.stock, null, 2)}</pre>
-            </Card.Body>
+                  <Card.Body>
+                    <Card.Title>Symbol: {this.state.stock.symbol}</Card.Title>
+                    <Card.Text>Price: {this.state.stock.price}</Card.Text>
+                    <pre>{JSON.stringify(this.state.stock, null, 2)}</pre>
+                  </Card.Body>
+                </Card>
+              </Col>
+              <Col sm={8}>
+                <MyLineGraph
+                  historyDates={this.state.historyDates}
+                  historyOpenData={this.state.historyOpenData}
+                  historyCloseData={this.state.historyCloseData}
+                />
+              </Col>
+            </Row>
+          </Container>
+          <Card>
+            <Card.Title>HISTORY DATA</Card.Title>
+            <pre className="layout__item u-1/2-lap-and-up">
+              {JSON.stringify(this.state.historyData, null, 2)}
+            </pre>
           </Card>
-        </Container>
-        <Card>
-          <Card.Title>HISTORY DATA</Card.Title>
-          <pre className="layout__item u-1/2-lap-and-up">
-            {JSON.stringify(this.state.historyData, null, 2)}
-          </pre>
-        </Card>
-        <Card>
-          <Card.Title>Historical Data {this.state.stock.symbol}</Card.Title>
-          <MyLineGraph
-            historyDates={this.state.historyDates}
-            historyOpenData={this.state.historyOpenData}
-            historyCloseData={this.state.historyCloseData}
-          />
-        </Card>
-      </div>
+          <Card>
+            <Card.Title>Historical Data {this.state.stock.symbol}</Card.Title>
+          </Card>
+        </div>
+      </Styles>
     );
   }
 }
