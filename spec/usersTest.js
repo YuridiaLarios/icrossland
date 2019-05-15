@@ -25,10 +25,18 @@ describe("A suite is just a function", function() {
 
 describe("public route test", function() {
   it("responds with json", async function() {
+    // different language comes from request from supertest
     const res = await request(index.app)
-      .get("/api/public")
+      .get("/public")
       .set("Accept", "application/json")
-      .expect("Content-Type", /json/)
-      .expect(200);
+      .expect(200)
+      .expect("Content-Type", /json/);
+
+    // console.log(res);
+    // different language: JASMINE
+    expect(res.body).toEqual({
+      message:
+        "Hello from a public endpoint! You don't need to be authenticated to see this."
+    });
   });
 });
