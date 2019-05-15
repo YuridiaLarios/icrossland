@@ -51,12 +51,9 @@ class Dashboard extends Component {
       .then(res => this.setState({ favStocks: res.data }));
   }
 
-  // TODO: figure how to do componentDidUpdate correctly
   componentDidUpdate(prevProps) {
-    console.log(Array.from(this.props.favoriteStocks).join());
-    console.log(this.state.favoriteStocks.join());
-
-    // Typical usage (don't forget to compare props):
+    // console.log(Array.from(this.props.favoriteStocks).join());
+    // console.log(this.state.favoriteStocks.join());
     if (
       Array.from(this.props.favoriteStocks).join() !=
       this.state.favoriteStocks.join()
@@ -169,6 +166,7 @@ class Dashboard extends Component {
             <SingleStockDiv
               key={item.symbol}
               item={item}
+              favoriteStocks={this.props.favoriteStocks}
               getIndividualStockProfile={this.props.getIndividualStockProfile}
               getSymbolToTrack={this.props.getSymbolToTrack}
               deleteSymbolToTrack={this.props.deleteSymbolToTrack}

@@ -19,31 +19,29 @@ class SingleStockDiv extends Component {
   }
 
   render() {
-    // console.log("favorite stocks props set = ", this.props.favoriteStocks);
-    // console.log("set has 6 ", this.props.favoriteStocks.has("AAPL"));
+    console.log("favorite stocks props set = ", this.props.favoriteStocks);
 
-    // let trackOrUntrackButton;
+    let trackOrUntrackButton;
 
-    // if (this.props.favoriteStocks.has(this.props.getSymbolToTrack)) {
-    //   trackOrUntrackButton = (
-    //     <>
-    //       <FavoriteStockDeleteButton
-    //         item={this.props.item}
-    //         deleteSymbolToTrack={this.props.deleteSymbolToTrack}
-    //       />
-    //       ;
-    //     </>
-    //   );
-    // } else {
-    //   trackOrUntrackButton = (
-    //     <>
-    //       <FavoriteStockButton
-    //         item={this.props.item}
-    //         getSymbolToTrack={this.props.getSymbolToTrack}
-    //       />
-    //     </>
-    //   );
-    // }
+    if (this.props.favoriteStocks.has(this.props.item.symbol)) {
+      trackOrUntrackButton = (
+        <>
+          <FavoriteStockDeleteButton
+            item={this.props.item}
+            deleteSymbolToTrack={this.props.deleteSymbolToTrack}
+          />
+        </>
+      );
+    } else {
+      trackOrUntrackButton = (
+        <>
+          <FavoriteStockButton
+            item={this.props.item}
+            getSymbolToTrack={this.props.getSymbolToTrack}
+          />
+        </>
+      );
+    }
 
     let prevClose = this.props.item.last_trade_time;
     let prevCloseDate =
@@ -101,16 +99,16 @@ class SingleStockDiv extends Component {
             getIndividualStockProfile={this.props.getIndividualStockProfile}
           />
 
-          {/* {trackOrUntrackButton} */}
+          {trackOrUntrackButton}
 
-          <FavoriteStockButton
+          {/* <FavoriteStockButton
             item={this.props.item}
             getSymbolToTrack={this.props.getSymbolToTrack}
           />
           <FavoriteStockDeleteButton
             item={this.props.item}
             deleteSymbolToTrack={this.props.deleteSymbolToTrack}
-          />
+          /> */}
         </Card.Body>
       </Card>
     );

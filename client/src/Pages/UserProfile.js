@@ -72,6 +72,7 @@ class UserProfile extends Component {
             <SingleStockDiv
               key={item.symbol}
               item={item}
+              favoriteStocks={this.props.favoriteStocks}
               getIndividualStockProfile={this.props.getIndividualStockProfile}
               getSymbolToTrack={this.props.getSymbolToTrack}
               deleteSymbolToTrack={this.props.deleteSymbolToTrack}
