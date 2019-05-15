@@ -30,10 +30,8 @@ class Profile extends Component {
   getFavoriteStocks() {
     let favoriteStocks;
     if (this.props.favoriteStocks) {
-      console.log("props were passed!");
       favoriteStocks = this.props.favoriteStocks;
     } else {
-      console.log("fetch is needed!");
       axios
         .get(`${VARS_CONFIG.localhost}/api/myFavoriteStocks`, {
           params: this.state.user.sub
@@ -53,19 +51,6 @@ class Profile extends Component {
       .then(res => this.setState({ favStocks: res.data }));
   }
 
-  componentDidUpdate(prevProps) {
-    // Typical usage (don't forget to compare props):
-    if (this.props.favoriteStocks !== prevProps.favoriteStocks) {
-      let stringSymbols = this.props.favoriteStocks.toString();
-      axios
-        .get(`${VARS_CONFIG.localhost}/api/stocks/`, {
-          params: {
-            data: stringSymbols
-          }
-        })
-        .then(res => this.setState({ favStocks: res.data }));
-    }
-  }
 
   componentWillMount() {
     const { userProfile, getProfile } = this.props.auth;
@@ -101,15 +86,13 @@ class Profile extends Component {
           />
           {/* USERS DIVS */}
           <Row sm={6} md={6} lg={4} className="usersContainer">
+          {/* TODO: SKIP RENDERING YOURSELF IN ALL USERS */}
             {_users.map(item => {
               return (
                 <SingleUserDiv
                   key={item._id}
                   item={item}
                   getIndividualUserProfile={this.props.getIndividualUserProfile}
-                  // favoriteStocks={this.state.favoriteStocks}
-                  // getSymbolToTrack={this.props.addSymbolToTrack}
-                  // deleteSymbolToTrack={this.props.deleteSymbolToTrack}
                 />
               );
             })}
