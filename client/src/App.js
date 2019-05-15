@@ -89,7 +89,7 @@ class App extends Component {
     let updatedSymbols = this.state.favoriteStocks.slice();
 
     let symbolIndex = updatedSymbols.indexOf(symbol);
-    if (symbolIndex != -1) {
+    if (symbolIndex !== -1) {
       updatedSymbols.splice(symbolIndex, 1);
       this.setState(
         {
@@ -102,32 +102,12 @@ class App extends Component {
     }
   };
 
-  // // ADDING USER TO UI
-  // // binds this method to App.js instance
-  // addUser = newUser => {
-  //   // CREATING A NEW INSTANCE SO REACT CAN COMPARE OLD STATES TO NEW STATES
-  //   let updatedUsers = Array.from(this.state.users);
-  //   updatedUsers.push(newUser);
-  //   this.setState({
-  //     // takes an object and merges that object into the current state
-  //     users: updatedUsers
-  //   });
-  // };
-
-  // // DELETING USER FROM UI
-  // //binds this method to App.js instance
-  // deleteUser = deletedUser => {
-  //   // CREATING A NEW INSTANCE SO REACT CAN COMPARE OLD STATES TO NEW STATES
-  //   let updatedUsers = Array.from(this.state.users);
-  //   let oldUser = this.state.users.findIndex(function(element) {
-  //     return deletedUser._id === element._id;
-  //   });
-  //   updatedUsers.splice(oldUser, 1);
-  //   this.setState({
-  //     // takes an object and merges that object into the current state
-  //     users: updatedUsers
-  //   });
-  // };
+  /******************************************************************** 
+  APP: 
+  * Get all users into UI
+  * Get all stocks into UI
+  * Get all symbols (favorite stocks) for current user into UI
+  *********************************************************************/
 
   componentDidMount() {
     let profile = auth.getProfile();
@@ -166,6 +146,17 @@ class App extends Component {
       .catch(error => this.setState({ error: true }));
   }
 
+  /******************************************************************** 
+  APP ROUTES: 
+  * ("/") homepage/login/explore
+  * Dashboard
+  * Users
+  * User profile by ID
+  * Stock profile by ID
+  # logout 
+  # login callback 
+  *********************************************************************/
+
   render() {
     return (
       <div className="App">
@@ -179,12 +170,13 @@ class App extends Component {
                   path="/"
                   render={props => (
                     <Homepage
-                      users={this.state.users}
-                      stocks={this.state.stocks}
+                      // users={this.state.users}
                       {...this.props}
-                      getIndividualUserProfile={this.getIndividualUserProfile}
+                      stocks={this.state.stocks}
+                      // getIndividualUserProfile={this.getIndividualUserProfile}
                       getIndividualStockProfile={this.getIndividualStockProfile}
                       getSymbolToTrack={this.addSymbolToTrack}
+                      deleteSymbolToTrack={this.deleteSymbolToTrack}
                     />
                   )}
                 />
@@ -196,7 +188,7 @@ class App extends Component {
                   render={props =>
                     this.props.auth.isAuthenticated() ? (
                       <Dashboard
-                        users={this.state.users}
+                        // users={this.state.users}
                         favoriteStocks={this.state.favoriteStocks}
                         {...this.props}
                         getIndividualUserProfile={
@@ -221,11 +213,12 @@ class App extends Component {
                         {...this.props}
                         users={this.state.users}
                         getIndividualUserProfile={this.getIndividualUserProfile}
-                        deleteUser={this.deleteUser}
                         getIndividualStockProfile={
                           this.getIndividualStockProfile
                         }
+                        favoriteStocks={this.state.favoriteStocks}
                         getSymbolToTrack={this.addSymbolToTrack}
+                        deleteSymbolToTrack={this.deleteSymbolToTrack}
                       />
                     ) : (
                       <Redirect to={{ pathname: "/" }} />
@@ -243,6 +236,9 @@ class App extends Component {
                         getIndividualStockProfile={
                           this.getIndividualStockProfile
                         }
+                        favoriteStocks={this.state.favoriteStocks}
+                        getSymbolToTrack={this.addSymbolToTrack}
+                        deleteSymbolToTrack={this.deleteSymbolToTrack}
                       />
                     ) : (
                       <Homepage {...this.props} />

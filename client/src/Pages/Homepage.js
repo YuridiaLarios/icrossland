@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import logo2 from "../globe-308800.svg";
 import logo4 from "../header.svg";
 import Styles from "./Pages-Styles/HomepageStyles";
-import { Card, Col, Container, Row } from "react-bootstrap";
+import { Card, Container, Row } from "react-bootstrap";
 import SingleStockDiv from "../components/SingleStockDiv";
 
 class Homepage extends Component {
@@ -80,8 +80,7 @@ class Homepage extends Component {
                           this.props.getIndividualStockProfile
                         }
                         getSymbolToTrack={this.props.getSymbolToTrack}
-                        addUser={this.props.addUser}
-                        deleteUser={this.props.deleteUser}
+                        deleteSymbolToTrack={this.props.deleteSymbolToTrack}
                       />
                     </div>
                   );

@@ -46,6 +46,9 @@ class SingleUserDiv extends Component {
           <UserProfileButton
             item={this.props.item}
             getIndividualUserProfile={this.props.getIndividualUserProfile}
+            favoriteStocks={this.state.favoriteStocks}
+            getSymbolToTrack={this.props.addSymbolToTrack}
+            deleteSymbolToTrack={this.props.deleteSymbolToTrack}
           />
         </Card.Body>
       </Card>

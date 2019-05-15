@@ -74,6 +74,7 @@ class UserProfile extends Component {
               item={item}
               getIndividualStockProfile={this.props.getIndividualStockProfile}
               getSymbolToTrack={this.props.getSymbolToTrack}
+              deleteSymbolToTrack={this.props.deleteSymbolToTrack}
             />
           );
         })}

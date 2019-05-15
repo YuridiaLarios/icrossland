@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Row } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
+import { VARS_CONFIG } from "../react-variables";
+import axios from "axios";
 import SingleUserDiv from "../components/SingleUserDiv";
 import Styles from "./Pages-Styles/AllUsersStyles";
 import "../Auth/Auth";
@@ -13,6 +15,7 @@ class Profile extends Component {
     this.state = {
       users: props.users,
       profile: {},
+      favStocks: [],
       searchString: ""
     };
     this.handleChange = this.handleChange.bind(this);
@@ -24,14 +27,54 @@ class Profile extends Component {
     });
   }
 
+  getFavoriteStocks() {
+    let favoriteStocks;
+    if (this.props.favoriteStocks) {
+      console.log("props were passed!");
+      favoriteStocks = this.props.favoriteStocks;
+    } else {
+      console.log("fetch is needed!");
+      axios
+        .get(`${VARS_CONFIG.localhost}/api/myFavoriteStocks`, {
+          params: this.state.user.sub
+        })
+        .then(response => {
+          favoriteStocks = response.data.favoriteStocks;
+        })
+        .catch(error => this.setState({ error: true }));
+    }
+    let stringSymbols = favoriteStocks.toString();
+    axios
+      .get(`${VARS_CONFIG.localhost}/api/stocks/`, {
+        params: {
+          data: stringSymbols
+        }
+      })
+      .then(res => this.setState({ favStocks: res.data }));
+  }
+
+  componentDidUpdate(prevProps) {
+    // Typical usage (don't forget to compare props):
+    if (this.props.favoriteStocks !== prevProps.favoriteStocks) {
+      let stringSymbols = this.props.favoriteStocks.toString();
+      axios
+        .get(`${VARS_CONFIG.localhost}/api/stocks/`, {
+          params: {
+            data: stringSymbols
+          }
+        })
+        .then(res => this.setState({ favStocks: res.data }));
+    }
+  }
+
   componentWillMount() {
     const { userProfile, getProfile } = this.props.auth;
     if (!userProfile) {
       getProfile((err, profile) => {
-        this.setState({ profile });
+        this.setState({ profile }, this.getFavoriteStocks);
       });
     } else {
-      this.setState({ profile: userProfile });
+      this.setState({ profile: userProfile }, this.getFavoriteStocks);
     }
   }
 
@@ -64,8 +107,9 @@ class Profile extends Component {
                   key={item._id}
                   item={item}
                   getIndividualUserProfile={this.props.getIndividualUserProfile}
-                  addUser={this.props.addUser}
-                  deleteUser={this.props.deleteUser}
+                  // favoriteStocks={this.state.favoriteStocks}
+                  // getSymbolToTrack={this.props.addSymbolToTrack}
+                  // deleteSymbolToTrack={this.props.deleteSymbolToTrack}
                 />
               );
             })}

@@ -3,6 +3,8 @@ import { Card, Table } from "react-bootstrap";
 import { VARS_CONFIG } from "../react-variables";
 import StockProfileButton from "./StockProfileButton";
 import FavoriteStockButton from "./FavoriteStockButton";
+import FavoriteStockDeleteButton from "./FavoriteStockDeleteButton";
+
 import axios from "axios";
 import Auth from "../Auth/Auth";
 
@@ -10,7 +12,7 @@ const auth = new Auth();
 
 class SingleStockDiv extends Component {
   constructor(props) {
-    super(props); 
+    super(props);
     this.state = {
       stock: {}
     };
@@ -82,17 +84,6 @@ class SingleStockDiv extends Component {
               </tbody>
             </Table>
             Closed: {prevCloseDate} <br /> <br />
-            {/* 52_week_high: {this.props.item.52_week_high} <br /> <br /> */}
-            {/* 52_week_low: {this.props.item.52_week_low} <br /> <br /> */}
-            {/* market_cap: {this.props.item.market_cap} <br /> <br /> */}
-            {/* volume: {this.props.item.volume} <br /> <br /> */}
-            {/* shares: {this.props.item.shares} <br /> <br /> */}
-            {/* stock_exchange_short: {
-              this.props.item.stock_exchange_short
-            } <br /> <br /> */}
-            {/* timezone: {this.props.item.timezone} <br /> <br /> */}
-            {/* timezone_name: {this.props.item.timezone_name} <br /> <br /> */}
-            {/* gmt_offset: {this.props.item.gmt_offset} <br /> <br /> */}
           </div>
           <StockProfileButton
             item={this.props.item}
@@ -101,6 +92,10 @@ class SingleStockDiv extends Component {
           <FavoriteStockButton
             item={this.props.item}
             getSymbolToTrack={this.props.getSymbolToTrack}
+          />
+          <FavoriteStockDeleteButton
+            item={this.props.item}
+            deleteSymbolToTrack={this.props.deleteSymbolToTrack}
           />
         </Card.Body>
       </Card>
