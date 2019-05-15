@@ -24,7 +24,7 @@ class App extends Component {
       fakeusers: [],
       users: [],
       stocks: [],
-      favoriteStocks: [], //TODO: Consider using a new Set()
+      favoriteStocks: new Set(), //TODO: Consider using a new Set()
       individualUserProfile: {},
       individualStockProfile: {}
     };
@@ -77,9 +77,10 @@ class App extends Component {
   addSymbolToTrack = symbol => {
     let updatedSymbols = this.state.favoriteStocks.slice();
     updatedSymbols.push(symbol);
+    let uniqueUpdateSymbols = [...new Set(updatedSymbols)];
     this.setState(
       {
-        favoriteStocks: updatedSymbols
+        favoriteStocks: uniqueUpdateSymbols
       },
       this.updateSymbolsInDatabase
     );
@@ -197,6 +198,7 @@ class App extends Component {
                         getIndividualStockProfile={
                           this.getIndividualStockProfile
                         }
+                        getSymbolToTrack={this.addSymbolToTrack}
                         deleteSymbolToTrack={this.deleteSymbolToTrack}
                       />
                     ) : (
