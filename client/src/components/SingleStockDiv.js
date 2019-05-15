@@ -18,22 +18,33 @@ class SingleStockDiv extends Component {
     };
   }
 
-  // to handle deleting an event from database
-  handleDeleteSearch = deletedUser => {
-    const headers = { Authorization: `Bearer ${auth.getAccessToken()}` };
-    console.log("access token from singleStockUser = ", auth.getAccessToken());
-
-    axios({
-      method: "delete",
-      url: `${VARS_CONFIG.localhost}/api/users/` + deletedUser._id,
-      headers
-    }).then(res => {
-      this.props.deleteUser(res);
-      console.log(res);
-    });
-  };
-
   render() {
+    // console.log("favorite stocks props set = ", this.props.favoriteStocks);
+    // console.log("set has 6 ", this.props.favoriteStocks.has("AAPL"));
+
+    // let trackOrUntrackButton;
+
+    // if (this.props.favoriteStocks.has(this.props.getSymbolToTrack)) {
+    //   trackOrUntrackButton = (
+    //     <>
+    //       <FavoriteStockDeleteButton
+    //         item={this.props.item}
+    //         deleteSymbolToTrack={this.props.deleteSymbolToTrack}
+    //       />
+    //       ;
+    //     </>
+    //   );
+    // } else {
+    //   trackOrUntrackButton = (
+    //     <>
+    //       <FavoriteStockButton
+    //         item={this.props.item}
+    //         getSymbolToTrack={this.props.getSymbolToTrack}
+    //       />
+    //     </>
+    //   );
+    // }
+
     let prevClose = this.props.item.last_trade_time;
     let prevCloseDate =
       new Date(prevClose).toLocaleDateString() +
@@ -89,6 +100,9 @@ class SingleStockDiv extends Component {
             item={this.props.item}
             getIndividualStockProfile={this.props.getIndividualStockProfile}
           />
+
+          {/* {trackOrUntrackButton} */}
+
           <FavoriteStockButton
             item={this.props.item}
             getSymbolToTrack={this.props.getSymbolToTrack}

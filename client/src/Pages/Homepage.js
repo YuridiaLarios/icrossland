@@ -11,14 +11,13 @@ class Homepage extends Component {
     this.state = {
       searchString: ""
     };
-    this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange() {
+  handleChange = () => {
     this.setState({
       searchString: this.refs.search.value
     });
-  }
+  };
 
   render() {
     let _stocks = this.props.stocks;
@@ -72,10 +71,14 @@ class Homepage extends Component {
               <Row className="row-card-stocks">
                 {_stocks.map(item => {
                   return (
-                    <div className="col s12 m12 l4 individual-stock-card">
+                    <div
+                      key={item.symbol}
+                      className="col s12 m12 l4 individual-stock-card"
+                    >
                       <SingleStockDiv
                         key={item.symbol}
                         item={item}
+                        favoriteStocks={this.props.favoriteStocks}
                         getIndividualStockProfile={
                           this.props.getIndividualStockProfile
                         }

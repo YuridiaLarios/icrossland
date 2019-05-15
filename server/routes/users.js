@@ -24,13 +24,22 @@ const checkJwt = jwt({
 /*************************************
  ROUTES FOR TESTING PURPOSES
 **************************************/
+function wrapAsync(fn) {
+  return function(req, res, next) {
+    fn(req, res, next).catch(next);
+  };
+}
 
-router.get("/public", function(req, res) {
-  res.json({
-    message:
-      "Hello from a public endpoint! You don't need to be authenticated to see this."
-  });
-});
+router.get(
+  "/public",
+  wrapAsync(async function(req, res) {
+    console.log("public monster is been hit!");
+    res.json({
+      message:
+        "Hello from a public endpoint! You don't need to be authenticated to see this."
+    });
+  })
+);
 
 router.get("/private", checkJwt, function(req, res) {
   // console.log("request: ", req)
@@ -167,10 +176,8 @@ router.delete("/users/:id", function(req, res) {
 
 // UPDATE SYMBOLS TO USER'S FAVORITE STOCKS
 router.put("/stockFav", function(req, res) {
-  // console.log("caracol req: ", req.query[0]);
-  // let id = "5cd71b9b3b04986c2f2cc1ff";
   let authID = req.query[0];
-  let symbols = [...new Set(req.body)];
+  let symbols = req.body;
 
   // console.log(symbols);
 

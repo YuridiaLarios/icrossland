@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jasmine",
     "start": "node server/index.js",
     "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   },
@@ -34,6 +34,11 @@
     "negotiator": "^0.6.1",
     "passport": "^0.4.0",
     "passport-google-oauth20": "^2.0.0",
-    "pg": "^7.10.0"
+    "pg": "^7.10.0",
+    "proxyquire": "^2.1.0"
+  },
+  "devDependencies": {
+    "jasmine": "^3.4.0",
+    "supertest": "^4.0.2"
   }
 }

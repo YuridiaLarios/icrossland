@@ -13,7 +13,7 @@ class FavoriteStockDeleteButton extends Component {
   handleSubmit = event => {
     event.preventDefault();
     let stockSymbol = this.props.item.symbol;
-    console.log("track button Clicked!" + this.props.item.symbol);
+    console.log("untrack button Clicked!" + this.props.item.symbol);
 
     this.props.deleteSymbolToTrack(stockSymbol);
   };

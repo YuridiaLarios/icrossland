@@ -58,7 +58,7 @@ class App extends Component {
   // function to add or delete symbols from current user in database
   updateSymbolsInDatabase() {
     let profile = auth.getProfile();
-    let symbols = this.state.favoriteStocks;
+    let symbols = Array.from(this.state.favoriteStocks);
     console.log("Symbols updated:", symbols);
 
     axios({
@@ -76,12 +76,12 @@ class App extends Component {
 
   // function to add symbols to the parent component state, after track button is clicked
   addSymbolToTrack = symbol => {
-    let updatedSymbols = this.state.favoriteStocks.slice();
-    updatedSymbols.push(symbol);
-    let uniqueUpdateSymbols = [...new Set(updatedSymbols)];
+    console.log("adding symbol clicked");
+    let updatedSymbols = this.state.favoriteStocks;
+    updatedSymbols.add(symbol);
     this.setState(
       {
-        favoriteStocks: uniqueUpdateSymbols
+        favoriteStocks: updatedSymbols
       },
       this.updateSymbolsInDatabase
     );
@@ -89,11 +89,14 @@ class App extends Component {
 
   // function to delete symbols from the parent component state, after untrack button is clicked
   deleteSymbolToTrack = symbol => {
-    let updatedSymbols = this.state.favoriteStocks.slice();
+    console.log("deleting symbol clicked");
+    let updatedSymbols = this.state.favoriteStocks;
+    let query = updatedSymbols.has(symbol);
+    // console.log("is this a set??? ", updatedSymbols);
+    // console.log("does set contains " + symbol + " = " + query);
+    if (query) {
+      updatedSymbols.delete(symbol);
 
-    let symbolIndex = updatedSymbols.indexOf(symbol);
-    if (symbolIndex !== -1) {
-      updatedSymbols.splice(symbolIndex, 1);
       this.setState(
         {
           favoriteStocks: updatedSymbols
@@ -145,7 +148,8 @@ class App extends Component {
         headers
       })
       .then(response => {
-        this.setState({ favoriteStocks: response.data.favoriteStocks });
+        let favoriteStocksSet = new Set(response.data.favoriteStocks);
+        this.setState({ favoriteStocks: favoriteStocksSet });
       })
       .catch(error => this.setState({ error: true }));
   }

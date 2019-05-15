@@ -16,6 +16,7 @@ class Dashboard extends Component {
     this.state = {
       user: {},
       favStocks: [],
+      favoriteStocks: Array.from(props.favoriteStocks),
       message: "",
       searchString: "",
       accessToken: ""
@@ -24,18 +25,19 @@ class Dashboard extends Component {
   }
 
   getFavoriteStocks() {
+    let favoriteStocksArray = Array.from(this.props.favoriteStocks);
+
     let favoriteStocks;
-    if (this.props.favoriteStocks) {
-      console.log("props were passed!");
-      favoriteStocks = this.props.favoriteStocks;
+    if (favoriteStocksArray) {
+      favoriteStocks = favoriteStocksArray;
     } else {
-      console.log("fetch is needed!");
       axios
         .get(`${VARS_CONFIG.localhost}/api/myFavoriteStocks`, {
           params: this.state.user.sub
         })
         .then(response => {
-          favoriteStocks = response.data.favoriteStocks;
+          let favoriteStocksFetched = response.data.favoriteStocks;
+          favoriteStocks = favoriteStocksFetched;
         })
         .catch(error => this.setState({ error: true }));
     }
@@ -49,17 +51,29 @@ class Dashboard extends Component {
       .then(res => this.setState({ favStocks: res.data }));
   }
 
+  // TODO: figure how to do componentDidUpdate correctly
   componentDidUpdate(prevProps) {
+    console.log(Array.from(this.props.favoriteStocks).join());
+    console.log(this.state.favoriteStocks.join());
+
     // Typical usage (don't forget to compare props):
-    if (this.props.favoriteStocks !== prevProps.favoriteStocks) {
-      let stringSymbols = this.props.favoriteStocks.toString();
+    if (
+      Array.from(this.props.favoriteStocks).join() !=
+      this.state.favoriteStocks.join()
+    ) {
+      let stringSymbols = Array.from(this.props.favoriteStocks).toString();
       axios
         .get(`${VARS_CONFIG.localhost}/api/stocks/`, {
           params: {
             data: stringSymbols
           }
         })
-        .then(res => this.setState({ favStocks: res.data }));
+        .then(res =>
+          this.setState({
+            favStocks: res.data,
+            favoriteStocks: Array.from(this.props.favoriteStocks)
+          })
+        );
     }
   }
 
@@ -131,6 +145,7 @@ class Dashboard extends Component {
 
   render() {
     let _favStocks = this.state.favStocks;
+    // console.log(_favStocks);
     let search = this.state.searchString.trim().toLowerCase();
 
     if (search.length > 0) {
@@ -144,8 +159,9 @@ class Dashboard extends Component {
 
     // console.log(
     //   "the props that arrived for favStocks:",
-    //   this.props.favoriteStocks
+    //   Array.from(this.props.favoriteStocks)
     // );
+
     const favoriteStocks = this.state.favStocks ? (
       <>
         {_favStocks.map(item => {

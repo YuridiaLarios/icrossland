@@ -138,10 +138,12 @@ input[type="text"]:focus {
     margin: 20px auto;
     text-align: center;
     padding: 50px;
+    align-items: center;
+    justify-content: center;
   }
 
-  .individual-stock-card {
-    margin: 10px;
+  #stock-card {
+    margin: 10px auto;
   }
 
   .card-body {

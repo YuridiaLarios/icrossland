@@ -3,15 +3,17 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 // setup environment
 dotenv.config();
-const app = express();
 const path = require("path");
 const cors = require("cors");
 const morgan = require("morgan");
+const jwt = require("express-jwt");
+const jwtAuthz = require("express-jwt-authz");
+const jwksRsa = require("jwks-rsa");
 const users = require("./routes/users");
 const posts = require("./routes/posts");
 const stocks = require("./routes/stockMarket");
 
-
+const app = express();
 
 app.use(cors());
 
@@ -33,21 +35,47 @@ app.use("/api/posts", posts);
 app.use("/api/stocks", stocks);
 // app.use("/api/profile", profile);
 
+const checkJwt = jwt({
+  // Dynamically provide a signing key based on the kid in the header and the singing keys provided by the JWKS endpoint.
+  secret: jwksRsa.expressJwtSecret({
+    cache: true,
+    rateLimit: true,
+    jwksRequestsPerMinute: 50,
+    jwksUri: `https://${process.env.AUTH0_DOMAIN}/.well-known/jwks.json`
+  }),
+
+  // Validate the audience and the issuer.
+  audience: process.env.AUTH0_AUDIENCE,
+  issuer: `https://${process.env.AUTH0_DOMAIN}/`,
+  algorithms: ["RS256"]
+});
+
+app.get("/private", checkJwt, function(req, res) {
+  // console.log("request: ", req)
+  res.json({
+    message:
+      "Hello from a private endpoint! You need to be authenticated and have a scope of read:messages to see this."
+  });
+});
+
 // mongo db connect
-mongoose.set("useCreateIndex", true);
-mongoose.connect(
-  process.env.DB_MONGODBURI,
-  {
-    useNewUrlParser: true
-  },
-  function(error) {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log("connected to mongo database yay!");
+if (process.env.NODE_ENV !== "test") {
+  mongoose.set("useCreateIndex", true);
+  console.log("my mongo key = ", process.env.DB_MONGODBURI);
+  mongoose.connect(
+    process.env.DB_MONGODBURI,
+    {
+      useNewUrlParser: true
+    },
+    function(error) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log("connected to mongo database yay!");
+      }
     }
-  }
-);
+  );
+}
 
 // Run app
 app.listen(
