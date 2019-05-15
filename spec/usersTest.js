@@ -28,7 +28,6 @@ describe("public route test", function() {
     // different language comes from request from supertest
     const res = await request(index.app)
       .get("/public")
-      .set("Accept", "application/json")
       .expect(200)
       .expect("Content-Type", /json/);
 
@@ -38,5 +37,14 @@ describe("public route test", function() {
       message:
         "Hello from a public endpoint! You don't need to be authenticated to see this."
     });
+  });
+});
+
+describe("private route test", function() {
+  it("responds with error if no token is provided", async function() {
+    // different language comes from request from supertest
+    const res = await request(index.app)
+      .get("/private")
+      .expect(401);
   });
 });
