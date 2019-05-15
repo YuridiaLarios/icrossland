@@ -1,19 +1,17 @@
 const express = require("express");
-const request = require("supertest");
-const http = require("http"); // install/create a dummy server
-// var proxyquire = require("proxyquire");
-const index = require("../server/index");
-// const index = proxyquire("../server/index", {
-//   mongoose: {
-//     set: function() {
-//       console.log("set overrided");
-//     },
-//     connect: function() {
-//       console.log("connect override");
-//     }
-//   }
-// });
-const server = http.createServer(index.app);
+const request = require("supertest"); //http testing in jasmine, simulates making request to my app
+var proxyquire = require("proxyquire");
+const index = proxyquire("../server/index", {
+  mongoose: {
+    set: function() {
+      console.log("set overrided");
+    },
+    connect: function() {
+      console.log("connect override");
+    }
+  }
+});
+// console.log({ index });
 
 describe("A suite is just a function", function() {
   var a;
@@ -27,16 +25,10 @@ describe("A suite is just a function", function() {
 
 describe("public route test", function() {
   it("responds with json", async function() {
-    console.log("DEBUG", JSON.stringify(index.app, null, 2));
-    console.log("DEBUGINDEX", JSON.stringify(index, null, 2));
-
-    const res = await request(server)
+    const res = await request(index.app)
       .get("/api/public")
       .set("Accept", "application/json")
       .expect("Content-Type", /json/)
       .expect(200);
-    console.log("res **** ", res);
-    // expect(false).toBe(true);
-    // done();
   });
 });

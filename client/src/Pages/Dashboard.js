@@ -189,7 +189,7 @@ class Dashboard extends Component {
           <br />
           <Container>
             <Row>
-              <Col sm={4}>
+              <Col md={12} lg={4}>
                 <Card id="user-card">
                   <Card.Header id="user-card-header">
                     {this.state.user.username}
@@ -216,7 +216,11 @@ class Dashboard extends Component {
                   </Card.Body>
                 </Card>
               </Col>
-              <Col sm={8} style={{ overflowX: "scroll", fontSize: "14px" }}>
+              <Col
+                md={12}
+                lg={8}
+                style={{ overflowX: "scroll", fontSize: "14px" }}
+              >
                 <div className="favStock-card-list">{favoriteStocks}</div>
               </Col>
             </Row>

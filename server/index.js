@@ -50,8 +50,14 @@ const checkJwt = jwt({
   algorithms: ["RS256"]
 });
 
+app.get("/public", function(req, res) {
+  res.json({
+    message:
+      "Hello from a public endpoint! You don't need to be authenticated to see this."
+  });
+});
+
 app.get("/private", checkJwt, function(req, res) {
-  // console.log("request: ", req)
   res.json({
     message:
       "Hello from a private endpoint! You need to be authenticated and have a scope of read:messages to see this."
@@ -59,22 +65,20 @@ app.get("/private", checkJwt, function(req, res) {
 });
 
 // mongo db connect
-if (process.env.NODE_ENV !== "test") {
-  mongoose.set("useCreateIndex", true);
-  mongoose.connect(
-    process.env.DB_MONGODBURI,
-    {
-      useNewUrlParser: true
-    },
-    function(error) {
-      if (error) {
-        console.log(error);
-      } else {
-        console.log("connected to mongo database yay!");
-      }
+mongoose.set("useCreateIndex", true);
+mongoose.connect(
+  process.env.DB_MONGODBURI,
+  {
+    useNewUrlParser: true
+  },
+  function(error) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("connected to mongo database yay!");
     }
-  );
-}
+  }
+);
 
 // Run app
 app.listen(
@@ -91,3 +95,5 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.join(__dirname, "../client/build", "index.html"));
   });
 }
+
+module.exports = { app };
