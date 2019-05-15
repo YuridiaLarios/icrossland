@@ -1,11 +1,8 @@
 import React, { Component } from "react";
 import { Card } from "react-bootstrap";
-import { VARS_CONFIG } from "../react-variables";
 import UserProfileButton from "./UserProfileButton";
-import axios from "axios";
-import Auth from "../Auth/Auth";
+import "../Auth/Auth";
 
-const auth = new Auth();
 
 class SingleUserDiv extends Component {
   constructor(props) {
@@ -14,21 +11,6 @@ class SingleUserDiv extends Component {
       users: {}
     };
   }
-
-  // to handle deleting an event from database
-  handleDeleteSearch = deletedUser => {
-    const headers = { Authorization: `Bearer ${auth.getAccessToken()}` };
-    console.log("acesstoken from singleUserDiv = ", auth.getAccessToken());
-
-    axios({
-      method: "delete",
-      url: `${VARS_CONFIG.localhost}/api/users/` + deletedUser._id,
-      headers
-    }).then(res => {
-      this.props.deleteUser(res);
-      console.log(res);
-    });
-  };
 
   render() {
     let joined = this.props.item.date;

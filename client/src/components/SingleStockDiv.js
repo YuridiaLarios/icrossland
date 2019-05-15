@@ -1,14 +1,9 @@
 import React, { Component } from "react";
 import { Card, Table } from "react-bootstrap";
-import { VARS_CONFIG } from "../react-variables";
 import StockProfileButton from "./StockProfileButton";
 import FavoriteStockButton from "./FavoriteStockButton";
 import FavoriteStockDeleteButton from "./FavoriteStockDeleteButton";
-
-import axios from "axios";
-import Auth from "../Auth/Auth";
-
-const auth = new Auth();
+import "../Auth/Auth";
 
 class SingleStockDiv extends Component {
   constructor(props) {
@@ -19,7 +14,7 @@ class SingleStockDiv extends Component {
   }
 
   render() {
-    console.log("favorite stocks props set = ", this.props.favoriteStocks);
+    // console.log("favorite stocks props set = ", this.props.favoriteStocks);
 
     let trackOrUntrackButton;
 

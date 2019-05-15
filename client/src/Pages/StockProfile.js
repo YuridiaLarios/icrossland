@@ -59,7 +59,7 @@ class StockProfile extends Component {
     const headers = { Authorization: `Bearer ${getAccessToken()}` };
 
     if (isEmpty(this.props.stock)) {
-      console.log("no props, fetch needed");
+      // console.log("no props, fetch needed");
       axios
         .get(
           `${VARS_CONFIG.localhost}/api/stocks/${
@@ -81,7 +81,7 @@ class StockProfile extends Component {
         })
         .catch(error => this.setState({ error: true }));
     } else {
-      console.log("props were passed!");
+      // console.log("props were passed!");
 
       //REAL AXIOS CALL FOR HISTORY/USER.SYMBOL
       axios

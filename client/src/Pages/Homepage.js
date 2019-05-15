@@ -20,6 +20,7 @@ class Homepage extends Component {
   };
 
   render() {
+    let hrefLink = "#";
     let _stocks = this.props.stocks;
     let search = this.state.searchString.trim().toLowerCase();
 
@@ -40,7 +41,7 @@ class Homepage extends Component {
 
                   <h2 className="LOGIN-h2">Please login first</h2>
                   <a
-                    href="#"
+                    href={hrefLink}
                     onClick={this.props.auth.login}
                     className="btn btn-blue btn-animated"
                   >
@@ -51,7 +52,7 @@ class Homepage extends Component {
               <img
                 src={logo4}
                 className="LOGIN-header-shaping-img"
-                alt="logo4"
+                alt="Header blue spiky figure"
               />
             </header>
           )}

@@ -102,7 +102,7 @@ router.get("/history/:id", async function(req, res) {
 
 // (FAKE) GET ALL DEMO STOCKS
 // router.get("/", async function(req, res) {
-//   // console.log("req in the gell all stocks: ", req.query);
+//   console.log("req in the gell all stocks: ", req.query);
 //   console.log("req in the gell all stocks: ", req.query.data);
 
 //   let demoSymbols = "AAPL,MSFT,HSBA.L";

@@ -52,30 +52,13 @@ class Auth {
     });
   }
 
-  // setLocalStorageID() {
-  //   let profile = this.getProfile();
-  //   const headers = {
-  //     Authorization: `Bearer ${this.getAccessToken()}`
-  //   };
-
-  //   axios({
-  //     method: "get",
-  //     url: `${VARS_CONFIG.localhost}/api/currentUserID`,
-  //     headers,
-  //     params: profile
-  //   }).then(res => {
-  //     let myId = res.data._id;
-  //     console.log("fuckkkkkkkkkkkkkk!");
-  //     localStorage.setItem("myId", myId);
-  //   });
-  // }
 
   checkForProfile() {
     /**********************************************************************
       get profile into database!
     **********************************************************************/
     let profile = this.getProfile();
-    console.log(`access token from Auth.js:  ${this.getAccessToken()}`);
+    // console.log(`access token from Auth.js:  ${this.getAccessToken()}`);
 
     const headers = {
       Authorization: `Bearer ${this.getAccessToken()}`

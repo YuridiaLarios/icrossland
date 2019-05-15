@@ -61,7 +61,6 @@ app.get("/private", checkJwt, function(req, res) {
 // mongo db connect
 if (process.env.NODE_ENV !== "test") {
   mongoose.set("useCreateIndex", true);
-  console.log("my mongo key = ", process.env.DB_MONGODBURI);
   mongoose.connect(
     process.env.DB_MONGODBURI,
     {

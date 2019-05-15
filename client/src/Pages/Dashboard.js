@@ -55,7 +55,7 @@ class Dashboard extends Component {
     // console.log(Array.from(this.props.favoriteStocks).join());
     // console.log(this.state.favoriteStocks.join());
     if (
-      Array.from(this.props.favoriteStocks).join() !=
+      Array.from(this.props.favoriteStocks).join() !==
       this.state.favoriteStocks.join()
     ) {
       let stringSymbols = Array.from(this.props.favoriteStocks).toString();
@@ -95,8 +95,8 @@ class Dashboard extends Component {
         headers,
         params: myId
       }).then(res2 => {
-        console.log("the freaking carried id = ", myId);
-        console.log("this is my profile!!!", res2.data);
+        // console.log("the freaking carried id = ", myId);
+        // console.log("this is my profile!!!", res2.data);
       });
     });
   }
@@ -221,11 +221,8 @@ class Dashboard extends Component {
               </Col>
             </Row>
           </Container>
-
-          <div>
-            <></>
-          </div>
-          <div className="container">
+          {/* TODO: TEST PROTECTED VS UNPROTECTED ROUTES */}
+          {/* <div className="container">
             <h3>Make a Call to the Server</h3>
             <Button onClick={this.ping.bind(this)}>Ping</Button>
             <h2> {this.state.pingMessage}</h2>
@@ -238,7 +235,7 @@ class Dashboard extends Component {
               Delete Apple from favorites
             </Button>
             <p />
-          </div>
+          </div> */}
         </div>
       </Styles>
     );

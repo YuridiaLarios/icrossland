@@ -45,7 +45,7 @@ class UserProfile extends Component {
     }
 
     if (isEmpty(this.props.user)) {
-      console.log("no props, fetch needed");
+      // console.log("no props, fetch needed");
       const { getAccessToken } = this.props.auth;
       const headers = { Authorization: `Bearer ${getAccessToken()}` };
       axios

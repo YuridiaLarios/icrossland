@@ -59,7 +59,7 @@ class App extends Component {
   updateSymbolsInDatabase() {
     let profile = auth.getProfile();
     let symbols = Array.from(this.state.favoriteStocks);
-    console.log("Symbols updated:", symbols);
+    // console.log("Symbols updated:", symbols);
 
     axios({
       method: "put",
@@ -70,13 +70,13 @@ class App extends Component {
       params: profile.sub,
       data: symbols
     }).then(res => {
-      console.log(`the response is: ${res}`);
+      // console.log(`the response is: ${res}`);
     });
   }
 
   // function to add symbols to the parent component state, after track button is clicked
   addSymbolToTrack = symbol => {
-    console.log("adding symbol clicked");
+    // console.log("adding symbol clicked");
     let updatedSymbols = this.state.favoriteStocks;
     updatedSymbols.add(symbol);
     this.setState(
@@ -89,7 +89,7 @@ class App extends Component {
 
   // function to delete symbols from the parent component state, after untrack button is clicked
   deleteSymbolToTrack = symbol => {
-    console.log("deleting symbol clicked");
+    // console.log("deleting symbol clicked");
     let updatedSymbols = this.state.favoriteStocks;
     let query = updatedSymbols.has(symbol);
     // console.log("is this a set??? ", updatedSymbols);
