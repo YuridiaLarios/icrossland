@@ -21,7 +21,6 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      fakeusers: [],
       users: [],
       stocks: [],
       favoriteStocks: new Set(), //TODO: Consider using a new Set()
@@ -56,6 +55,7 @@ class App extends Component {
   FAVORITE STOCKS FUNCTIONS
   *********************************************************************/
 
+  // function to add or delete symbols from current user in database
   updateSymbolsInDatabase() {
     let profile = auth.getProfile();
     let symbols = this.state.favoriteStocks;
@@ -74,6 +74,7 @@ class App extends Component {
     });
   }
 
+  // function to add symbols to the parent component state, after track button is clicked
   addSymbolToTrack = symbol => {
     let updatedSymbols = this.state.favoriteStocks.slice();
     updatedSymbols.push(symbol);
@@ -86,6 +87,7 @@ class App extends Component {
     );
   };
 
+  // function to delete symbols from the parent component state, after untrack button is clicked
   deleteSymbolToTrack = symbol => {
     let updatedSymbols = this.state.favoriteStocks.slice();
 
@@ -104,10 +106,11 @@ class App extends Component {
   };
 
   /******************************************************************** 
-  APP: 
-  * Get all users into UI
-  * Get all stocks into UI
-  * Get all symbols (favorite stocks) for current user into UI
+  componentDidMount: 
+  * Get all users store in the parent component state
+  * Get all stocks store in the parent component state
+  * Get all symbols (favorite stocks) for current user store in the parent
+    component state
   *********************************************************************/
 
   componentDidMount() {
@@ -174,7 +177,7 @@ class App extends Component {
                       // users={this.state.users}
                       {...this.props}
                       stocks={this.state.stocks}
-                      // getIndividualUserProfile={this.getIndividualUserProfile}
+                      favoriteStocks={this.state.favoriteStocks}
                       getIndividualStockProfile={this.getIndividualStockProfile}
                       getSymbolToTrack={this.addSymbolToTrack}
                       deleteSymbolToTrack={this.deleteSymbolToTrack}
@@ -189,9 +192,8 @@ class App extends Component {
                   render={props =>
                     this.props.auth.isAuthenticated() ? (
                       <Dashboard
-                        // users={this.state.users}
-                        favoriteStocks={this.state.favoriteStocks}
                         {...this.props}
+                        favoriteStocks={this.state.favoriteStocks}
                         getIndividualUserProfile={
                           this.props.getIndividualUserProfile
                         }
@@ -214,11 +216,11 @@ class App extends Component {
                       <Users
                         {...this.props}
                         users={this.state.users}
+                        favoriteStocks={this.state.favoriteStocks}
                         getIndividualUserProfile={this.getIndividualUserProfile}
                         getIndividualStockProfile={
                           this.getIndividualStockProfile
                         }
-                        favoriteStocks={this.state.favoriteStocks}
                         getSymbolToTrack={this.addSymbolToTrack}
                         deleteSymbolToTrack={this.deleteSymbolToTrack}
                       />
@@ -235,10 +237,10 @@ class App extends Component {
                       <UserProfile
                         {...this.props}
                         user={this.state.individualUserProfile}
+                        favoriteStocks={this.state.favoriteStocks}
                         getIndividualStockProfile={
                           this.getIndividualStockProfile
                         }
-                        favoriteStocks={this.state.favoriteStocks}
                         getSymbolToTrack={this.addSymbolToTrack}
                         deleteSymbolToTrack={this.deleteSymbolToTrack}
                       />
