@@ -144,6 +144,8 @@ input[type="text"]:focus {
 
   #stock-card {
     margin: 10px auto;
+    width: 22rem;
+    height: 43rem;
   }
 
   .card-body {
@@ -184,6 +186,25 @@ input[type="text"]:focus {
   .stockOpenPrice {
     font-size: 22px;
     font-weight: bold;
+  }
+
+  @media only screen and (max-width: 515px) {
+    .row-card-stocks {
+      padding: 0px;
+    }
+  
+    #stock-card {
+      margin: 10px auto;
+      width: 20rem;
+      height: 43rem;
+    }
+  }
+
+  @media only screen and (max-width: 350px) { 
+    #stock-card {
+      width: 18rem;
+      height: 43rem;
+    }
   }
 `;
 
