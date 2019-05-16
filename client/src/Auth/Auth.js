@@ -40,6 +40,8 @@ class Auth {
   }
 
   handleAuthentication() {
+    // TODO: CHECK FOR PROFILE FUNCTION NOT FINISHING CORRECTLY,
+    // CONSIDER A BETTER PLACE INSIDE SETSESSION BEFORE IT'S REDIRECTED TO DIFFERENT PAGE
     this.auth0.parseHash((err, authResults) => {
       if (authResults && authResults.accessToken && authResults.idToken) {
         this.setSession(authResults);
@@ -52,13 +54,12 @@ class Auth {
     });
   }
 
-
   checkForProfile() {
     /**********************************************************************
       get profile into database!
     **********************************************************************/
     let profile = this.getProfile();
-    // console.log(`access token from Auth.js:  ${this.getAccessToken()}`);
+    console.log(`access token from Auth.js:  ${this.getAccessToken()}`);
 
     const headers = {
       Authorization: `Bearer ${this.getAccessToken()}`

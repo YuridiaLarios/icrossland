@@ -1,5 +1,6 @@
 const express = require("express");
 const request = require("supertest"); //http testing in jasmine, simulates making request to my app
+const axios = require("axios");
 var proxyquire = require("proxyquire");
 const index = proxyquire("../server/index", {
   mongoose: {
@@ -40,11 +41,51 @@ describe("public route test", function() {
   });
 });
 
+// describe("private route test", function() {
+//   it("responds with error if no token is provided", async function() {
+//     // different language comes from request from supertest
+//     const res = await request(index.app)
+//       .get("/private")
+//       .expect(401);
+//   });
+// });
+
 describe("private route test", function() {
-  it("responds with error if no token is provided", async function() {
+  let token;
+  beforeAll(async function() {
+    console.log("inside beforeAll");
+
+    const options = {
+      method: "POST",
+      url: "https://princess-minina.auth0.com/oauth/token",
+      headers: { "content-type": "application/json" },
+      data: {
+        client_id: process.env.AUTH0_CLIENT_ID,
+        client_secret: process.env.AUTH0_CLIENT_SECRET,
+        audience: process.env.AUTH0_AUDIENCE,
+        grant_type: "client_credentials"
+      }
+    };
+
+    const res = await axios(options);
+    // console.log(res);
+    token = res.data.access_token;
+    // console.log({ token });
+  });
+  afterAll(function() {
+    // TODO: expire the token after we are done!!!
+  });
+  it("responds with message if token is provided", async function() {
     // different language comes from request from supertest
     const res = await request(index.app)
       .get("/private")
-      .expect(401);
+      .set("Accept", "application/json")
+      .set("Authorization", `Bearer ${token}`)
+      .expect(200);
+    // different language: JASMINE
+    expect(res.body).toEqual({
+      message:
+        "Hello from a private endpoint! You need to be authenticated and have a scope of read:messages to see this."
+    });
   });
 });
