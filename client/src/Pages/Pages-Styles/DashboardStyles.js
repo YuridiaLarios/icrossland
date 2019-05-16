@@ -106,18 +106,11 @@ const Styles = styled.div`
   }
 
   #stock-card {
-    // background-color: red;
     display: inline-block;
     margin: 10px;
     white-space: auto;
-  }
-
-  #stock-card {
-    @media (min-width: 768px) {
-      width: 80%;
-      white-space: nowrap;
-      margin-top: 0;
-    }
+    width: 22rem;
+    height: 43rem;
   }
 
   .card-body {
@@ -160,89 +153,82 @@ const Styles = styled.div`
     font-weight: bold;
   }
 
-  @media only screen and (max-width: 1100px) {
-    .DASHBOARD-body {
-      background: blue;
-      margin: 0 auto;
-      padding: 50px;
-    }
+  // @media only screen and (max-width: 1100px) {
+  //   .DASHBOARD-body {
+  //     background: blue;
+  //     margin: 0 auto;
+  //     padding: 50px;
+  //   }
 
-    #user-card {
-      margin-bottom: 0px;
-      width: 500px;
-      display: block;
-      z-index: auto;
-      height: auto;
-    }
+  //   #user-card {
+  //     margin-bottom: 0px;
+  //     width: 500px;
+  //     display: block;
+  //     z-index: auto;
+  //     height: auto;
+  //   }
 
-    .user-info {
-      font-weight: bold;
-      font-size: 16px;
-      color: #696969;
-      margin-top: 0px;
-      margin-bottom: 30px;
-      padding: 10px;
-    }
+  //   .user-info {
+  //     font-weight: bold;
+  //     font-size: 16px;
+  //     color: #696969;
+  //     margin-top: 0px;
+  //     margin-bottom: 30px;
+  //     padding: 10px;
+  //   }
 
-    .favStock-card-list {
-      display: block;
-      white-space: wrap;
-    }
+  //   .favStock-card-list {
+  //     display: block;
+  //     white-space: wrap;
+  //   }
 
-    #stock-card {
-      display: block;
-      margin: 0px;
-      white-space: auto;
-    }
+  //   #stock-card {
+  //     display: block;
+  //     margin: 0px;
+  //     white-space: auto;
+  //     width: 22rem;
+  //     heigth: 43rem;
+  //   }
+  //   .card-body {
+  //     white-space: normal;
+  //     font-family: "initial";
+  //     font-size: 1.15em;
+  //   }
+  //   .stockSymbol {
+  //     font-weight: bold;
+  //   }
 
-    #stock-card {
-      @media (min-width: 768px) {
-        width: 80%;
-        white-space: nowrap;
-        margin-top: 0;
-      }
-    }
+  //   .stockDayChange {
+  //     font-size: 32px;
+  //     padding: 10px 1px;
+  //     font-weight: bold;
+  //     margin-bottom: 0px;
+  //   }
 
-    .card-body {
-      white-space: normal;
-      font-family: "initial";
-      font-size: 1.15em;
-    }
-    .stockSymbol {
-      font-weight: bold;
-    }
+  //   .green-positive {
+  //     color: #008000;
+  //     border: solid 2px #008000;
+  //     border-radius: 20px;
+  //     margin: 0px;
+  //   }
 
-    .stockDayChange {
-      font-size: 32px;
-      padding: 10px 1px;
-      font-weight: bold;
-      margin-bottom: 0px;
-    }
+  //   .red-negative {
+  //     color: #ff0000;
+  //     border: solid 2px #ff0000;
+  //     border-radius: 20px;
+  //     margin: 0px;
+  //   }
+  //   .small-text {
+  //     display: block;
+  //     margin-left: 18px;
+  //     font-size: 18px;
+  //   }
 
-    .green-positive {
-      color: #008000;
-      border: solid 2px #008000;
-      border-radius: 20px;
-      margin: 0px;
-    }
-
-    .red-negative {
-      color: #ff0000;
-      border: solid 2px #ff0000;
-      border-radius: 20px;
-      margin: 0px;
-    }
-    .small-text {
-      display: block;
-      margin-left: 18px;
-      font-size: 18px;
-    }
-
-    .stockOpenPrice {
-      font-size: 22px;
-      font-weight: bold;
-    }
-  }
+  //   .stockOpenPrice {
+  //     font-size: 22px;
+  //     font-weight: bold;
+  //   }
+  // }
 `;
 
 export default Styles;
