@@ -36,7 +36,6 @@ const Styles = styled.div`
     transform: translateY(-1px);
     box-shadow: 0 25px 40px rgba(0, 0, 0, 0.2);
   }
-
   .user-card {
     margin-bottom: 45px;
     margin-top: 0px;

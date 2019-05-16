@@ -29,6 +29,7 @@ class Homepage extends Component {
         return stock.name.toLowerCase().match(search);
       });
     }
+
     return (
       <Styles>
         <Container className="HOMEPAGE-body">
@@ -69,6 +70,7 @@ class Homepage extends Component {
                 placeholder="Filter by Name"
               />
               {/* STOCKS CARDS */}
+
               <Row className="row-card-stocks">
                 {_stocks.map(item => {
                   return (

@@ -226,20 +226,20 @@ class Dashboard extends Component {
             </Row>
           </Container>
           {/* TODO: TEST PROTECTED VS UNPROTECTED ROUTES */}
-          <div className="container">
+          {/* <div className="container">
             <h3>Make a Call to the Server</h3>
             <Button onClick={this.ping.bind(this)}>Ping</Button>
             <h2> {this.state.pingMessage}</h2>
 
             <Button onClick={this.securedPing.bind(this)}>Call Private</Button>
 
-            <h2> {this.state.pingSecuredMessage}</h2>
+            <h2> {this.state.pingSecuredMessage}</h2> */}
 
-            {/* <Button onClick={this.deleteApple.bind(this)}>
+          {/* <Button onClick={this.deleteApple.bind(this)}>
               Delete Apple from favorites
             </Button> */}
-            <p />
-          </div>
+          {/* <p />
+          </div> */}
         </div>
       </Styles>
     );

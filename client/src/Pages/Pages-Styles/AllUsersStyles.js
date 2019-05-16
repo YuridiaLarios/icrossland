@@ -46,6 +46,7 @@ const Styles = styled.div`
     margin: 20px auto;
     white-space: auto;
     background-color: white;
+    width: 18rem;
   }
 
   .card-username {
@@ -71,6 +72,27 @@ const Styles = styled.div`
   .btn:active {
     transform: translateY(-1px);
     box-shadow: 0 25px 40px rgba(0, 0, 0, 0.2);
+  }
+
+  @media only screen and (max-width: 515px) {
+    .USERS-body {
+      margin-top: 0px;
+      padding: 0px;
+      padding-top: 50px;
+    }
+
+    .usersContainer {
+      width: 90%;
+      padding: 0px;
+      margin-top: 10px;
+    }
+
+    #individualUserCard {
+      margin: 20px auto;
+      white-space: auto;
+      background-color: white;
+      width: 16rem;
+    }
   }
 `;
 export default Styles;

@@ -3,7 +3,6 @@ import { Card } from "react-bootstrap";
 import UserProfileButton from "./UserProfileButton";
 import "../Auth/Auth";
 
-
 class SingleUserDiv extends Component {
   constructor(props) {
     super(props); // props ia an object that has item.id and item.name in it now
@@ -16,7 +15,7 @@ class SingleUserDiv extends Component {
     let joined = this.props.item.date;
     let joinedDate = new Date(joined).toLocaleDateString();
     return (
-      <Card id="individualUserCard" style={{ width: "18rem" }}>
+      <Card id="individualUserCard">
         <Card.Img variant="top" src={this.props.item.thumbnailFile} />
         <Card.Body>
           <Card.Title className="card-username">
