@@ -6,9 +6,11 @@ const Styles = styled.div`
     background: radial-gradient(#e5e5e5, #ffff, #e5e5e5);
     padding: 50px;
     padding-top: 50px;
+    }
   }
   h1 {
     font-family: "initial";
+    font-size: 2rem;
   }
 
   .btn {
@@ -40,7 +42,6 @@ const Styles = styled.div`
     margin-bottom: 45px;
     margin-top: 0px;
     box-shadow: 0px 0px 10px -8px rgba(0, 0, 0, 1);
-    border-radius: 15px 50px;
     width: 90%;
     font-family: "initial";
     margin: 0 auto;
@@ -48,7 +49,6 @@ const Styles = styled.div`
 
   .user-card-header {
     text-transform: uppercase;
-    border-radius: 10px 50px 0px 0px;
     padding: 20px;
   }
 
@@ -62,28 +62,22 @@ const Styles = styled.div`
 
   .user-favorite-stocks {
     margin: 10px auto;
+    white-space: normal;
+    font-family: "initial";
+    align-items: center;
+    justify-content: center;
+    background-color: white;
   }
 
   #stock-card {
     display: inline-block;
+    width: 22rem;
+    height: 43rem;
     margin: 10px;
     white-space: auto;
     box-shadow: 0px 0px 10px -8px rgba(0, 0, 0, 1);
   }
 
-  #stock-card {
-    @media (min-width: 768px) {
-      width: 80%;
-      white-space: nowrap;
-      margin-top: 0;
-    }
-  }
-
-  .card-body {
-    white-space: normal;
-    font-family: "initial";
-    font-size: 1.15em;
-  }
   .stockSymbol {
     font-weight: bold;
   }
@@ -118,6 +112,56 @@ const Styles = styled.div`
     font-size: 22px;
     font-weight: bold;
   }
-`;
 
+  @media only screen and (max-width: 515px) {
+    .USER-body {
+      padding: 0px;
+      padding-top: 50px;
+    }
+
+    h1 {
+      font-size: 1.4rem;
+    }
+
+    .user-card {
+      width: 92%;
+    }
+  
+    .user-card-header {
+      text-transform: uppercase;
+      padding: 9px;
+    }
+  
+    .profile-thumbnail {
+      width: 130px;
+    }
+
+    #stock-card {
+      width: 18rem;
+      height: 37rem;
+      margin: 10px auto;
+    }
+  
+    .card-body {
+      font-size: .9em;
+    }
+  }
+
+  @media only screen and (max-width: 515px) {
+  
+    .profile-thumbnail {
+      width: 120px;
+    }
+
+    #stock-card {
+      width: 19rem;
+      height: 41rem;
+      margin: 10px auto;
+    }
+  
+    .card-body {
+      font-size: .9em;
+    }
+  }
+`;
 export default Styles;

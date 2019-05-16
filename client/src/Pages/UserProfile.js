@@ -105,8 +105,8 @@ class UserProfile extends Component {
                 <Card.Text>{this.state.user.email}</Card.Text>
                 <Card.Text>Joined: {joinedDate}</Card.Text>
               </Card.Body>
-              <Card.Body className="user-favorite-stocks">
-                <Row>{favoriteStocks}</Row>
+              <Card.Body>
+                <Row className="user-favorite-stocks">{favoriteStocks}</Row>
               </Card.Body>
             </Card>
           </Container>
