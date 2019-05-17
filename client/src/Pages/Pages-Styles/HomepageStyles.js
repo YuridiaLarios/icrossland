@@ -118,6 +118,14 @@ input[type="text"]:focus {
     font-family: "initial";
   }
 
+  @media only screen and (max-width: 1100px){
+    .container {
+      max-width: 100%;
+    }
+    #LOGIN-welcome-card {
+      width: 65%;
+    }
+  }
 
   
   @media only screen and (max-width: 500px){
