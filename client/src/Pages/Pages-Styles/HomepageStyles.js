@@ -73,7 +73,7 @@ input[type="text"]:focus {
 ****************************************/
 
   .LOGIN-header {
-    // height: height: 50vh;
+    background: #3a94c8;
     background-image: linear-gradient(
       rgb(41, 128, 185),
       rgb(109, 213, 250),
@@ -99,7 +99,6 @@ input[type="text"]:focus {
     font-size: 40px;
     letter-spacing: 5px;
     padding: 80px 0;
-
   }
 
   #LOGIN-welcome-card {
@@ -117,6 +116,37 @@ input[type="text"]:focus {
 
   .LOGIN-h2 {
     font-family: "initial";
+  }
+
+
+  
+  @media only screen and (max-width: 500px){
+    .LOGIN-header {
+      background: #2b80b8;
+      background-image: linear-gradient(
+        rgb(41, 128, 185),
+        rgb(109, 213, 250),
+        rgb(255, 255, 255)
+      );
+    }
+  
+    .LOGIN-header-shaping-img {
+      height: 0vmin;
+      width: 100%;
+      pointer-events: none;
+    }
+  
+    .LOGIN-h1-main-header {
+      margin: 0px;
+      padding: 80px 0;
+      font-size: 20px;
+    }
+  
+    #LOGIN-welcome-card {
+      position: absolute;
+      display: inline;
+      width: 90%;
+    }
   }
 
 /****************************************

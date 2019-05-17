@@ -41,6 +41,7 @@ describe("public route test", function() {
   });
 });
 
+// TODO: MAKE TEST WORK WITHOUT TOKEN
 // describe("private route test", function() {
 //   it("responds with error if no token is provided", async function() {
 //     // different language comes from request from supertest
@@ -57,6 +58,7 @@ describe("private route test", function() {
 
     const options = {
       method: "POST",
+      // TOODO: MAKE URL AN ENVIRONMENTAL VARIABLE
       url: "https://princess-minina.auth0.com/oauth/token",
       headers: { "content-type": "application/json" },
       data: {
