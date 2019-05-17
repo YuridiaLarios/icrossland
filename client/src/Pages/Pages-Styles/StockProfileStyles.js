@@ -18,6 +18,11 @@ const Styles = styled.div`
     font-family: "initial";
   }
 
+  #stock-card {
+    width: 28rem;
+    height: 63rem;
+  }
+
   .individual-stock-card {
     margin: 10px;
   }
@@ -61,6 +66,30 @@ const Styles = styled.div`
   .stockOpenPrice {
     font-size: 22px;
     font-weight: bold;
+  }
+
+  @media only screen and (max-width: 1200px) {
+    .STOCKPROFILE-body {
+      background: pink;
+    }
+    .row {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0px;
+    }
+    .col-lg-4 {
+      max-width: 80%;
+    }
+
+    .col-lg-8 {
+      max-width: 80%;
+    }
+    #stock-card {
+      background-color: green;
+      width: 28rem;
+      height: 100rem;
+    }
   }
 `;
 
