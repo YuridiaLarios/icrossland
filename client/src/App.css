@@ -18,6 +18,13 @@
   max-width: 100%;
 }
 
+/****************************************
+  NAVBAR
+****************************************/
+.is-active {
+  border-bottom: solid 2px lightblue;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

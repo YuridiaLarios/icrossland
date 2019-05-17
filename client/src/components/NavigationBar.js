@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { Button, Form, Nav, Navbar } from "react-bootstrap";
 import logo2 from "../globe-308800.svg";
 import styled from "styled-components";
@@ -62,29 +62,35 @@ const NavigationBar = props => (
           </Form>
           {props.auth.isAuthenticated() && (
             <Nav.Item>
-              <Link to="/">Explore</Link>
+              <NavLink exact={true} activeClassName="is-active" to="/">
+                Explore
+              </NavLink>
             </Nav.Item>
           )}
           {props.auth.isAuthenticated() && (
             <Nav.Item>
-              <Link to="/dashboard">Dashboard</Link>
+              <NavLink activeClassName="is-active" to="/dashboard">
+                Dashboard
+              </NavLink>
             </Nav.Item>
           )}
           {props.auth.isAuthenticated() && (
             <Nav.Item>
-              <Link to="/users">Users</Link>
+              <NavLink activeClassName="is-active" to="/users">
+                Users
+              </NavLink>
             </Nav.Item>
           )}
           {!props.auth.isAuthenticated() && (
             <Button onClick={props.auth.login} variant="outline-primary">
-              <Link to="#"> Login </Link>
+              <NavLink to="#"> Login </NavLink>
             </Button>
           )}
           {props.auth.isAuthenticated() && (
             <Nav.Item>
-              <Link to="/" onClick={props.auth.logout}>
+              <NavLink to="/" onClick={props.auth.logout}>
                 Logout
-              </Link>
+              </NavLink>
             </Nav.Item>
           )}
         </Nav>

@@ -46,6 +46,10 @@ class StockProfile extends Component {
     history.push("/");
   };
 
+  addCommas = number => {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+
   componentWillMount() {
     function isEmpty(obj) {
       for (var key in obj) {
@@ -106,6 +110,7 @@ class StockProfile extends Component {
       new Date(prevClose).toLocaleDateString() +
       " " +
       new Date(prevClose).toTimeString();
+
     return (
       <Styles>
         <div className="STOCKPROFILE-body">
@@ -148,39 +153,56 @@ class StockProfile extends Component {
                     <tbody>
                       <tr>
                         <td>High:</td>
-                        <td>{this.state.stock.day_high}</td>
+                        <td>
+                          {this.state.stock.day_high}{" "}
+                          {this.state.stock.currency}
+                        </td>
                       </tr>
                       <tr>
                         <td>Low:</td>
-                        <td>{this.state.stock.day_low}</td>
+                        <td>
+                          {this.state.stock.day_low} {this.state.stock.currency}
+                        </td>
                       </tr>
                       <tr>
                         <td>Prev close:</td>
-                        <td>{this.state.stock.close_yesterday}</td>
+                        <td>
+                          {this.state.stock.close_yesterday}{" "}
+                          {this.state.stock.currency}
+                        </td>
                       </tr>
                       <tr>
                         <td>52-week high:</td>
-                        <td>{currentStock["52_week_high"]}</td>
+                        <td>
+                          {currentStock["52_week_high"]}{" "}
+                          {this.state.stock.currency}
+                        </td>
                       </tr>
                       <tr>
                         <td>52-week low:</td>
-                        <td>{currentStock["52_week_high"]}</td>
+                        <td>
+                          {currentStock["52_week_high"]}{" "}
+                          {this.state.stock.currency}
+                        </td>
                       </tr>
                       <tr>
                         <td>Market cap:</td>
-                        <td>{this.state.stock.market_cap}</td>
+                        <td>
+                          {this.addCommas(this.state.stock.market_cap)}{" "}
+                          {this.state.stock.currency}
+                        </td>
                       </tr>
                       <tr>
                         <td>Volume:</td>
-                        <td>{this.state.stock.volume}</td>
+                        <td>{this.addCommas(this.state.stock.volume)}</td>
                       </tr>
                       <tr>
                         <td>Volume Average:</td>
-                        <td>{this.state.stock.volume_avg}</td>
+                        <td>{this.addCommas(this.state.stock.volume_avg)}</td>
                       </tr>
                       <tr>
                         <td>Shares:</td>
-                        <td>{this.state.stock.shares}</td>
+                        <td>{this.addCommas(this.state.stock.shares)}</td>
                       </tr>
                       <tr>
                         <td>gmt offset:</td>
