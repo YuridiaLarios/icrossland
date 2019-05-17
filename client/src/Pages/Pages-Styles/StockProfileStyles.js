@@ -127,7 +127,7 @@ const Styles = styled.div`
       width: 80vw;
     }
   }
-  @media only screen and (max-width: 380px) {
+  @media only screen and (max-width: 415px) {
     .STOCKPROFILE-body {
       padding: 0px;
       padding-top: 50px;
@@ -170,6 +170,14 @@ const Styles = styled.div`
       width: 100%;
       box-shadow: 5px 10px 20px 1px rgb(0, 0, 0, 0.253);
     }
+  }
+
+  @media only screen and (max-width: 325px) {
+    // .LineGraph_graphContainer__wos8X {
+    //   margin-top: 50px;
+    //   width: 99%;
+    //   box-shadow: 5px 10px 20px 1px rgb(0, 0, 0, 0.253);
+    // }
   }
 `;
 
