@@ -27,10 +27,23 @@ const Styles = styled.div`
     margin: 10px;
   }
 
-  .card-body {
-    white-space: normal;
-    font-family: "initial";
-    font-size: 1.15em;
+  .col {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 50px;
+  }
+  .stock-basic-info {
+    background-color: white;
+    box-shadow: 5px 10px 20px 1px rgb(0, 0, 0, 0.253);
+    border-radius: 20px;
+    width: 80%;
+    margin: 0 auto;
+    padding: 30px;
+    padding-top: 60px;
+    font-size: 1.4em;
+    text-align: center;
+    font-family: initial;
   }
 
   .stockSymbol {
@@ -38,24 +51,24 @@ const Styles = styled.div`
   }
 
   .stockDayChange {
+    text-align: center;
+    margin: 0 auto;
+    width: 50%;
     font-size: 32px;
     padding: 10px 1px;
     font-weight: bold;
-    margin-bottom: 0px;
   }
 
   .green-positive {
     color: #008000;
     border: solid 2px #008000;
     border-radius: 20px;
-    margin: 0px;
   }
 
   .red-negative {
     color: #ff0000;
     border: solid 2px #ff0000;
     border-radius: 20px;
-    margin: 0px;
   }
   .small-text {
     display: block;
@@ -68,6 +81,29 @@ const Styles = styled.div`
     font-weight: bold;
   }
 
+  .table-container {
+    width: 80%;
+    background-color: white;
+    box-shadow: 5px 10px 20px 1px rgb(0, 0, 0, 0.253);
+    border-radius: 20px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .table {
+    border-radius: 20px;
+  }
+
+  .graph-container {
+    font-family: initial;
+    margin-top: 50px;
+  }
+
+  .LineGraph_graphContainer__wos8X {
+    margin-top: 50px;
+    width: 65vw;
+    box-shadow: 5px 10px 20px 1px rgb(0, 0, 0, 0.253);
+  }
   @media only screen and (max-width: 1200px) {
     .STOCKPROFILE-body {
       background: pink;

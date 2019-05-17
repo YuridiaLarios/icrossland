@@ -4,14 +4,13 @@ import Chart from "chart.js";
 
 //--Chart Style Options--//
 Chart.defaults.global.defaultFontFamily = "'PT Sans', sans-serif";
-Chart.defaults.global.defaultFontSize = 13;
+Chart.defaults.global.defaultFontSize = 16;
 Chart.defaults.global.legend.display = true;
-Chart.defaults.global.legend.position = "right";
+Chart.defaults.global.legend.position = "top";
 Chart.defaults.global.elements.line.tension = 0.2;
 //--Chart Style Options--//
 
 export default class MyLineGraph extends PureComponent {
-
   chartRef = React.createRef();
 
   componentDidMount() {
@@ -56,19 +55,12 @@ export default class MyLineGraph extends PureComponent {
         //Customize chart options
         responsive: true,
         maintainAspectRatio: false,
-        scales: {
-          yAxes: [
-            {
-              ticks: {}
-            }
-          ]
-        },
         layout: {
           padding: {
-            top: 5,
-            left: 15,
-            right: 15,
-            bottom: 15
+            top: 1,
+            left: 1,
+            right: 1,
+            bottom: 1
           }
         }
       }
