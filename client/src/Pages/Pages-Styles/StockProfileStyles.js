@@ -104,10 +104,8 @@ const Styles = styled.div`
     width: 65vw;
     box-shadow: 5px 10px 20px 1px rgb(0, 0, 0, 0.253);
   }
-  @media only screen and (max-width: 1200px) {
-    .STOCKPROFILE-body {
-      background: pink;
-    }
+
+  @media only screen and (max-width: 1100px) {
     .row {
       flex-direction: column;
       align-items: center;
@@ -122,9 +120,55 @@ const Styles = styled.div`
       max-width: 80%;
     }
     #stock-card {
-      background-color: green;
       width: 28rem;
       height: 100rem;
+    }
+    .LineGraph_graphContainer__wos8X {
+      width: 80vw;
+    }
+  }
+  @media only screen and (max-width: 380px) {
+    .STOCKPROFILE-body {
+      padding: 0px;
+      padding-top: 50px;
+    }
+
+    .STOCKPROFILE-row {
+      width: 100%;
+      margin: 50px auto;
+      text-align: center;
+      padding: 0px;
+    }
+
+    .individual-stock-card {
+      margin: 0px;
+    }
+
+    .col {
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      margin-top: 50px;
+    }
+    .stock-basic-info {
+      width: 95%;
+      margin: 0 auto;
+      padding: 10px;
+      font-size: 1.2em;
+    }
+
+    .table-container {
+      width: 95%;
+    }
+
+    .graph-container {
+      padding: 0px;
+    }
+
+    .LineGraph_graphContainer__wos8X {
+      margin-top: 50px;
+      width: 100%;
+      box-shadow: 5px 10px 20px 1px rgb(0, 0, 0, 0.253);
     }
   }
 `;

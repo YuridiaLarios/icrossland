@@ -1,3 +1,3 @@
 export const VARS_CONFIG = {
-  localhost: ""
+  localhost: "http://localhost:3000"
 };
