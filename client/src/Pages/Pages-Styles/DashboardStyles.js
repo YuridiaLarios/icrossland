@@ -48,7 +48,6 @@ const Styles = styled.div`
     margin-top: 0px;
     box-shadow: 0px 0px 10px -8px rgba(0, 0, 0, 1);
     border-radius: 15px 50px;
-    width: 500px;
     display: flex;
     font-family: "initial";
     z-index: 2;
@@ -100,9 +99,10 @@ const Styles = styled.div`
   }
 
   .favStock-card-list {
+    margin: 10px auto;
+    white-space: nowrap;
     display: inline-block;
     margin-left: 40px;
-    white-space: nowrap;
   }
 
   #stock-card {
@@ -152,83 +152,209 @@ const Styles = styled.div`
     font-size: 22px;
     font-weight: bold;
   }
+  @media only screen and (max-width: 1255px) {
+    .row {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0px;
+    }
+    .col-lg-4 {
+      max-width: 80%;
+    }
 
-  // @media only screen and (max-width: 1100px) {
-  //   .DASHBOARD-body {
-  //     background: blue;
-  //     margin: 0 auto;
-  //     padding: 50px;
-  //   }
+    .col-lg-8 {
+      max-width: 80%;
+    }
+    #user-card {
+      margin-bottom: 45px;
+      margin-top: 0px;
+      box-shadow: 0px 0px 10px -8px rgba(0, 0, 0, 1);
+      width: 100%;
+      border-radius: 15px;
+    }
 
-  //   #user-card {
-  //     margin-bottom: 0px;
-  //     width: 500px;
-  //     display: block;
-  //     z-index: auto;
-  //     height: auto;
-  //   }
+    #user-card-header {
+      padding: 20px;
+      border-radius: 15px 15px 0px 0px;
+    }
 
-  //   .user-info {
-  //     font-weight: bold;
-  //     font-size: 16px;
-  //     color: #696969;
-  //     margin-top: 0px;
-  //     margin-bottom: 30px;
-  //     padding: 10px;
-  //   }
+    .profile-thumbnail {
+      margin: 0 auto;
+      margin-top: 40px;
+      margin-bottom: 30px;
+      width: 160px;
+      border-radius: 50%;
+    }
 
-  //   .favStock-card-list {
-  //     display: block;
-  //     white-space: wrap;
-  //   }
+    .favStock-card-list {
+      margin: 10px auto;
+      white-space: normal;
+      font-family: "initial";
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      display: auto;
+    }
 
-  //   #stock-card {
-  //     display: block;
-  //     margin: 0px;
-  //     white-space: auto;
-  //     width: 22rem;
-  //     heigth: 43rem;
-  //   }
-  //   .card-body {
-  //     white-space: normal;
-  //     font-family: "initial";
-  //     font-size: 1.15em;
-  //   }
-  //   .stockSymbol {
-  //     font-weight: bold;
-  //   }
+    #stock-card {
+      width: 19rem;
+      height: 40rem;
+      margin: 10px;
+      white-space: auto;
+      box-shadow: 0px 0px 10px -8px rgba(0, 0, 0, 1);
+    }
 
-  //   .stockDayChange {
-  //     font-size: 32px;
-  //     padding: 10px 1px;
-  //     font-weight: bold;
-  //     margin-bottom: 0px;
-  //   }
+    #user-card {
+      margin-bottom: 45px;
+      margin-top: 0px;
+      box-shadow: 0px 0px 10px -8px rgba(0, 0, 0, 1);
+      width: 100%;
+      border-radius: 15px;
+    }
 
-  //   .green-positive {
-  //     color: #008000;
-  //     border: solid 2px #008000;
-  //     border-radius: 20px;
-  //     margin: 0px;
-  //   }
+    #user-card-header {
+      padding: 20px;
+      border-radius: 15px 15px 0px 0px;
+    }
 
-  //   .red-negative {
-  //     color: #ff0000;
-  //     border: solid 2px #ff0000;
-  //     border-radius: 20px;
-  //     margin: 0px;
-  //   }
-  //   .small-text {
-  //     display: block;
-  //     margin-left: 18px;
-  //     font-size: 18px;
-  //   }
+    .profile-thumbnail {
+      margin: 0 auto;
+      margin-top: 40px;
+      margin-bottom: 30px;
+      width: 160px;
+      border-radius: 50%;
+    }
 
-  //   .stockOpenPrice {
-  //     font-size: 22px;
-  //     font-weight: bold;
-  //   }
-  // }
+    .favStock-card-list {
+      margin: 10px auto;
+      white-space: normal;
+      font-family: "initial";
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      display: auto;
+    }
+
+    #stock-card {
+      width: 19rem;
+      height: 40rem;
+      margin: 10px;
+      white-space: auto;
+      box-shadow: 0px 0px 10px -8px rgba(0, 0, 0, 1);
+    }
+  }
+
+  @media only screen and (max-width: 991px) {
+    .DASHBOARD-body {
+      margin-top: 0px;
+      background: rgba(229, 229, 229, 0.3);
+      background: radial-gradient(#e5e5e5, #ffff, #e5e5e5);
+      padding: 10px;
+      padding-top: 50px;
+    }
+
+    .col-lg-4 {
+      max-width: 95%;
+    }
+
+    .col-lg-8 {
+      max-width: 100%;
+    }
+
+    #user-card {
+      margin-top: 0px 5px 45px 5px;
+      box-shadow: 0px 0px 10px -8px rgba(0, 0, 0, 1);
+      width: 100%;
+      border-radius: 15px;
+    }
+
+    #user-card-header {
+      padding: 20px;
+      border-radius: 15px 15px 0px 0px;
+    }
+
+    .profile-thumbnail {
+      margin: 0 auto;
+      margin-top: 40px;
+      margin-bottom: 30px;
+      width: 160px;
+      border-radius: 50%;
+    }
+
+    .favStock-card-list {
+      margin: 10px auto;
+      white-space: normal;
+      font-family: "initial";
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      display: auto;
+    }
+
+    #stock-card {
+      width: 19rem;
+      height: 40rem;
+      margin: 10px;
+      white-space: auto;
+      box-shadow: 0px 0px 10px -8px rgba(0, 0, 0, 1);
+    }
+  }
+
+  @media only screen and (max-width: 991px) {
+    .DASHBOARD-body {
+      margin-top: 0px;
+      background: rgba(229, 229, 229, 0.3);
+      background: radial-gradient(#e5e5e5, #ffff, #e5e5e5);
+      padding: 10px;
+      padding-top: 50px;
+    }
+
+    #user-card {
+      margin-bottom: 45px;
+      margin-top: 0px;
+      box-shadow: 0px 0px 10px -8px rgba(0, 0, 0, 1);
+      width: 100%;
+      border-radius: 15px;
+    }
+
+    #user-card-header {
+      padding: 20px;
+      border-radius: 15px 15px 0px 0px;
+    }
+
+    .profile-thumbnail {
+      margin: 0 auto;
+      margin-top: 40px;
+      margin-bottom: 30px;
+      width: 160px;
+      border-radius: 50%;
+    }
+
+    .favStock-card-list {
+      margin: 10px auto;
+      white-space: normal;
+      font-family: "initial";
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      display: auto;
+    }
+
+    #stock-card {
+      width: 19rem;
+      height: 40rem;
+      margin: 10px;
+      white-space: auto;
+      box-shadow: 0px 0px 10px -8px rgba(0, 0, 0, 1);
+    }
+  }
+
+  @media only screen and (max-width: 325px) {
+    #stock-card {
+      width: 17rem;
+    }
+  }
 `;
 
 export default Styles;
