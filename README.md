@@ -89,3 +89,5 @@ ICROSSLAND allows users to search and  track their favorite stocks. Stocks infor
 
 7) **npm install**
 ![image](https://user-images.githubusercontent.com/22802143/58230791-2ff09c00-7cea-11e9-8235-6ba5883fb0c7.png)
+
+8) Time to start changing some code! we will need to set up MongoDB Atlas, Auth0 application, Auth0API, World trading data API.
