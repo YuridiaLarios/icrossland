@@ -95,7 +95,7 @@ ICROSSLAND allows users to search and  track their favorite stocks. Stocks infor
 9) First, open the project in your text editor. 
 ![image](https://user-images.githubusercontent.com/22802143/58231392-bd80bb80-7ceb-11e9-8fe1-ade130d0a7ae.png)
 
-10) Use **command-p** to quickly search for the file: react-variables.js or use the sidebar and manually find the file under client/src/react-variables.js Add **http://localhost:3000** this is where the server will run.
+10) Use **command-p** to quickly search for the file: react-variables.js or use the side menu and manually find the file under client/src/react-variables.js Add this line of code: **http://localhost:3000** this is where the server will run.
 ![image](https://user-images.githubusercontent.com/22802143/58231561-2cf6ab00-7cec-11e9-8e98-b0252b75915d.png)
 
 
