@@ -63,6 +63,9 @@ ICROSSLAND allows users to search and  track their favorite stocks. Stocks infor
 14. Responsive design (tablet, mobile) (IN PROGRESS).
 
 ### Installation:
-1) Fork project, and from your own forked version clone with HTTPS
+1) Fork project, and from your own forked version clone it by copying the URL with HTTPS.
 *![image](https://user-images.githubusercontent.com/22802143/58229147-bf478080-7ce5-11e9-90f2-7b89f42cddbc.png)
+
+2) In terminal paste your link.
+*![image](https://user-images.githubusercontent.com/22802143/58229736-56f99e80-7ce7-11e9-8451-db515df7cfea.png)
 
