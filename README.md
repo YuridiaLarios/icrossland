@@ -66,6 +66,12 @@ ICROSSLAND allows users to search and  track their favorite stocks. Stocks infor
 1) Fork project, and from your own forked version clone it by copying the URL with HTTPS.
 *![image](https://user-images.githubusercontent.com/22802143/58229147-bf478080-7ce5-11e9-90f2-7b89f42cddbc.png)
 
+
 2) In terminal paste your link.
 *![image](https://user-images.githubusercontent.com/22802143/58229736-56f99e80-7ce7-11e9-8451-db515df7cfea.png)
+
+
+3) Move into icrossland folder and use npm install
+* ![image](https://user-images.githubusercontent.com/22802143/58229953-d4bdaa00-7ce7-11e9-8111-291f7b8e1eba.png)
+
 
