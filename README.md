@@ -87,3 +87,5 @@ ICROSSLAND allows users to search and  track their favorite stocks. Stocks infor
 ![image](https://user-images.githubusercontent.com/22802143/58230696-ed2ec400-7ce9-11e9-8204-c2c6a5194047.png)
 
 
+7) **npm install**
+![image](https://user-images.githubusercontent.com/22802143/58230791-2ff09c00-7cea-11e9-8235-6ba5883fb0c7.png)
