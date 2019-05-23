@@ -114,7 +114,14 @@ Tutorial: [`https://www.youtube.com/watch?v=YuczCG1XmI0&feature=youtu.be`](https
 
 ![image](https://user-images.githubusercontent.com/22802143/58237695-941b5c00-7cfa-11e9-9ad9-8c1b8a1ac372.png)
 
-14) create a free account with https://www.worldtradingdata.com/ copy your generated api key into the .env file 
+### WorldTradingData API SET-UP
+
+14) create a free account with https://www.worldtradingdata.com/ copy your generated api key into the .env file. (free version will only allow you to retrieve 5 stocks instead of 50 like the original app). 
 ![image](https://user-images.githubusercontent.com/22802143/58238601-751dc980-7cfc-11e9-8d6a-f39ae008deac.png)
+
+### Auth0 APPLICATION SET-UP
+15) Create an account with https://auth0.com/ or login with your google account. Follow the tutorial, and copy the corresponding keys into your .env file for the backend server and also into the Auth.js file in the front-end client. Ignore Audience for now, that's to create protected routes in your backend but it needs extra set up with Auth0 API SETUP
+
+Tutorial: [`https://www.youtube.com/watch?v=3K_NOj1lkVQ`](https://www.youtube.com/watch?v=3K_NOj1lkVQ)
 
 
