@@ -83,3 +83,7 @@ ICROSSLAND allows users to search and  track their favorite stocks. Stocks infor
 *![image](https://user-images.githubusercontent.com/22802143/58230403-18fd7a00-7ce9-11e9-823f-59fdd116cf56.png)
 
 
+6) Open another terminal window, **cd server** we will now do the set-up for the express server.
+![image](https://user-images.githubusercontent.com/22802143/58230696-ed2ec400-7ce9-11e9-8204-c2c6a5194047.png)
+
+
