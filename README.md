@@ -104,4 +104,9 @@ ICROSSLAND allows users to search and  track their favorite stocks. Stocks infor
 
 12) rename **.env.example** to just **.env** All your important keys, will go into this file which will be ignored before uploading anything to github. 
 
-13) ####MongoDB Atlas SET-UP
+### MongoDB Atlas SET-UP
+
+13) create a free account with MongoDB Atlas to set up our cloudbase database: https://www.mongodb.com/cloud/atlas
+We will need to copy the generated URI into our .env file as shown in the tutorial. after that in the terminal run 
+**node index.js** under icrossland/server to run the server and see the success message about connecting to the database.
+Tutorial: [linkname] https://youtu.be/YuczCG1XmI0
