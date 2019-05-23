@@ -75,3 +75,7 @@ ICROSSLAND allows users to search and  track their favorite stocks. Stocks infor
 * ![image](https://user-images.githubusercontent.com/22802143/58229953-d4bdaa00-7ce7-11e9-8111-291f7b8e1eba.png)
 
 
+4) Move into client folder and use npm install  (this will install all react dependencies/packages)
+* ![image](https://user-images.githubusercontent.com/22802143/58230171-6cbb9380-7ce8-11e9-8dda-d7eea05a6095.png)
+
+
