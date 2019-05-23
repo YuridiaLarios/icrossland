@@ -91,3 +91,11 @@ ICROSSLAND allows users to search and  track their favorite stocks. Stocks infor
 ![image](https://user-images.githubusercontent.com/22802143/58230791-2ff09c00-7cea-11e9-8235-6ba5883fb0c7.png)
 
 8) Time to start changing some code! we will need to set up MongoDB Atlas, Auth0 application, Auth0API, World trading data API.
+
+9) First, open the project in your text editor. 
+![image](https://user-images.githubusercontent.com/22802143/58231392-bd80bb80-7ceb-11e9-8fe1-ade130d0a7ae.png)
+
+10) Use **command-p** to quickly search for the file: react-variables.js or use the sidebar and manually find the file under client/src/react-variables.js Add **http://localhost:3000** this is where the server will run.
+![image](https://user-images.githubusercontent.com/22802143/58231561-2cf6ab00-7cec-11e9-8e98-b0252b75915d.png)
+
+
