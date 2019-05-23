@@ -78,5 +78,8 @@ ICROSSLAND allows users to search and  track their favorite stocks. Stocks infor
 4) Move into client folder and use **npm install**  (this will install all react dependencies/packages)
 * ![image](https://user-images.githubusercontent.com/22802143/58230171-6cbb9380-7ce8-11e9-8dda-d7eea05a6095.png)
 
+
 5) Inside the client folder type **npm start** (this will run the react app in your browser)
+*![image](https://user-images.githubusercontent.com/22802143/58230403-18fd7a00-7ce9-11e9-823f-59fdd116cf56.png)
+
 
