@@ -109,4 +109,5 @@ ICROSSLAND allows users to search and  track their favorite stocks. Stocks infor
 13) create a free account with MongoDB Atlas to set up our cloudbase database: https://www.mongodb.com/cloud/atlas
 We will need to copy the generated URI into our .env file as shown in the tutorial. after that in the terminal run 
 **node index.js** under icrossland/server to run the server and see the success message about connecting to the database.
-Tutorial: [linkname] https://youtu.be/YuczCG1XmI0
+Tutorial: <a href="https://youtu.be/YuczCG1XmI0" target="_blank">example</a>
+
