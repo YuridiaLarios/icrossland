@@ -25,7 +25,7 @@ class App extends Component {
       stocks: [],
       favoriteStocks: new Set(), //TODO: Consider using a new Set()
       individualUserProfile: {},
-      individualStockProfile: {}
+      individualStockProfile: {},
     };
   }
 
@@ -34,9 +34,9 @@ class App extends Component {
   *********************************************************************/
 
   // function to get the info of an individual user profile
-  getIndividualUserProfile = currentUser => {
+  getIndividualUserProfile = (currentUser) => {
     this.setState({
-      individualUserProfile: currentUser
+      individualUserProfile: currentUser,
     });
   };
 
@@ -45,9 +45,9 @@ class App extends Component {
   *********************************************************************/
 
   // function to get the info of an individual stock profile
-  getIndividualStockProfile = currentStock => {
+  getIndividualStockProfile = (currentStock) => {
     this.setState({
-      individualStockProfile: currentStock
+      individualStockProfile: currentStock,
     });
   };
 
@@ -65,30 +65,30 @@ class App extends Component {
       method: "put",
       url: `${VARS_CONFIG.localhost}/api/stockFav`,
       headers: {
-        accept: "application/json"
+        accept: "application/json",
       },
       params: profile.sub,
-      data: symbols
-    }).then(res => {
+      data: symbols,
+    }).then((res) => {
       // console.log(`the response is: ${res}`);
     });
   }
 
   // function to add symbols to the parent component state, after track button is clicked
-  addSymbolToTrack = symbol => {
+  addSymbolToTrack = (symbol) => {
     // console.log("adding symbol clicked");
     let updatedSymbols = this.state.favoriteStocks;
     updatedSymbols.add(symbol);
     this.setState(
       {
-        favoriteStocks: updatedSymbols
+        favoriteStocks: updatedSymbols,
       },
       this.updateSymbolsInDatabase
     );
   };
 
   // function to delete symbols from the parent component state, after untrack button is clicked
-  deleteSymbolToTrack = symbol => {
+  deleteSymbolToTrack = (symbol) => {
     // console.log("deleting symbol clicked");
     let updatedSymbols = this.state.favoriteStocks;
     let query = updatedSymbols.has(symbol);
@@ -99,7 +99,7 @@ class App extends Component {
 
       this.setState(
         {
-          favoriteStocks: updatedSymbols
+          favoriteStocks: updatedSymbols,
         },
         this.updateSymbolsInDatabase
       );
@@ -126,32 +126,32 @@ class App extends Component {
     //MAIN ALL USERS UI
     axios
       .get(`${VARS_CONFIG.localhost}/api/users`, { headers })
-      .then(response => this.setState({ users: response.data }))
-      .catch(error => this.setState({ error: true }));
+      .then((response) => this.setState({ users: response.data }))
+      .catch((error) => this.setState({ error: true }));
 
     //MAIN ALL STOCKS UI
     axios
       .get(`${VARS_CONFIG.localhost}/api/stocks`, {
         params: {
           data:
-            "HSBA.L,MSFT,AAPL,F,C,ANTM,EXFO,FDX,W,UBER,LYFT,GOOGL,CVX,CBS,BXP,FB,AMZN,ET,DELL,CMCSA,TSLA,DATA,TEVA,BAM,EXFO,WELL,ASC,CUZ,MEET,REI,ROKU,AMD,CTL,PRGO,TPR,BSX,ILMN,ISRG,NTAP,HCA,INTC,OXY,UA,CVS,BHC,CGC,1113.HK,CNA"
+            "HSBA.L,MSFT,AAPL,F,C,ANTM,EXFO,FDX,W,UBER,LYFT,GOOGL,CVX,CBS,BXP,FB,AMZN,ET,DELL,CMCSA,TSLA,DATA,TEVA,BAM,EXFO,WELL,ASC,CUZ,MEET,REI,ROKU,AMD,CTL,PRGO,TPR,BSX,ILMN,ISRG,NTAP,HCA,INTC,OXY,UA,CVS,BHC,CGC,1113.HK,CNA",
         },
-        headers
+        headers,
       })
-      .then(response => this.setState({ stocks: response.data }))
-      .catch(error => this.setState({ error: true }));
+      .then((response) => this.setState({ stocks: response.data }))
+      .catch((error) => this.setState({ error: true }));
 
     //MAIN ALL SYMBOLS FOR CURRENT USER
     axios
       .get(`${VARS_CONFIG.localhost}/api/myFavoriteStocks`, {
         params: profile.sub,
-        headers
+        headers,
       })
-      .then(response => {
+      .then((response) => {
         let favoriteStocksSet = new Set(response.data.favoriteStocks);
         this.setState({ favoriteStocks: favoriteStocksSet });
       })
-      .catch(error => this.setState({ error: true }));
+      .catch((error) => this.setState({ error: true }));
   }
 
   /******************************************************************** 
@@ -176,7 +176,7 @@ class App extends Component {
                 <Route
                   exact
                   path="/"
-                  render={props => (
+                  render={(props) => (
                     <Homepage
                       // users={this.state.users}
                       {...this.props}
@@ -189,11 +189,11 @@ class App extends Component {
                   )}
                 />
 
-                <Route path="/callback" render={props => <Callback />} />
+                <Route path="/callback" render={(props) => <Callback />} />
 
                 <Route
                   path="/Dashboard"
-                  render={props =>
+                  render={(props) =>
                     this.props.auth.isAuthenticated() ? (
                       <Dashboard
                         {...this.props}
@@ -215,7 +215,7 @@ class App extends Component {
 
                 <Route
                   path="/users"
-                  render={props =>
+                  render={(props) =>
                     this.props.auth.isAuthenticated() ? (
                       <Users
                         {...this.props}
@@ -236,7 +236,7 @@ class App extends Component {
 
                 <Route
                   path="/userProfile/:userId"
-                  render={props =>
+                  render={(props) =>
                     this.props.auth.isAuthenticated() ? (
                       <UserProfile
                         {...this.props}
@@ -256,7 +256,7 @@ class App extends Component {
 
                 <Route
                   path="/stockProfile/:stockId"
-                  render={props =>
+                  render={(props) =>
                     this.props.auth.isAuthenticated() ? (
                       <StockProfile
                         {...this.props}
@@ -270,7 +270,7 @@ class App extends Component {
 
                 <Route
                   path="/logout"
-                  render={props =>
+                  render={(props) =>
                     this.props.auth.isAuthenticated() ? (
                       <Homepage {...this.props} />
                     ) : (

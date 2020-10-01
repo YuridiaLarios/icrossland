@@ -15,43 +15,43 @@ let history = {
     close: "210.52",
     high: "215.31",
     low: "209.23",
-    volume: "64827328"
+    volume: "64827328",
   },
   "2019-05-02": {
     open: "209.84",
     close: "209.15",
     high: "212.65",
     low: "208.13",
-    volume: "30464066"
+    volume: "30464066",
   },
   "2019-05-03": {
     open: "210.89",
     close: "211.75",
     high: "211.84",
     low: "210.23",
-    volume: "20767194"
+    volume: "20767194",
   },
   "2019-05-06": {
     open: "204.29",
     close: "208.48",
     high: "208.84",
     low: "203.50",
-    volume: "32177724"
+    volume: "32177724",
   },
   "2019-05-07": {
     open: "205.88",
     close: "202.86",
     high: "207.42",
     low: "200.83",
-    volume: "38343608"
+    volume: "38343608",
   },
   "2019-05-08": {
     open: "201.90",
     close: "202.90",
     high: "205.34",
     low: "201.75",
-    volume: "25683962"
-  }
+    volume: "25683962",
+  },
 };
 
 const checkJwt = jwt({
@@ -60,13 +60,13 @@ const checkJwt = jwt({
     cache: true,
     rateLimit: true,
     jwksRequestsPerMinute: 50,
-    jwksUri: `https://${process.env.AUTH0_DOMAIN}/.well-known/jwks.json`
+    jwksUri: `https://${process.env.AUTH0_DOMAIN}/.well-known/jwks.json`,
   }),
 
   // Validate the audience and the issuer.
   audience: process.env.AUTH0_AUDIENCE,
   issuer: `https://${process.env.AUTH0_DOMAIN}/`,
-  algorithms: ["RS256"]
+  algorithms: ["RS256"],
 });
 
 /*************************************
@@ -74,22 +74,18 @@ const checkJwt = jwt({
 **************************************/
 
 // (FAKE) GET STOCK HISTORY BY ID ONLY WORKS FOR AAPL
-router.get("/history", async function(req, res) {
+router.get("/history", async function (req, res) {
   res.json(history);
 });
 
 // (REAL) GET STOCK HISTORY BY ID
-router.get("/history/:id", async function(req, res) {
+router.get("/history/:id", async function (req, res) {
   await axios
     .get(
-      `https://www.worldtradingdata.com/api/v1/history?symbol=${
-        req.params.id
-      }&date_from=2019-05-01&sort=newest&sort=oldest&api_token=${
-        process.env.WTD_API
-      }`
+      `https://api.marketstack.com/v1/eod?access_key=${process.env.WTD_API}&symbols=$${req.params.id}&date_from=2019-05-01&date_to=2019-02-01&sort=newest&sort=oldest`
     )
-    .then(response => res.json(response.data.history))
-    .catch(error => res.json(error));
+    .then((response) => res.json(response.data.history))
+    .catch((error) => res.json(error));
 });
 
 // router.get("/history", async function(req, res) {
@@ -116,27 +112,23 @@ router.get("/history/:id", async function(req, res) {
 // });
 
 // (REAL) GET ALL DEMO STOCKS
-router.get("/", async function(req, res) {
+router.get("/", async function (req, res) {
   let demoSymbols = req.query.data;
   await axios
     .get(
-      `https://www.worldtradingdata.com/api/v1/stock?symbol=${demoSymbols}&api_token=${
-        process.env.WTD_API
-      }`
+      `https://api.marketstack.com/v1/eod?access_key=${process.env.WTD_API}&symbols=${demoSymbols}`
     )
-    .then(response => res.json(response.data.data))
-    .catch(error => res.json(error));
+    .then((response) => res.json(response.data.data))
+    .catch((error) => res.json(error));
 });
 
 // (REAL) GET STOCK BY ID
-router.get("/:id", async function(req, res) {
+router.get("/:id", async function (req, res) {
   await axios
     .get(
-      `https://www.worldtradingdata.com/api/v1/stock?symbol=${
-        req.params.id
-      }&api_token=${process.env.WTD_API}`
+      `https://api.marketstack.com/v1/eod?access_key=${process.env.WTD_API}&symbols=$${req.params.id}`
     )
-    .then(response => res.json(response.data.data[0]))
-    .catch(error => res.json(error));
+    .then((response) => res.json(response.data.data[0]))
+    .catch((error) => res.json(error));
 });
 module.exports = router;
