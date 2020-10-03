@@ -116,7 +116,7 @@ router.get("/", async function (req, res) {
   let demoSymbols = req.query.data;
   await axios
     .get(
-      `https://api.marketstack.com/v1/eod?access_key=${process.env.WTD_API}&symbols=${demoSymbols}`
+      `https://api.marketstack.com/v1/eod/latest?access_key=${process.env.WTD_API}&symbols=${demoSymbols}`
     )
     .then((response) => res.json(response.data.data))
     .catch((error) => res.json(error));
@@ -126,7 +126,7 @@ router.get("/", async function (req, res) {
 router.get("/:id", async function (req, res) {
   await axios
     .get(
-      `https://api.marketstack.com/v1/eod?access_key=${process.env.WTD_API}&symbols=$${req.params.id}`
+      `https://api.marketstack.com/v1/eod/latest?access_key=${process.env.WTD_API}&symbols=$${req.params.id}`
     )
     .then((response) => res.json(response.data.data[0]))
     .catch((error) => res.json(error));
